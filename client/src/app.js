@@ -11,8 +11,8 @@ const App = () => {
   return (
     <div>
     <h1 id="savely_logo">Savely</h1>
-    <p><Link to="/r" activeClassName="active">Go to Routed</Link></p>
     <Dashboard />
+    <p><Link to="/r" activeClassName="active">Go to Routed</Link></p>
     </div>
   )
 };
