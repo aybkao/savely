@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TransactionsList from './transactionsList.js';
 import {Button} from 'semantic-ui-react';
-import Dropzone from 'react-dropzone'
 
 const TransactionsContainer = () => {
   return (
