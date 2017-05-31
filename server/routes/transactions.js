@@ -2,27 +2,31 @@
 const express = require('express');
 const router = express.Router();
 
-router.route('/transactionsDisplayTen')
+router.route('/transactions')
   // gets top 20 [previous] transactions upon load
   .get(function(req, res) {
-    res.end();
+    var results = []; // database query that gets 20 results
+    res.json(results);
   })
   // user submits transaction, updates transactions
   .post(function(req, res) {
+    var newTransaction = req.body.transaction;
+    // database query that adds transaction to db;
     res.end();
   });
 
-router.route('/transactionsDisplayAll')
+router.route('/transactions?All')
   // gets all [previous] transactions upon load
   .get(function(req, res) {
-    res.end();
+    var results = []; // database query that gets all results
+    res.json(results);
   });
 
 
-router.route('/transactionsCategories')
-  // user sorts by category
+router.route('/transactions?Categories')
   .get(function(req, res) {
-    res.end();
+    var results = []; // database query that gets all categories
+    res.json(results);
   });
 
 module.exports = router;
