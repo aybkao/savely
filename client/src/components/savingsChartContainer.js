@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack } from 'victory';
+import { VictoryArea, VictoryBar, VictoryCandlestick, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack } from 'victory';
 
 const data2012 = [
   {month: 3, earnings: 13000},
@@ -12,10 +12,16 @@ const SavingsChartContainer = () => {
     return (
       <div>
         <h3>Savings (past 3 months)</h3>
-        <VictoryChart
-          domainPadding={10}
-          theme={VictoryTheme.material}
-        >
+        <VictoryChart >
+        <VictoryBar
+          data={[
+            {month: "September", savings: 1000},
+            {month: "October", savings: -500},
+            {month: "November", savings: -5000}
+          ]}
+          x="month"
+          y={(datum) => datum.savings}
+        />
         </VictoryChart>
       </div>
     )

@@ -5,8 +5,9 @@ import Budgets from './budgets.js';
 import ChartsContainer from './chartsContainer.js';
 
 const Dashboard = () => {
+  console.log();
   return (
-    <div class="Grid">
+    <div>
       <Budgets />
       <ChartsContainer />
       <TransactionsContainer />
