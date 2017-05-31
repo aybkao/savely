@@ -25,9 +25,11 @@ class UploadReceipts extends React.Component {
       var fr = new FileReader();
       fr.onload = function(e) {
         var base64String = e.target.result.slice(23, e.target.result.length);
+        var apiKey = process.env.GOOGLE_CLOUD_VISION_API_KEY || keys.GOOGLE_CLOUD_VISION_API_KEY;
+        var googleUrl = 'https://vision.googleapis.com/v1/images:annotate?key=' + apiKey;
         axios({
           method: 'post',
-          url: 'https://vision.googleapis.com/v1/images:annotate?key=' + keys.GOOGLE_CLOUD_VISION_API_KEY,
+          url: googleUrl,
           data: {
             "requests": [
               {
