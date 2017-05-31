@@ -2,7 +2,7 @@ body {
   font-family: "Verlag A", "Verlag B";
 }
 .container {
-  
+
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: "Verlag A", "Verlag B";
@@ -11,6 +11,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 #transactions_column, #charts_column, #budgets_column {
   text-align: center;
+}
+.addTransaction {
+  height: 575px;
 }
 #savely_logo {
   text-align: center;
