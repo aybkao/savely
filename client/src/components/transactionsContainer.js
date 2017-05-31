@@ -4,6 +4,7 @@ import TransactionsList from './transactionsList.js';
 import AddTransactionsForm from './addTransactionsForm.js'
 // import {Button, Modal} from 'semantic-ui-react';
 import { Button, Header, Image, Modal, Checkbox, Form} from 'semantic-ui-react';
+import UploadReceipts from './uploadReceipts.js';
 import store from '../store';
 import { connect } from 'react-redux';
 
