@@ -1,53 +1,71 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Icon, Label, Menu, Table } from 'semantic-ui-react'
+import { Icon, Label, Menu, Table } from 'semantic-ui-react';
 
-const TransactionsList = () => {
-  return (
-    <Table celled>
-       <Table.Header>
+class TransactionsList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currPage: 1
+    };
+    this.changePage.bind(this);
+  }
+  changePage(num) {
+    console.log(context);
+  }
+  formatTransactions(transactions){
+    console.log(transactions);
+    var initial = (this.state.currPage - 1) * 5;
+    var rows = [];
+    var numPages = transactions.length / 5;
+    var numPages = numPages % 1 === 0 ? numPages : parseInt(numPages) + 1;
+    console.log(numPages);
+    console.log(this.state.currPage * 5);
+    for (var i = initial; i < (this.state.currPage * 5); i++){
+      rows.push(
+        <Table.Row key={i}>
+          <Table.Cell>{transactions[i].vendor}</Table.Cell>
+          <Table.Cell>{transactions[i].date}</Table.Cell>
+          <Table.Cell>${transactions[i].amount}</Table.Cell>
+        </Table.Row>
+      );
+    }
+    return rows;
+  }
+  render() {
+    return (
+      <Table celled>
+         <Table.Header>
+           <Table.Row>
+             <Table.HeaderCell>Vendor</Table.HeaderCell>
+             <Table.HeaderCell>Date</Table.HeaderCell>
+             <Table.HeaderCell>Amount</Table.HeaderCell>
+           </Table.Row>
+         </Table.Header>
+         <Table.Body>
+           {this.formatTransactions(this.props.transactions)}
+         </Table.Body>
+         <Table.Footer>
          <Table.Row>
-           <Table.HeaderCell>Header</Table.HeaderCell>
-           <Table.HeaderCell>Header</Table.HeaderCell>
+           <Table.HeaderCell colSpan='3'>
+             <Menu floated='right' pagination>
+               <Menu.Item as='a' icon>
+                 <Icon name='left chevron' />
+               </Menu.Item>
+               <Menu.Item as='a'>1</Menu.Item>
+               <Menu.Item as='a'>2</Menu.Item>
+               <Menu.Item as='a'>3</Menu.Item>
+               <Menu.Item as='a'>4</Menu.Item>
+               <Menu.Item as='a' icon>
+                 <Icon name='right chevron' />
+               </Menu.Item>
+             </Menu>
+           </Table.HeaderCell>
          </Table.Row>
-       </Table.Header>
-       <Table.Body>
-         <Table.Row>
-           <Table.Cell>
-             <Label ribbon>First</Label>
-           </Table.Cell>
-           <Table.Cell>Cell</Table.Cell>
-         </Table.Row>
-         <Table.Row>
-           <Table.Cell>Cell</Table.Cell>
-           <Table.Cell>Cell</Table.Cell>
-         </Table.Row>
-         <Table.Row>
-           <Table.Cell>Cell</Table.Cell>
-           <Table.Cell>Cell</Table.Cell>
-         </Table.Row>
-       </Table.Body>
-
-       <Table.Footer>
-       <Table.Row>
-         <Table.HeaderCell colSpan='3'>
-           <Menu floated='right' pagination>
-             <Menu.Item as='a' icon>
-               <Icon name='left chevron' />
-             </Menu.Item>
-             <Menu.Item as='a'>1</Menu.Item>
-             <Menu.Item as='a'>2</Menu.Item>
-             <Menu.Item as='a'>3</Menu.Item>
-             <Menu.Item as='a'>4</Menu.Item>
-             <Menu.Item as='a' icon>
-               <Icon name='right chevron' />
-             </Menu.Item>
-           </Menu>
-         </Table.HeaderCell>
-       </Table.Row>
-       </Table.Footer>
-     </Table>
-  )
+         </Table.Footer>
+       </Table>
+    )
+  }
 };
 
 export default TransactionsList;
