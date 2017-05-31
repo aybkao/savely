@@ -8,7 +8,7 @@
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch",
     "heroku-postbuild": "knex migrate:latest && webpack -d --config webpack.config.babel.js",
-    "seed-transaction": "node ./db/seedTransaction.js"
+    "seed-transaction": "node ./db/seedTransactions.js"
   },
   "author": "Hack Reactor",
   "license": "MIT",
