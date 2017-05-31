@@ -3,18 +3,6 @@ const middleware = require('../middleware');
 
 const router = express.Router();
 
-router.route('/testUpload')
-  .get((req, res) => {
-    console.log('test upload get request');
-    res.end('test get upload');
-  })
-  .post((req, res) => {
-    console.log('test upload post request');
-    res.end('test post upload');
-  });
-
-
-
 router.route('/')
   .get(middleware.auth.verify, (req, res) => {
     res.render('index.ejs');
