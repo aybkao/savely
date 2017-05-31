@@ -17,11 +17,8 @@ class TransactionsList extends React.Component {
     console.log(transactions);
     var initial = (this.state.currPage - 1) * 5;
     var rows = [];
-    var numPages = transactions.length / 5;
-    var numPages = numPages % 1 === 0 ? numPages : parseInt(numPages) + 1;
-    console.log(numPages);
     console.log(this.state.currPage * 5);
-    for (var i = initial; i < (this.state.currPage * 5); i++){
+    for (var i = initial; i < transactions.length; i++){
       rows.push(
         <Table.Row key={i}>
           <Table.Cell>{transactions[i].vendor}</Table.Cell>
