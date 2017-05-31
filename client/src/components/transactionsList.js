@@ -10,28 +10,18 @@ class TransactionsList extends React.Component {
     };
     this.changePage.bind(this);
   }
-  handleItemClick = (e, { i }) => this.setState({ currPage: i })
   changePage(num) {
     console.log(context);
-  }
-  formatPages(transactions){
-    var numPages = transactions.length / 5;
-    var numPages = numPages % 1 === 0 ? numPages : parseInt(numPages) + 1;
-    var pageButtons = [];
-    for (var i = 1; i <= numPages; i++) {
-      pageButtons.push(
-        <Menu.Item name=JSON.stringify(i) active={JSON.stringify(i)} onClick={this.handleItemClick}>${i}</Menu.Item>
-      );
-    }
-    return pageButtons;
   }
   formatTransactions(transactions){
     console.log(transactions);
     var initial = (this.state.currPage - 1) * 5;
     var rows = [];
+    var numPages = transactions.length / 5;
+    var numPages = numPages % 1 === 0 ? numPages : parseInt(numPages) + 1;
     console.log(numPages);
     console.log(this.state.currPage * 5);
-    for (var i = initial; i < (this.state.currPage * 5); i++) {
+    for (var i = initial; i < (this.state.currPage * 5); i++){
       rows.push(
         <Table.Row key={i}>
           <Table.Cell>{transactions[i].vendor}</Table.Cell>
@@ -62,7 +52,10 @@ class TransactionsList extends React.Component {
                <Menu.Item as='a' icon>
                  <Icon name='left chevron' />
                </Menu.Item>
-                {this.formatPages(this.props.transactions)}
+               <Menu.Item as='a'>1</Menu.Item>
+               <Menu.Item as='a'>2</Menu.Item>
+               <Menu.Item as='a'>3</Menu.Item>
+               <Menu.Item as='a'>4</Menu.Item>
                <Menu.Item as='a' icon>
                  <Icon name='right chevron' />
                </Menu.Item>
