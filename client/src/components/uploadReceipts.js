@@ -1,29 +1,80 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Dropzone from 'react-dropzone';
 import {Button} from 'semantic-ui-react';
-import DropzoneComponent from 'react-dropzone-component';
-var componentConfig = {
-    iconFiletypes: ['.jpg', '.png', '.gif'],
-    showFiletypeIcon: true,
-    postUrl: '/uploadHandler'
-};
+import axios from 'axios';
+import Promise from 'bluebird';
+import keys from '../../../apiKeys.js';
 
 class UploadReceipts extends React.Component {
   constructor(props) {
     super(props);
+    this.onImageDrop = this.onImageDrop.bind(this);
+    this.onUploadClick = this.onUploadClick.bind(this);
+    //this.ocr = this.ocr.bind(this);
   }
+  
+  onUploadClick() {
+    console.log('upload button clicked');
+  }
+  
+  onImageDrop(acceptedFiles) {
+    // localStorage.setItem("imgData", imgData);
+    // var dataImage = localStorage.getItem('imgData');
+    // console.log(dataImage);
+    acceptedFiles.forEach((file)=> {
+      var fr = new FileReader();
+      fr.onload = function(e) {
+        var base64String = e.target.result.slice(23, e.target.result.length);
+        var apiKey = process.env.GOOGLE_CLOUD_VISION_API_KEY || keys.GOOGLE_CLOUD_VISION_API_KEY;
+        var googleUrl = 'https://vision.googleapis.com/v1/images:annotate?key=' + apiKey;
+        axios({
+          method: 'post',
+          url: googleUrl,
+          data: {
+            "requests": [
+              {
+                "image": {
+                  "content": base64String
+                },
+                "features": [
+                  {
+                    "type": "TEXT_DETECTION"
+                  }
+                ]
+              }
+            ]
+          }
+        })
+          .then(function(response) {
+            var parsedText = response.data.responses[0].textAnnotations;
+            parsedText.forEach((line) => {
+              console.log(line.description);
+            });
+          });
+      };
+      fr.readAsDataURL(file);
+    });
+  }
+
 
   render() {
     return (
-      <div id="receipt_dropzone">
+      <div>
         <h3>Receipt Upload Area</h3>
-        <DropzoneComponent config={componentConfig}
-                       eventHandlers={eventHandlers}
-                       djsConfig={djsConfig} />
-        <Button fluid>Upload Receipt</Button>
+        <Button fluid onClick={this.onUploadClick}>Upload Receipt</Button>
+        <div>
+          <Dropzone
+            onDragEnter={this.dragEnter}
+            onDragLeave={this.dragLeave} 
+            onDrop={this.onImageDrop} 
+            name='file' id="dropped" ref="dropped">
+            <div> Drop an image or pdf or click </div>
+          </Dropzone>
+        </div>
       </div>
-    )
+    );
   }
-};
+}
+
 
 export default UploadReceipts;
