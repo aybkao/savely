@@ -34,3 +34,6 @@ bower_components/
 
 # dotenv 
 .env
+
+# api keys
+apiKeys.js
