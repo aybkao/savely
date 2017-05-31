@@ -34,9 +34,9 @@ class TransactionsList extends React.Component {
       <Table celled>
          <Table.Header>
            <Table.Row>
-             <Table.HeaderCell>Vendor</Table.HeaderCell>
-             <Table.HeaderCell>Date</Table.HeaderCell>
-             <Table.HeaderCell>Amount</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Vendor</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Date</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Amount</Table.HeaderCell>
            </Table.Row>
          </Table.Header>
          <Table.Body>

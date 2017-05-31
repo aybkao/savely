@@ -4,7 +4,7 @@ import SpendingCategoriesChartContainer from './spendingCategoriesChartContainer
 
 const Budgets = () => {
   return (
-    <div id="budgets_column" className="col-md-4">
+    <div id="budgets_column" className="col-lg-4">
       <h2>Spending Categories</h2>
       <SpendingCategoriesChartContainer />
     </div>
