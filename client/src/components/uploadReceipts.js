@@ -1,98 +1,72 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import {Button} from 'semantic-ui-react';
-// import DropzoneComponent from 'react-dropzone-component';
-// var componentConfig = {
-//     iconFiletypes: ['.jpg', '.png', '.gif'],
-//     showFiletypeIcon: true,
-//     postUrl: '/uploadHandler'
-// };
-
-// class UploadReceipts extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     return (
-//       <div id="receipt_dropzone">
-//         <h3>Receipt Upload Area</h3>
-//         <Button fluid>Upload Receipt</Button>
-//       </div>
-//     )
-//   }
-// };
-
-
-
-
-
-
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import {Button} from 'semantic-ui-react';
 import axios from 'axios';
-//import fs from 'fs;'
-
-
-
+import Promise from 'bluebird';
+import keys from '../../../apiKeys.js';
 
 class UploadReceipts extends React.Component {
   constructor(props) {
     super(props);
     this.onImageDrop = this.onImageDrop.bind(this);
+    this.onUploadClick = this.onUploadClick.bind(this);
     //this.ocr = this.ocr.bind(this);
   }
   
-  
-  onImageDrop(files) {
-    console.log('FILES', files);
-    //var imageFile = fs.readFileSync('')
-    let uploaded = new FormData();
-    uploaded.append('file', files[0]);
-    console.log(uploaded);
-    // request.post('/asdf')
-    //   .send(uploadedPdf)
-    //   .end((err, resp) => {
-    //     if (err) {
-    //       console.log('error in onImageDrop Post to /upload: ', err);
-    //     } else {
-    //     this.setState({
-    //       loading: true
-    //     });
-    //     setTimeout(() => {
-    //       this.setState({
-    //         loading: false,
-    //         redirect: true
-    //       });
-    //     }, 2500)
-    //       return resp;
-    //     }
-    //   });
-    // this.setState({
-    //   uploadedFile: files[0]
-    // });
-    // this.uploadToCloudinary(files[0]);
+  onUploadClick() {
+    console.log('upload button clicked');
   }
   
-   
+  onImageDrop(acceptedFiles) {
+    // localStorage.setItem("imgData", imgData);
+    // var dataImage = localStorage.getItem('imgData');
+    // console.log(dataImage);
+    acceptedFiles.forEach((file)=> {
+      var fr = new FileReader();
+      fr.onload = function(e) {
+        var base64String = e.target.result.slice(23, e.target.result.length);
+        axios({
+          method: 'post',
+          url: 'https://vision.googleapis.com/v1/images:annotate?key=' + keys.GOOGLE_CLOUD_VISION_API_KEY,
+          data: {
+            "requests": [
+              {
+                "image": {
+                  "content": base64String
+                },
+                "features": [
+                  {
+                    "type": "TEXT_DETECTION"
+                  }
+                ]
+              }
+            ]
+          }
+        })
+          .then(function(response) {
+            var parsedText = response.data.responses[0].textAnnotations;
+            parsedText.forEach((line) => {
+              console.log(line.description);
+            });
+          });
+      };
+      fr.readAsDataURL(file);
+    });
+  }
 
 
   render() {
     return (
-      <div id="receipt_dropzone">
+      <div>
         <h3>Receipt Upload Area</h3>
-        <Button fluid>Upload Receipt</Button>
-
-        <div className="dropzone">
+        <Button fluid onClick={this.onUploadClick}>Upload Receipt</Button>
+        <div>
           <Dropzone
-            className="dropzone dz-clickable"
             onDragEnter={this.dragEnter}
             onDragLeave={this.dragLeave} 
             onDrop={this.onImageDrop} 
-            multiple={false} 
-            name='file'>
-            <div className="dz-message"> Drop an image or pdf or click </div>
+            name='file' id="dropped" ref="dropped">
+            <div> Drop an image or pdf or click </div>
           </Dropzone>
         </div>
       </div>
