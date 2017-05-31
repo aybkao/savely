@@ -7,7 +7,6 @@ import UploadReceipts from './uploadReceipts.js';
 import {Button} from 'semantic-ui-react';
 import store from '../store';
 import { connect } from 'react-redux';
-import UploadReceipts from './uploadReceipts.js';
 
 const getDate = () => {
   var today = new Date();
