@@ -8,11 +8,11 @@ const Budgets = () => {
     <div id="budgets_column" className="col-lg-4">
       <h2>Spending Categories</h2>
       <h3>Cash Flow</h3>
-      <Table celled>
+      <Table celled className='cash_flow_table'>
          <Table.Header>
            <Table.Row>
-             <Table.HeaderCell className="trans-head">Cash Flow</Table.HeaderCell>
-             <Table.HeaderCell className="trans-head">${82436-63592}</Table.HeaderCell>
+             <Table.HeaderCell>Cash Flow</Table.HeaderCell>
+             <Table.HeaderCell>${82436-63592}</Table.HeaderCell>
            </Table.Row>
          </Table.Header>
          <Table.Body>

@@ -22,6 +22,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #468A15;
   font-size: 3em;
 }
+#budgets_column .cash_flow_table {
+  font-size: 2.25em;
+}
 #receipt-dropzone {
   font-style: normal;
   font-weight: 700;
