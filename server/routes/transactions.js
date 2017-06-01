@@ -2,26 +2,30 @@
 const express = require('express');
 const router = express.Router();
 
-router.route('/transactions')
+router.route('/')
 
-  // gets transactions in the last 90 days (3 months)
+  // gets transactions in the last 90 days (3 months) ***
   .get(function(req, res) {
-    var results = []; // database query that gets 20 results
+    var results = [];
+    // SELECT * FROM transactions WHERE date > (CURRENT_DATE - 90);
     res.json(results);
   })
-  // posts new transaction, updates transactions
+
+  // *** CLIENT->SERVER ALL FUNCTIONAL! posts new transaction, updates transactions
   .post(function(req, res) {
-    var newTransaction = req.body.transaction;
-    // database query that adds transaction to db;
-    res.end();
+    var keys = Object.keys(req.body);
+    var values = Object.values(req.body);
+    res.end("Success receiving transaction input data!");
   });
 
-router.route('/transactions?Categories')
-  // gets budget categories
+router.route('/categories')
+
+  // GETS budget categories
   .get(function(req, res) {
     var results = []; // database query that gets all categories
     res.json(results);
   })
+
   // updates a budget category
   .post(function(req, res) {
     var newCategory = req.body.category;
