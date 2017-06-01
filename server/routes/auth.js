@@ -1,6 +1,5 @@
 const express = require('express');
 const middleware = require('../middleware');
-
 const router = express.Router();
 
 router.route('/')
@@ -66,5 +65,10 @@ router.get('/auth/twitter/callback', middleware.passport.authenticate('twitter',
   successRedirect: '/profile',
   failureRedirect: '/login'
 }));
+
+router.route('/ocr')
+  .get((req, res) => {
+    res.status(200).send(process.env.GOOGLE_CLOUD_VISION_API_KEY);
+  });
 
 module.exports = router;
