@@ -12,11 +12,11 @@ class UploadReceipts extends React.Component {
     this.onUploadClick = this.onUploadClick.bind(this);
     //this.ocr = this.ocr.bind(this);
   }
-  
+
   onUploadClick() {
     console.log('upload button clicked');
   }
-  
+
   onImageDrop(acceptedFiles) {
     // localStorage.setItem("imgData", imgData);
     // var dataImage = localStorage.getItem('imgData');
@@ -60,17 +60,16 @@ class UploadReceipts extends React.Component {
   render() {
     return (
       <div>
-        <h3>Receipt Upload Area</h3>
-        <Button fluid onClick={this.onUploadClick}>Upload Receipt</Button>
-        <div>
+        <div id="receipt-dropzone">
           <Dropzone
             onDragEnter={this.dragEnter}
-            onDragLeave={this.dragLeave} 
-            onDrop={this.onImageDrop} 
+            onDragLeave={this.dragLeave}
+            onDrop={this.onImageDrop}
             name='file' id="dropped" ref="dropped">
-            <div> Drop an image or pdf or click </div>
+            <div>Drag and Drop a Receipt Image</div>
           </Dropzone>
         </div>
+        <Button fluid onClick={this.onUploadClick}>Upload Receipt</Button>
       </div>
     );
   }
