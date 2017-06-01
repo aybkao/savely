@@ -14,7 +14,7 @@ router.route('/')
   // *** CLIENT->SERVER ALL FUNCTIONAL! posts new transaction, updates transactions
   .post(function(req, res) {
     var keys = Object.keys(req.body);
-    var values = Object.values(req.body);
+    var values = Object.keys(req.body).map((key) => req.body[key]);
     res.end("Success receiving transaction input data!");
   });
 
