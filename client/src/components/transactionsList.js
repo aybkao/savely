@@ -31,12 +31,14 @@ class TransactionsList extends React.Component {
   }
   render() {
     return (
+      <div>
+      <h3>Transactions (last 3 months)</h3>
       <Table celled>
          <Table.Header>
            <Table.Row>
-             <Table.HeaderCell>Vendor</Table.HeaderCell>
-             <Table.HeaderCell>Date</Table.HeaderCell>
-             <Table.HeaderCell>Amount</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Vendor</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Date</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Amount</Table.HeaderCell>
            </Table.Row>
          </Table.Header>
          <Table.Body>
@@ -61,6 +63,7 @@ class TransactionsList extends React.Component {
          </Table.Row>
          </Table.Footer>
        </Table>
+     </div>
     )
   }
 };

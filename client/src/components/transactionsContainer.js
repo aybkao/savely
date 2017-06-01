@@ -16,7 +16,7 @@ const getDate = () => {
 
 const TransactionsContainer = () => {
   return (
-    <div id="transactions_column" className="col-md-4">
+    <div id="transactions_column" className="col-lg-4">
       <h2>Transactions</h2>
       <TransactionsList transactions={store.getState().transactions.transactions}/>
       <AddTransactionsForm />
