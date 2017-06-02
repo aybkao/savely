@@ -14,7 +14,7 @@ const PieChartContainer = () => {
           x="category"
           y={(datum) => datum.spending}
           colorScale="qualitative"
-          padding={{top: 20, bottom: 60, right: 60, left: 60}}
+          padding={{top: 20, bottom: 20, right: 60, left: 60}}
           />
       </div>
     )

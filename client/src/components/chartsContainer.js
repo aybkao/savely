@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SavingsChartContainer from './savingsChartContainer.js';
+import SpendingCategoriesChartContainer from './spendingCategoriesChartContainer.js';
 import PieChartContainer from './pieChartContainer.js';
 
 const ChartsContainer = () => {
   return (
     <div id="charts_column" className="col-lg-4">
       <h2>Savings and Spending</h2>
-      <SavingsChartContainer />
       <PieChartContainer />
+      <SpendingCategoriesChartContainer />
     </div>
   )
 };

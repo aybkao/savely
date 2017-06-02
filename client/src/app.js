@@ -10,7 +10,9 @@ import store, {history} from './store.js';
 const App = () => {
   return (
     <div>
-    <h1 id="savely_logo">Savely</h1>
+    <div id="dashboard_header">
+      <h1 id="savely_logo">Savely</h1>
+    </div>
     <Dashboard />
     <p><Link to="/r" activeClassName="active">Go to Routed</Link></p>
     </div>
