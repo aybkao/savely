@@ -10,6 +10,12 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.dashboard_container {
+  margin: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
 h1, h2, h3, h4, h5, h6 {
   font-family: "Verlag A", "Verlag B";
   font-style: normal;
@@ -18,10 +24,6 @@ h1, h2, h3, h4, h5, h6 {
 #savely-container .container{
   margin-left: 0 auto;
   margin-right: 0 auto;
-}
-#transactions_column, #charts_column, #budgets_column {
-  padding-top: 20px;
-  text-align: center;
 }
 .addTransaction {
   height: 575px;
@@ -50,5 +52,5 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   text-align: center;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
 }

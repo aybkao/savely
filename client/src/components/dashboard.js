@@ -10,7 +10,7 @@ import SpendingCategoriesChartContainer from './spendingCategoriesChartContainer
 const Dashboard = () => {
   console.log();
   return (
-    <div className='page'>
+    <div className='dashboard_container'>
       <div className="row">
         <CashFlowChart />
         <PieChartContainer />
