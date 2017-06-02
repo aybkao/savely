@@ -4,15 +4,8 @@ const router = express.Router();
 const TransactionsController = require('../controllers').Transactions;
 
 router.route('/')
-
-  // gets transactions in the last 90 days (3 months) ***
-  .get(function(req, res) {
-    var results = [];
-    res.json(results);
-  })
-
-  // *** CLIENT->SERVER ALL FUNCTIONAL! posts new transaction, updates transactions
-  .post(TransactionsController.create);
+  .get(TransactionsController.getAll) // GETS ALL TRANSACTIONS
+  .post(TransactionsController.create); // CREATES A NEW TRANSACTION
 
 router.route('/categories')
 
