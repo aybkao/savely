@@ -10,7 +10,7 @@ const data2012 = [
 
 const SavingsChartContainer = () => {
     return (
-      <div>
+      <div className="col-md-6">
         <h3>Savings (past 3 months)</h3>
         <VictoryChart >
         <VictoryBar

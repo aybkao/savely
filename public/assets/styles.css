@@ -7,6 +7,8 @@ body {
 #dashboard_header {
   width: 100%;
   background-color: #F4E9D2;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: "Verlag A", "Verlag B";
@@ -29,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #468A15;
   font-size: 3em;
 }
-#budgets_column .cash_flow_table {
+.cash_flow_table {
   font-size: 1.75em;
 }
 #receipt-dropzone {

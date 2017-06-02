@@ -4,7 +4,7 @@ import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, Vict
 
 const PieChartContainer = () => {
     return (
-      <div>
+      <div className='col-md-6'>
         <h3>Total Spending by Category</h3>
         <VictoryPie data={[
           {category: "Restaurants", spending: 1331},

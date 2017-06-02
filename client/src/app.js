@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Dashboard from './components/dashboard.js';
+import Carousel from './components/carousel.js';
 import Routed from './components/routed.js';
 import {Link} from 'react-router';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
@@ -14,7 +15,7 @@ const App = () => {
       <h1 id="savely_logo">Savely</h1>
     </div>
     <Dashboard />
-    <p><Link to="/r" activeClassName="active">Go to Routed</Link></p>
+    <Carousel />
     </div>
   )
 };
@@ -22,7 +23,7 @@ const App = () => {
 const router = (
   <Router history = {browserHistory}>
     <Route path="/" component={App} />
-    <Route path="/r" component={Routed} />
+    <Route path="/t" component={Routed} />
   </Router>
 );
 
