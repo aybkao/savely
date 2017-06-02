@@ -1,9 +1,9 @@
 body {
   font-family: "Verlag A", "Verlag B";
 }
-div {
+/*div {
   border: 1px solid black;
-}
+}*/
 #dashboard_header {
   width: 100%;
   background-color: #F4E9D2;
@@ -18,6 +18,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 0 auto;
 }
 #transactions_column, #charts_column, #budgets_column {
+  padding-top: 20px;
   text-align: center;
 }
 .addTransaction {

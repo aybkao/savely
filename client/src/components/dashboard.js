@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TransactionsContainer from './transactionsContainer.js';
+import Carousel from './carousel.js';
 import Budgets from './budgets.js';
 import ChartsContainer from './chartsContainer.js';
 
@@ -10,7 +11,7 @@ const Dashboard = () => {
     <div>
       <Budgets />
       <ChartsContainer />
-      <TransactionsContainer />
+      <Carousel />
     </div>
   )
 };

@@ -5,7 +5,7 @@ import PieChartContainer from './pieChartContainer.js';
 
 const ChartsContainer = () => {
   return (
-    <div id="charts_column" className="col-lg-4">
+    <div id="charts_column" className="col-lg-6">
       <h2>Savings and Spending</h2>
       <PieChartContainer />
       <SpendingCategoriesChartContainer />
