@@ -4,7 +4,7 @@ import { VictoryArea, VictoryBar, VictoryCandlestick, VictoryChart, VictoryAxis,
 
 const SpendingCategoriesChartContainer = () => {
     return (
-      <div>
+      <div className="col-md-6">
         <h3>Budget Status (by Category)</h3>
         <VictoryChart >
         <VictoryBar

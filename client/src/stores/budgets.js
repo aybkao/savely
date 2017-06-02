@@ -1,4 +1,5 @@
 const budgets = {
+  income: 120000,
   budgets: [
    {
      budgetId: 1,
