@@ -1,22 +1,18 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
+const TransactionsController = require('../controllers').Transactions;
 
 router.route('/')
 
   // gets transactions in the last 90 days (3 months) ***
   .get(function(req, res) {
     var results = [];
-    // SELECT * FROM transactions WHERE date > (CURRENT_DATE - 90);
     res.json(results);
   })
 
   // *** CLIENT->SERVER ALL FUNCTIONAL! posts new transaction, updates transactions
-  .post(function(req, res) {
-    var keys = Object.keys(req.body);
-    var values = Object.keys(req.body).map((key) => req.body[key]);
-    res.end("Success receiving transaction input data!");
-  });
+  .post(TransactionsController.create);
 
 router.route('/categories')
 
