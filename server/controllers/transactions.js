@@ -1,7 +1,14 @@
 const models = require('../../db/models');
 
 module.exports.create = (req, res) => {
-  models.Transaction.forge(null)
+  var newEntry = {
+    vendor: req.body.vendor,
+    amount: req.body.amount,
+    description: req.body.description,
+    date: req.body.date
+  };
+
+  models.Transaction.forge(newEntry)
     .save()
     .then(result => {
       res.status(201).send(result);
