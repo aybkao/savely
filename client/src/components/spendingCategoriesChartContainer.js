@@ -6,7 +6,7 @@ const SpendingCategoriesChartContainer = (props) => {
     return (
       <div className="col-md-6">
         <h2>Budget Status (by Category)</h2>
-        <VictoryChart domainPadding={{x: 20}}>
+        <VictoryChart>
         <VictoryBar
           data={props.data}
           x="category"
@@ -14,7 +14,7 @@ const SpendingCategoriesChartContainer = (props) => {
           horizontal={true}
           colorScale="qualitative"
           labels={(datum) => '$'+(datum.spent).toFixed(2)+' / '+(datum.limit).toFixed(2)}
-          padding={{right: 60, left: 120}}
+          padding={{top: 200}}
           style={{
                   data: {fill: (d) => d.spent / d.limit > 1 ? "red" : "green"},
                   labels: {fontSize: 14, fontFamily: "'Verlag A', 'Verlag B'"},
