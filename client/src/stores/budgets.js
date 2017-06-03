@@ -23,13 +23,13 @@ const budgets = {
    },
    {
      budgetId: 5,
-     category: 'Rent',
+     category: 'Housing',
      targetLimit: 2000,
    },
    {
      budgetId: 6,
-     category: 'Rent',
-     targetLimit: 2000,
+     category: 'Cosmetics',
+     targetLimit: 100,
    },
  ]};
 
