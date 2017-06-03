@@ -2,7 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const TransactionsController = require('../controllers').Transactions;
-
 router.route('/')
   .get(TransactionsController.getAll) // GETS ALL TRANSACTIONS
   .post(TransactionsController.create); // CREATES A NEW TRANSACTION
