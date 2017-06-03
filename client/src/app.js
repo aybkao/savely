@@ -12,12 +12,12 @@ const App = () => {
   return (
     <div>
     <div id="dashboard_header">
-      <h1 id="savely_logo">Savely</h1>
+      <img id='logoSavely' src='/assets/logoGreen.png'></img>
     </div>
     <Dashboard />
     <Carousel />
     </div>
-  )
+  );
 };
 
 const router = (

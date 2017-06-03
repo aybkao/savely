@@ -8,6 +8,11 @@ body {
   /*position: fixed;*/
   width: 1300px;
 }
+
+#logoSavely {
+  display: block;
+  margin: auto;
+}
 #savely-container {
   padding: 0px 0px 0px 0px;
   /*position: fixed;*/
