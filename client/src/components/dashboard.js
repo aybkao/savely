@@ -6,15 +6,28 @@ import PieChartContainer from './pieChartContainer.js';
 import SavingsChartContainer from './savingsChartContainer.js';
 import SpendingCategoriesChartContainer from './spendingCategoriesChartContainer.js';
 import store from '../store.js';
-var transactions = store.getState().transactions.transactions;
+var monthToString = {
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
+  10: 'October',
+  11: 'November',
+  12: 'December'
+}
 
+var transactions = store.getState().transactions.transactions;
+var budgets = store.getState().budgets.budgets;
+var income = store.getState().budgets.income;
 var parsePieChartData = function(transactions) {
-  //Get all possible categories from provided transactions
-  //Filter data by each possible type of transaction
-  //Get data into expected format '{category: "Restaurants", spending: 1331}'
   var categories = [];
   var pieChartData = [];
-  debugger;
+
   for (var i = 0; i < transactions.length; i++) {
     if (!categories.includes(transactions[i].category)) {
       categories.push(transactions[i].category);
@@ -33,20 +46,27 @@ var parsePieChartData = function(transactions) {
       };
       pieChartData.push(categoryTotal);
     }
-  console.log(categories);
-  console.log(pieChartData);
   return pieChartData;
 }
+var parseSavingsChartData = function(income, transactions) {
+  var today = new Date();
+  var currentMonth = today.getMonth() + 1;
+  var lastThreeMonths = [currentMonth-1, currentMonth-2, currentMonth-1];
+  var monthlyIncome = income / 12;
+  for (var i = 0; i < transactions.length; i++) {
+
+  }
+};
 
 const Dashboard = () => {
   return (
     <div className='dashboard_container'>
       <div className="row">
-        <CashFlowChart />
-        <PieChartContainer data={parsePieChartData(transactions)}/>
+        <CashFlowChart income={income} transactions={transactions} />
+        <PieChartContainer data={parsePieChartData(transactions)} />
       </div>
       <div className="row">
-        <SavingsChartContainer />
+        <SavingsChartContainer data={parseSavingsChartData(income, transactions)} />
         <SpendingCategoriesChartContainer />
       </div>
     </div>
