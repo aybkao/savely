@@ -9,8 +9,8 @@ class CashFlowChart extends React.Component {
   render() {
     return (
       <div className="col-md-6">
-      <h3>Cash Flow</h3>
-      <Table celled className='cash_flow_table'>
+      <h2>Cash Flow</h2>
+      <Table celled id='cash_flow_table'>
          <Table.Header>
            <Table.Row>
              <Table.HeaderCell>Cash Flow</Table.HeaderCell>
