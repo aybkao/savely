@@ -145,12 +145,36 @@ const transactions = {
      description: '20 lunches'
    },
    {
-     transactionId: 19,
+     transactionId: 20,
      vendor: 'Slice House',
      amount: 6.75,
      date: '2017/04/30',
      category: 'Restaurants',
      description: 'Sweet Grandma Pizza'
+   },
+   {
+     transactionId: 21,
+     vendor: 'Panoramic',
+     amount: 1995.00,
+     date: '2017/05/01',
+     category: 'Housing',
+     description: 'rent payment'
+   },
+   {
+     transactionId: 22,
+     vendor: 'Panoramic',
+     amount: 1995.00,
+     date: '2017/04/01',
+     category: 'Housing',
+     description: 'rent payment'
+   },
+   {
+     transactionId: 23,
+     vendor: 'Panoramic',
+     amount: 995.00,
+     date: '2017/03/15',
+     category: 'Housing',
+     description: 'rent payment'
    },
  ]};
 
