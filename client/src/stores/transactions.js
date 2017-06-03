@@ -61,7 +61,7 @@ const transactions = {
      vendor: 'Chaat Corner',
      amount: 22.27,
      date: 'May 26 2017',
-     category: 'Restaurant',
+     category: 'Restaurants',
      description: 'Aloo Tiki and Chana Saag'
    },
    {
@@ -101,7 +101,7 @@ const transactions = {
      vendor: 'Pasta Moto',
      amount: 10.41,
      date: 'May 20 2017',
-     category: 'Restaurant',
+     category: 'Restaurants',
      description: 'fusili arabiata'
    },
    {

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dashboard from './components/dashboard.js';
 import Carousel from './components/carousel.js';
-import Routed from './components/routed.js';
+import TransactionsPage from './components/transactionsPage.js';
 import {Link} from 'react-router';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
@@ -23,7 +23,7 @@ const App = () => {
 const router = (
   <Router history = {browserHistory}>
     <Route path="/" component={App} />
-    <Route path="/t" component={Routed} />
+    <Route path="/t" component={TransactionsPage} />
   </Router>
 );
 

@@ -8,8 +8,8 @@ class Carousel extends React.Component {
       <div id="carousel">
         <div className="cell">
           <ul className="dots">
-            <li><Link to="/r" activeClassName="active">Overview</Link></li>
-            <li><a href="#">Transactions</a></li>
+            <li><Link to="/" activeClassName="active">Overview</Link></li>
+            <li><Link to="/t" activeClassName="active">Transactions</Link></li>
           </ul>
         </div>
       </div>

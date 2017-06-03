@@ -1,9 +1,9 @@
 body {
   font-family: "Verlag A", "Verlag B";
 }
-/*div {
+#root {
   border: 1px solid black;
-}*/
+}
 #dashboard_header {
   width: 100%;
   background-color: #F4E9D2;
@@ -16,14 +16,23 @@ body {
   padding-bottom: 20px;
   text-align: center;
 }
+#transactions_column {
+  text-align: center;
+}
 h1, h2, h3, h4, h5, h6 {
   font-family: "Verlag A", "Verlag B";
   font-style: normal;
   font-weight: 700;
 }
-#savely-container .container{
-  margin-left: 0 auto;
-  margin-right: 0 auto;
+#pie-chart-container {
+  width: 50%;
+}
+.tspan {
+  font-family: "Verlag A", "Verlag B";
+}
+#cash_flow_table {
+  font-size: 1.75em;
+  line-height: 1em;
 }
 .addTransaction {
   height: 575px;
@@ -32,9 +41,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: #468A15;
   font-size: 3em;
-}
-.cash_flow_table {
-  font-size: 1.75em;
 }
 #receipt-dropzone {
   font-style: normal;

@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryPie} from 'victory';
+import { VictoryChart, VictoryContainer, VictoryPie} from 'victory';
 
-const PieChartContainer = () => {
+const PieChartContainer = (props) => {
     return (
-      <div className='col-md-6'>
-        <h3>Total Spending by Category</h3>
-        <VictoryPie data={[
-          {category: "Restaurants", spending: 1331},
-          {category: "Clothing", spending: 1358},
-          {category: "Insurance", spending: 1222}
-          ]}
+      <div className='col-md-6' id='pie-chart-container'>
+        <h2>Share of Spending by Category</h2>
+        <VictoryPie data={props.data}
+          style={{
+            labels: {fontFamily: "'Verlag A', 'Verlag B'"},
+          }}
           x="category"
           y={(datum) => datum.spending}
           colorScale="qualitative"
+          padding={{top: 20, bottom: 20, right: 60, left: 60}}
           />
       </div>
     )
