@@ -5,12 +5,12 @@ body {
 #root {
   background-color: #dedede;
   margin: 0px 0px 0px 0px;
-  position: fixed;
+  /*position: fixed;*/
   width: 1300px;
 }
 #savely-container {
   padding: 0px 0px 0px 0px;
-  position: fixed;
+  /*position: fixed;*/
 }
 #dashboard_header {
   background-color: white;
@@ -37,8 +37,8 @@ h1, h2, h3, h4, h5, h6 {
 #pie-chart-container {
   margin: 0;
   padding: 0px 0px 0px 0px;
-  width: 505px;
-  height: 400px;
+  /*width: 505px;
+  height: 400px;*/
 }
 .tspan {
   margin-left: 50px;
@@ -75,6 +75,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 2em;
   width: 100%;
   text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   font-style: normal;
   font-weight: 400;
 }

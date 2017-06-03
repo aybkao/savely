@@ -33,4 +33,4 @@ const budgets = {
    },
  ]};
 
-export default transactions;
+export default budgets;
