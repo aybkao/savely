@@ -53,7 +53,7 @@ const transactions = {
      vendor: 'The Market on Market',
      amount: 86.18,
      date: '2017/05/28',
-     category: 'Grocery Store',
+     category: 'Groceries',
      description: 'weekly groceries'
    },
    {
@@ -93,7 +93,7 @@ const transactions = {
      vendor: 'The Market on Market',
      amount: 81.66,
      date: '2017/05/21',
-     category: 'Grocery Store',
+     category: 'Groceries',
      description: 'weekly groceries'
    },
    {

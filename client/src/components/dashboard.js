@@ -70,7 +70,6 @@ var parseSavingsChartData = function(income, transactions) {
   var lastThreeMonths = [currentMonth-3, currentMonth-2, currentMonth-1];
   var lastThreeMonthsExpenses = [];
   var savingsChartData = [];
-  console.log(lastThreeMonths);
   var monthlyIncome = income / 12;
 
   for (var i = 0; i < lastThreeMonths.length; i++) {
@@ -93,6 +92,40 @@ var parseSavingsChartData = function(income, transactions) {
   }
   return savingsChartData;
 };
+var parseSpendingCategoriesChart = function(budgets, transactions) {
+  var recentTransactions = []; //Stores transactions for last 30 days
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1;
+  var yyyy = today.getFullYear();
+  var spendingCategoriesChartData = [];
+
+  for (var currTrans = 0; currTrans < transactions.length; currTrans++) {
+    var currTransDate = new Date(transactions[currTrans].date);
+    var timeDiff = Math.abs(today.getTime() - currTransDate.getTime());
+    var daysSince = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    if (daysSince <= 30) {
+      recentTransactions.push(transactions[currTrans]);
+    }
+  }
+
+  for (var j = 0; j < budgets.length; j++) {
+    var categoryRow = {};
+    var categoryTotal = 0;
+    for (var k = 0; k < recentTransactions.length; k++) {
+      if (recentTransactions[k].category === budgets[j].category) {
+        categoryTotal += recentTransactions[k].amount;
+        console.log(recentTransactions[k].vendor, budgets[j].category, categoryTotal);
+      }
+    }
+    categoryRow.category = budgets[j].category;
+    categoryRow.limit = budgets[j].targetLimit;
+    categoryRow.spent = categoryTotal;
+    spendingCategoriesChartData.push(categoryRow);
+  }
+
+  return spendingCategoriesChartData;
+}
 
 const Dashboard = () => {
   return (
@@ -103,7 +136,7 @@ const Dashboard = () => {
       </div>
       <div className="row">
         <SavingsChartContainer data={parseSavingsChartData(income, transactions)} />
-        <SpendingCategoriesChartContainer />
+        <SpendingCategoriesChartContainer data={parseSpendingCategoriesChart(budgets, transactions)}/>
       </div>
     </div>
   )
