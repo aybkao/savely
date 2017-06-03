@@ -34,12 +34,15 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   text-align: center;
 }
+<<<<<<< HEAD
 #pie-chart-container {
   margin: 0;
   padding: 0px 0px 0px 0px;
   width: 505px;
   height: 400px;
 }
+=======
+>>>>>>> Updated cash flow table to calculate data from redux instead of using hard coded data
 .tspan {
   margin-left: 50px;
   position: absolute;
@@ -75,6 +78,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 2em;
   width: 100%;
   text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   font-style: normal;
   font-weight: 400;
 }
