@@ -76,6 +76,11 @@ th, td {
 }
 #savely-container {
   padding: 0px 0px 0px 0px;
+  background: url(https://static.pexels.com/photos/320007/pexels-photo-320007.jpeg);
+  background-size: 60%;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-attachment: local;
   /*position: fixed;*/
 }
 #dashboard_header {
