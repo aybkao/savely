@@ -79,7 +79,7 @@ th, td {
 }
 #savely-container {
   padding: 0px 0px 0px 0px;
-  /*position: fixed;*/
+  width: 1440px;
 }
 #dashboard_header {
   background-color: white;
@@ -147,9 +147,16 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   font-weight: 400;
 }
-/*#loginjs {
-  background: url(https://static.pexels.com/photos/320007/pexels-photo-320007.jpeg);
-  background-size: 2000px 1000px;
-  background-position: left top;
+div#splashContent {
+  width: 1440px;
+  height: 958px;
+  margin: 0;
+  background: url('splashBackground.jpg');
   background-repeat: no-repeat;
-}*/
+}
+.form-group, .btn-lg, .btn, hr, .sign, #loginButton {
+  width: 300px;
+  margin: auto;
+  padding: 5px;
+  display: inherit;
+}
