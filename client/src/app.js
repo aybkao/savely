@@ -21,10 +21,12 @@ const App = () => {
 };
 
 const router = (
-  <Router history = {browserHistory}>
-    <Route path="/" component={App} />
-    <Route path="/t" component={TransactionsPage} />
-  </Router>
+  <Provider store={store}>
+    <Router history = {browserHistory}>
+      <Route path="/" component={App} />
+      <Route path="/t" component={TransactionsPage} />
+    </Router>
+  </Provider>
 );
 
 ReactDOM.render(router, document.getElementById('root'));
