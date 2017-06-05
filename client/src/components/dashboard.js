@@ -19,9 +19,9 @@ var monthToString = {
   10: 'October',
   11: 'November',
   12: 'December'
-}
+};
 
-var transactions = store.getState().transactions.transactions;
+var transactions = store.getState().transactions;
 var budgets = store.getState().budgets.budgets;
 var income = store.getState().budgets.income;
 var parsePieChartData = function(transactions) {
@@ -49,21 +49,21 @@ var parsePieChartData = function(transactions) {
       categories.push(recentTransactions[i].category);
     }
   }
-    for (var j = 0; j < categories.length; j++) {
-      var total = 0;
-      for (var k = 0; k < recentTransactions.length; k++) {
-        if (transactions[k].category === categories[j]) {
-          total += recentTransactions[k].amount;
-        }
+  for (var j = 0; j < categories.length; j++) {
+    var total = 0;
+    for (var k = 0; k < recentTransactions.length; k++) {
+      if (transactions[k].category === categories[j]) {
+        total += recentTransactions[k].amount;
       }
-      var categoryTotal = {
-        category: categories[j],
-        spending: total
-      };
-      pieChartData.push(categoryTotal);
     }
+    var categoryTotal = {
+      category: categories[j],
+      spending: total
+    };
+    pieChartData.push(categoryTotal);
+  }
   return pieChartData;
-}
+};
 var parseSavingsChartData = function(income, transactions) {
   var today = new Date();
   var currentMonth = today.getMonth() + 1;
@@ -125,7 +125,7 @@ var parseSpendingCategoriesChart = function(budgets, transactions) {
   }
 
   return spendingCategoriesChartData;
-}
+};
 
 const Dashboard = () => {
   return (
@@ -139,7 +139,7 @@ const Dashboard = () => {
         <SpendingCategoriesChartContainer data={parseSpendingCategoriesChart(budgets, transactions)}/>
       </div>
     </div>
-  )
+  );
 };
 
 export default Dashboard;

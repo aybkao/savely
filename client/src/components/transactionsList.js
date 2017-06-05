@@ -13,17 +13,18 @@ class TransactionsList extends React.Component {
   changePage(num) {
     console.log(context);
   }
-  formatTransactions(transactions){
+  formatTransactions (transactions){
     console.log(transactions);
     var initial = (this.state.currPage - 1) * 5;
     var rows = [];
     console.log(this.state.currPage * 5);
-    for (var i = initial; i < transactions.length; i++){
+    for (var i = initial; i < transactions.length; i++) {
       rows.push(
         <Table.Row key={i}>
           <Table.Cell>{transactions[i].vendor}</Table.Cell>
-          <Table.Cell>{transactions[i].date}</Table.Cell>
+          <Table.Cell>{transactions[i].description}</Table.Cell>
           <Table.Cell>${transactions[i].amount}</Table.Cell>
+          <Table.Cell>{transactions[i].date}</Table.Cell>
         </Table.Row>
       );
     }
@@ -37,8 +38,9 @@ class TransactionsList extends React.Component {
          <Table.Header>
            <Table.Row>
              <Table.HeaderCell className="trans-head">Vendor</Table.HeaderCell>
-             <Table.HeaderCell className="trans-head">Date</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Item</Table.HeaderCell>
              <Table.HeaderCell className="trans-head">Amount</Table.HeaderCell>
+             <Table.HeaderCell className="trans-head">Date</Table.HeaderCell>
            </Table.Row>
          </Table.Header>
          <Table.Body>
@@ -64,8 +66,8 @@ class TransactionsList extends React.Component {
          </Table.Footer>
        </Table>
      </div>
-    )
+    );
   }
-};
+}
 
 export default TransactionsList;

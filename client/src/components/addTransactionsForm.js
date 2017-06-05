@@ -6,7 +6,7 @@ import axios from 'axios';
 const getDate = () => {
   var today = new Date();
   return today.toDateString();
-}
+};
 
 class AddTransactionsForm extends React.Component {
   constructor() {
@@ -15,7 +15,7 @@ class AddTransactionsForm extends React.Component {
       vendor: '',
       amount: '',
       date: '',
-      category: '',
+      category_id: '',
       description: '',
       agree: true,
     };
@@ -33,14 +33,14 @@ class AddTransactionsForm extends React.Component {
       vendor,
       amount,
       date,
-      category,
+      category_id,
       description
     } = this.state;
     axios.post('/transaction', {
       vendor: vendor,
       amount: amount,
       date: date,
-      category: category,
+      category_id: category_id,
       description: description
     })
     .then(function (response) {
@@ -51,7 +51,7 @@ class AddTransactionsForm extends React.Component {
     });
   }
   render() {
-    const {vendor, amount, date, category, description} = this.state;
+    const {vendor, amount, date, category_id, description} = this.state;
     return (
       <Modal size='small' trigger={<Button fluid>Add Transaction</Button>} closeIcon='close' className='addTransaction'>
         <Modal.Header>Add a Transaction</Modal.Header>
@@ -67,11 +67,11 @@ class AddTransactionsForm extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Date</label>
-            <Form.Input placeholder={getDate()} name='date' value={date} onChange={this.handleChange.bind(this)}/>
+            <Form.Input placeholder='2017-06-01' name='date' value={date} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
           <Form.Field>
-            <label>Category</label>
-            <Form.Input placeholder='ex. Restaurants' name='category' value={category} onChange={this.handleChange.bind(this)}/>
+            <label>Category_ID</label>
+            <Form.Input placeholder='1' name='category_id' value={category_id} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
           <Form.Field>
             <label>Description</label>
@@ -84,7 +84,7 @@ class AddTransactionsForm extends React.Component {
           </Form>
         </Modal.Content>
       </Modal>
-    )
+    );
   }
 }
 
