@@ -20,11 +20,11 @@ class SpendingCategoriesChartContainer extends React.Component {
           labels={(datum) => '$'+(datum.spent).toFixed(2)}
           style={{
               data: {fill: (d) => d.spent / d.limit > 1 ? "red" : "green", width: 14},
-              labels: {fontSize: 18, fontFamily: "'Verlag A', 'Verlag B'"},
+              labels: {fontSize: 18, fontFamily: "'Gotham Narrow A', 'Gotham Narrow B'"},
               parent: {border: "1px solid #ccc"}
             }}
           animate={{duration:2000, onLoad: {duration: 2000}}}
-          padding={{left: 10, right: 75, top: 28, bottom: 20}}
+          padding={{left: 10, right: 85, top: 28, bottom: 20}}
           /></VictoryContainer>
           </td>
           <td>${chartData[i].limit}</td>

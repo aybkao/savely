@@ -1,5 +1,5 @@
 body {
-  font-family: "Verlag A", "Verlag B";
+  font-family: "Gotham Narrow A", "Gotham Narrow B";
   width: 100px;
 }
 #root {
@@ -64,6 +64,9 @@ th, td {
   text-align: center;
   font-size: 20pt;
 }
+#cash_flow_table th{
+  font-weight: 500;
+}
 #spending_categories_chart_container {
   width: 50%;
   text-align: center;
@@ -95,9 +98,9 @@ th, td {
   text-align: center;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Verlag A", "Verlag B";
+  font-family: "Gotham Narrow A", "Gotham Narrow B";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
 }
 #pie-chart-container {
