@@ -14,7 +14,7 @@ const PieChartContainer = (props) => {
           y={(datum) => datum.spending}
           colorScale="qualitative"
           padding={{top: 50, bottom: 80, right: 80, left: 80}}
-          animate={{duration:2000, onLoad: {duration: 2000}}}
+          duration={1000}
           />
         </VictoryContainer>
       </div>
