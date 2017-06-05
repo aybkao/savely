@@ -71,7 +71,7 @@ class AddTransactionsForm extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Category</label>
-            <Form.Input placeholder='1' name='category' value={category} onChange={this.handleChange.bind(this)}/>
+            <Form.Input placeholder='Restaurant' name='category' value={category} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
           <Form.Field>
             <label>Description</label>
