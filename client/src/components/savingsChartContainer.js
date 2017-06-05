@@ -14,7 +14,7 @@ const SavingsChartContainer = (props) => {
           labels={(datum) => '$'+(datum.income - datum.expenses).toFixed(2)}
           style={{
             data: {fill: (d) => d.income - d.expenses < 0 ? "red" : "green", width: 24},
-            labels: {fontSize: 14, fontFamily: "'Verlag A', 'Verlag B'"},
+            labels: {fontSize: 14, fontFamily: "'Gotham Narrow A', 'Gotham Narrow B'"},
           }}
           animate={{duration:2000, onLoad: {duration: 2000}}}
         />

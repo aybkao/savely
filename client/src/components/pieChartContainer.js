@@ -8,7 +8,7 @@ const PieChartContainer = (props) => {
         <VictoryContainer height={325} width={525}>
         <VictoryPie data={props.data}
           style={{
-            labels: {fontFamily: "'Verlag A', 'Verlag B'", fontSize: 18},
+            labels: {fontFamily: "'Gotham Narrow A', 'Gotham Narrow B'", fontSize: 18},
           }}
           x="category"
           y={(datum) => datum.spending}
