@@ -14,8 +14,6 @@ const getDate = () => {
   return today.toDateString();
 };
 
-//transactions={this.props.transactions}
-
 class TransactionsContainer extends React.Component {
 
   constructor(props) {
@@ -54,4 +52,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionsContainer);
 
-//export default TransactionsContainer;

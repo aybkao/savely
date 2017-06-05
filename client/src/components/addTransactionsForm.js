@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button,Header, Modal, Checkbox, Form} from 'semantic-ui-react';
+import { Button,Header, Modal, Checkbox, Form } from 'semantic-ui-react';
 import axios from 'axios';
 
 const getDate = () => {
@@ -15,7 +15,7 @@ class AddTransactionsForm extends React.Component {
       vendor: '',
       amount: '',
       date: '',
-      category_id: '',
+      category: '',
       description: '',
       agree: true,
     };
@@ -33,14 +33,14 @@ class AddTransactionsForm extends React.Component {
       vendor,
       amount,
       date,
-      category_id,
+      category,
       description
     } = this.state;
     axios.post('/transaction', {
       vendor: vendor,
       amount: amount,
       date: date,
-      category_id: category_id,
+      category: category,
       description: description
     })
     .then(function (response) {
@@ -51,7 +51,7 @@ class AddTransactionsForm extends React.Component {
     });
   }
   render() {
-    const {vendor, amount, date, category_id, description} = this.state;
+    const {vendor, amount, date, category, description} = this.state;
     return (
       <Modal size='small' trigger={<Button fluid>Add Transaction</Button>} closeIcon='close' className='addTransaction'>
         <Modal.Header>Add a Transaction</Modal.Header>
@@ -70,8 +70,8 @@ class AddTransactionsForm extends React.Component {
             <Form.Input placeholder='2017-06-01' name='date' value={date} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
           <Form.Field>
-            <label>Category_ID</label>
-            <Form.Input placeholder='1' name='category_id' value={category_id} onChange={this.handleChange.bind(this)}/>
+            <label>Category</label>
+            <Form.Input placeholder='1' name='category' value={category} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
           <Form.Field>
             <label>Description</label>
