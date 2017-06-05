@@ -5,10 +5,66 @@ body {
 #root {
   background-color: #dedede;
   margin: 0px 0px 0px 0px;
-  /*position: fixed;*/
-  width: 1300px;
+  width: 1440px;
 }
-
+#carousel {
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+.dots {
+  position: relative;
+  display: inline-block;
+  margin: 0px 10px 0px 10px;
+  padding: 0;
+  list-style: none;
+  cursor: default;
+  vertical-align: center;
+  line-height: 50px;
+}
+#carousel li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0 20px 0 20px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+th, td {
+  text-align: center;
+}
+#budget_status_chart {
+  text-align: center;
+  margin-right: 0 auto;
+  margin-right: 0 auto;
+  margin-top: 20px;
+  float: none;
+  font-size: 14pt;
+  line-height: 14pt;
+  width: 50%;
+}
+#budget_status_chart td,th {
+  padding-left: 10px;
+  font-size: 14pt;
+  line-height: 14pt;
+  padding-right: 10px;
+}
+#cash_flow_table_container {
+  padding-left: 45px;
+  padding-right: 30px;
+  padding-top: 20px;
+  /*padding-bottom: 20px;*/
+}
+#cash_flow_table {
+  text-align: center;
+}
+#spending_categories_chart_container {
+  width: 50%;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 #logoSavely {
   display: block;
   margin: auto;
@@ -23,10 +79,10 @@ body {
   padding-bottom: 10px;
 }
 .dashboard_container {
-  margin: 25px 140px 0px 140px;
+  margin: 10px 140px 0px 140px;
   background-color: white;
-  border: 4px solid #B2B2B2;
-  border-radius: 3px;
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
   padding: 5px 0 0 0px;
   text-align: center;
 }
@@ -40,24 +96,22 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 #pie-chart-container {
-  margin: 0;
+  /*margin-bottom: 50px;*/
   padding: 0px 0px 0px 0px;
-  /*width: 505px;
-  height: 400px;*/
+  width: 50%;
 }
-.tspan {
-  margin-left: 50px;
-  position: absolute;
+#savings_chart_container {
+  height: 300;
 }
 #cash_flow_table {
   font-size: 1.75em;
   line-height: 1em;
   background-color: white;
-  margin: 14px 7px 7px 7px;
+  margin: 10px 7px 7px 7px;
 }
 .addTransaction {
-  /*height: 575px;
-  background-color: white;*/
+  height: 575px;
+  background-color: white;
 }
 #savely_logo {
   text-align: center;

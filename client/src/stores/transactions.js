@@ -40,14 +40,14 @@ const transactions = {
      category: 'Restaurants',
      description: 'ginger ante and mung dosa'
    },
-   {
-     transactionId: 7,
-     vendor: 'Walgreens',
-     amount: 1.29,
-     date: '2017/05/28',
-     category: 'Drug Store',
-     description: 'water'
-   },
+  //  {
+  //    transactionId: 7,
+  //    vendor: 'Walgreens',
+  //    amount: 1.29,
+  //    date: '2017/05/28',
+  //    category: 'Drug Store',
+  //    description: 'water'
+  //  },
    {
      transactionId: 8,
      vendor: 'The Market on Market',
@@ -109,7 +109,7 @@ const transactions = {
      vendor: 'Penhaglions',
      amount: 190.31,
      date: '2017/05/20',
-     category: 'Clothing and Accessories',
+     category: 'Clothing',
      description: 'cologne'
    },
    {

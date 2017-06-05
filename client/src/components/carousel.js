@@ -1,15 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
+const links = [{to: "/", title: "Overview"},{to: "/t", title: "Transactions"}];
 
 class Carousel extends React.Component {
+  constructor() {
+    super();
+  }
+  getDots(links){
+    var dots = [];
+    for (var i = 0; i < links.length; i++) {
+      dots.push(
+        <li><Link to={links[i].to} activeClassName="active">{links[i].title}</Link></li>
+      );
+    }
+    return dots;
+  }
   render() {
     return (
       <div id="carousel">
         <div className="cell">
           <ul className="dots">
-            <li><Link to="/" activeClassName="active">Overview</Link></li>
-            <li><Link to="/t" activeClassName="active">Transactions</Link></li>
+            {this.getDots(links)}
           </ul>
         </div>
       </div>
