@@ -1,12 +1,11 @@
-import axios from 'axios';
+//import axios from 'axios';
 
-const transactions = {
-  transactions: [
+const transactions = [
    {
      transactionId: 1,
-     vendor: 'Equator Coffee',
-     amount: 4.75,
-     date: '2017/05/30',
+     vendor: 'Columbia Coffee',
+     amount: 11.11,
+     date: '1989/05/30',
      category: 'Restaurants',
      description: 'coffee'
    },{

@@ -4,28 +4,28 @@ const client = new pg.Client(connectionString);
 
 const cats = [
   {
-    name: 'Food',
+    name: 'Restaurants',
     profile_id: 1
   },
   {
-    name: 'Rent',
-    profile_id: 2
+    name: 'Groceries',
+    profile_id: 1
   }, 
   {
-    name: 'Commute',
-    profile_id: 2
-  },
-  {
-    name: 'Insurance',
-    profile_id: 3
-  },
-  {
-    name: 'Food',
-    profile_id: 3
-  },
-  {
     name: 'Entertainment',
-    profile_id: 3
+    profile_id: 1
+  },
+  {
+    name: 'Clothing',
+    profile_id: 1
+  },
+  {
+    name: 'Housing',
+    profile_id: 1
+  },
+  {
+    name: 'Cosmetics',
+    profile_id: 1
   }
 ];
 

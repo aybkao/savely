@@ -6,6 +6,10 @@ import PieChartContainer from './pieChartContainer.js';
 import SavingsChartContainer from './savingsChartContainer.js';
 import SpendingCategoriesChartContainer from './spendingCategoriesChartContainer.js';
 import store from '../store.js';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import getTransactions from '../actions/getTransactions.js';
+
 var monthToString = {
   1: 'January',
   2: 'February',
@@ -19,9 +23,8 @@ var monthToString = {
   10: 'October',
   11: 'November',
   12: 'December'
-}
+};
 
-var transactions = store.getState().transactions.transactions;
 var budgets = store.getState().budgets.budgets;
 var income = store.getState().budgets.income;
 var parsePieChartData = function(transactions) {
@@ -49,21 +52,21 @@ var parsePieChartData = function(transactions) {
       categories.push(recentTransactions[i].category);
     }
   }
-    for (var j = 0; j < categories.length; j++) {
-      var total = 0;
-      for (var k = 0; k < recentTransactions.length; k++) {
-        if (transactions[k].category === categories[j]) {
-          total += recentTransactions[k].amount;
-        }
+  for (var j = 0; j < categories.length; j++) {
+    var total = 0;
+    for (var k = 0; k < recentTransactions.length; k++) {
+      if (transactions[k].category === categories[j]) {
+        total += recentTransactions[k].amount;
       }
-      var categoryTotal = {
-        category: categories[j],
-        spending: total
-      };
-      pieChartData.push(categoryTotal);
     }
+    var categoryTotal = {
+      category: categories[j],
+      spending: total
+    };
+    pieChartData.push(categoryTotal);
+  }
   return pieChartData;
-}
+};
 var parseSavingsChartData = function(income, transactions) {
   var today = new Date();
   var currentMonth = today.getMonth() + 1;
@@ -115,7 +118,6 @@ var parseSpendingCategoriesChart = function(budgets, transactions) {
     for (var k = 0; k < recentTransactions.length; k++) {
       if (recentTransactions[k].category === budgets[j].category) {
         categoryTotal += recentTransactions[k].amount;
-        console.log(recentTransactions[k].vendor, budgets[j].category, categoryTotal);
       }
     }
     categoryRow.category = budgets[j].category;
@@ -125,21 +127,47 @@ var parseSpendingCategoriesChart = function(budgets, transactions) {
   }
 
   return spendingCategoriesChartData;
-}
-
-const Dashboard = () => {
-  return (
-    <div className='dashboard_container'>
-      <div className="row">
-        <CashFlowChart income={income} transactions={transactions} />
-        <PieChartContainer data={parsePieChartData(transactions)} />
-      </div>
-      <div className="row">
-        <SavingsChartContainer data={parseSavingsChartData(income, transactions)} />
-        <SpendingCategoriesChartContainer data={parseSpendingCategoriesChart(budgets, transactions)}/>
-      </div>
-    </div>
-  )
 };
 
-export default Dashboard;
+class Dashboard extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.getTransactions();
+  }
+
+  render () {
+    return (
+      <div className='dashboard_container'>
+        <div className="row">
+          <CashFlowChart income={income} transactions={this.props.transactions} />
+          <PieChartContainer data={parsePieChartData(this.props.transactions)} />
+        </div>
+        <div className="row">
+          <SavingsChartContainer data={parseSavingsChartData(income, this.props.transactions)} />
+          <SpendingCategoriesChartContainer data={parseSpendingCategoriesChart(budgets, this.props.transactions)}/>
+        </div>
+      </div>
+    );
+  }
+}
+
+//connects root reducer to props
+const mapStateToProps = (state) => {
+  return {
+    transactions: state.transactions.transactions
+  };
+};
+
+//connects redux actions to props
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    getTransactions: getTransactions,
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+

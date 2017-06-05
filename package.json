@@ -8,7 +8,7 @@
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch",
     "heroku-postbuild": "knex migrate:latest && webpack -d --config webpack.config.babel.js",
-    "seed-data": "node seedData/seedInit.js"    
+    "seed-data": "node seedData/seedInit.js"
   },
   "author": "Hack Reactor",
   "license": "MIT",
@@ -50,6 +50,7 @@
     "react-router-redux": "^4.0.8",
     "redis": "^2.7.1",
     "redux": "3.5.2",
+    "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.68.4",
     "victory": "^0.20.0",
