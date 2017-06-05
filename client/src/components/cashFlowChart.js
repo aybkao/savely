@@ -27,8 +27,7 @@ class CashFlowChart extends React.Component {
   }
   render() {
     return (
-      <div className="col-md-6">
-      <h2>Cash Flow ({this.state.noMonths} Month)</h2>
+      <div className="col-md-6" id='cash_flow_table_container'>
       <Table celled id='cash_flow_table'>
          <Table.Header>
            <Table.Row>
