@@ -2,13 +2,11 @@ const models = require('../../db/models');
 
 module.exports.create = (req, res) => {
   var newEntry = {
-    vendor: req.body.vendor,
-    amount: req.body.amount,
-    description: req.body.description,
-    date: req.body.date
+    name: req.body.name,
+    profile_id: req.body.profile_id
   };
 
-  models.Transaction.forge(newEntry)
+  models.Category.forge(newEntry)
     .save()
     .then(result => {
       res.status(201).send(result);
@@ -22,15 +20,12 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.getAll = (req, res) => {
-  models.Transaction.fetchAll()
-    .then(transactions => {
-      res.status(200).send(transactions);
+  models.Categories.fetchAll()
+    .then(category => {
+      res.status(200).send(category);
     })
     .catch(err => {
       // This code indicates an outside service (the database) did not respond in time
       res.status(503).send(err);
     });
-};
-
-module.exports.getTransactionsJoinCategory = (req, res) => {
 };
