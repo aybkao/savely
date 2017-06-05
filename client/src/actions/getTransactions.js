@@ -7,7 +7,7 @@ export default function getTransactions() {
     
     axios.get('/transaction')
       .then(res => {
-        console.log('all the transactions::', res.data); 
+        axios.get('/');
         dispatch(transactionSuccess(res.data));
       })
       .catch((err) => {
