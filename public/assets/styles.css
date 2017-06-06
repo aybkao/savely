@@ -58,7 +58,6 @@ th, td {
   padding-left: 45px;
   padding-right: 30px;
   padding-top: 20px;
-  /*padding-bottom: 20px;*/
 }
 #cash_flow_table {
   text-align: center;
@@ -82,7 +81,8 @@ th, td {
   width: 1440px;
 }
 #dashboard_header {
-  background-color: white;
+  background: white;
+  background: linear-gradient(#FEFFFE, white);
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -153,10 +153,23 @@ div#splashContent {
   margin: 0;
   background: url('splashBackground.jpg');
   background-repeat: no-repeat;
+  -moz-box-shadow: inset 10px 10px 50px #7E7E74;
+  -webkit-box-shadow: inset 10px 10px 50px #7E7E74;
+  box-shadow: inset 0px 0px 50px #7E7E74;
 }
 .form-group, .btn-lg, .btn, hr, .sign, #loginButton {
   width: 300px;
   margin: auto;
   padding: 5px;
   display: inherit;
+}
+.col-sm-6 {
+  margin: auto;
+  float: none;
+}
+.fa-sign-in {
+  margin-top: 50px;
+}
+header {
+  height: 70px
 }

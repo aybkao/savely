@@ -1,9 +1,9 @@
 <% include head.ejs%>
-  <img id='logoSavely' src='/assets/logoGreen.png'></img>
+  <header><img id='logoSavely' src='/assets/logoGreen.png'></img></header>
     <div id='signupjs'>
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3" id="splashContent">
 
-        <h1><span class="fa fa-sign-in"></span> Signup</h1>
+        <h1><span class="fa fa-sign-in"></span> Sign Up!</h1>
 
         <!-- show any messages that come back with authentication -->
         <% if (message.length > 0) { %>
@@ -25,7 +25,7 @@
         </form>
 
         <hr>
-        <div>
+        <div class="sign">
             Or signup with any of the following services:<br />
             <a style="margin-right:15px" href="/auth/facebook"><img src="/assets/fb-logo.png" /></a>
             <a style="margin-left:15px;margin-right:15px" href="/auth/google"><img style="width:29px" src="/assets/google-logo.png" /></a>
@@ -33,8 +33,7 @@
         </div>
         <hr>
 
-        <p>Already have an account? <a href="/login">Login</a></p>
-        <p>Or go <a href="/">home</a>.</p>
+        <p class="sign">Already have an account? <a href="/login">Login</a></p>
 
     </div>
 
