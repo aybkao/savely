@@ -1,14 +1,10 @@
 import {createStore, compse, applyMiddleware} from 'redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 //import {browserHistory} from 'react-router';
-import rootReducer from './reducers/rootReducer.js'
-//import transactions from './stores/transactions.js';
-import budgets from './stores/budgets.js';
+import rootReducer from './reducers/rootReducer.js';
 import thunk from 'redux-thunk';
 
-const defaultState = {
-  budgets
-};
+const defaultState = {};
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(

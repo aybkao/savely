@@ -9,6 +9,7 @@ import store from '../store.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import getTransactions from '../actions/getTransactions.js';
+import getBudgets from '../actions/getBudgets.js';
 
 var monthToString = {
   1: 'January',
@@ -25,8 +26,8 @@ var monthToString = {
   12: 'December'
 };
 
-var budgets = store.getState().budgets.budgets;
-var income = store.getState().budgets.income;
+
+//var budgets = store.getState().budgets.budgets;
 var parsePieChartData = function(transactions) {
 
   var recentTransactions = []; //Stores transactions for last 30 days
@@ -121,7 +122,7 @@ var parseSpendingCategoriesChart = function(budgets, transactions) {
       }
     }
     categoryRow.category = budgets[j].category;
-    categoryRow.limit = budgets[j].targetLimit;
+    categoryRow.limit = budgets[j].targetlimit;
     categoryRow.spent = categoryTotal;
     spendingCategoriesChartData.push(categoryRow);
   }
@@ -137,18 +138,19 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.getTransactions();
+    this.props.getBudgets();
   }
 
   render () {
     return (
       <div className='dashboard_container'>
         <div className="row">
-          <CashFlowChart income={income} transactions={this.props.transactions} />
+          <CashFlowChart income={120000} transactions={this.props.transactions} />
           <PieChartContainer data={parsePieChartData(this.props.transactions)} />
         </div>
         <div className="row">
-          <SavingsChartContainer data={parseSavingsChartData(income, this.props.transactions)} />
-          <SpendingCategoriesChartContainer data={parseSpendingCategoriesChart(budgets, this.props.transactions)}/>
+          <SavingsChartContainer data={parseSavingsChartData(120000, this.props.transactions)} />
+          <SpendingCategoriesChartContainer data={parseSpendingCategoriesChart(this.props.budgets, this.props.transactions)}/>
         </div>
       </div>
     );
@@ -158,7 +160,8 @@ class Dashboard extends React.Component {
 //connects root reducer to props
 const mapStateToProps = (state) => {
   return {
-    transactions: state.transactions.transactions
+    transactions: state.transactions.transactions,
+    budgets: state.budgets.budgets
   };
 };
 
@@ -166,6 +169,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getTransactions: getTransactions,
+    getBudgets: getBudgets
   }, dispatch);
 };
 
