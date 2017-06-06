@@ -153,6 +153,9 @@ div#splashContent {
   margin: 0;
   background: url('splashBackground.jpg');
   background-repeat: no-repeat;
+  -moz-box-shadow: inset 10px 10px 50px #7E7E74;
+  -webkit-box-shadow: inset 10px 10px 50px #7E7E74;
+  box-shadow: inset 0px 0px 50px #7E7E74;
 }
 .form-group, .btn-lg, .btn, hr, .sign, #loginButton {
   width: 300px;
@@ -163,4 +166,10 @@ div#splashContent {
 .col-sm-6 {
   margin: auto;
   float: none;
+}
+.fa-sign-in {
+  margin-top: 50px;
+}
+header {
+  height: 70px
 }
