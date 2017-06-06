@@ -1,13 +1,12 @@
-# Project Name
+# SAVELY
 
-The project description
+The most beautiful budget app
 
 ## Team
 
-- teamMember
-- teamMember
-- teamMember
-- teamMember
+- Jake Holtz
+- Ashwin Narasimhan
+- Albert Kao
 
 ## Roadmap
 
