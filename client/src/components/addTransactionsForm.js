@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button,Header, Modal, Checkbox, Form } from 'semantic-ui-react';
+import { Button,Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
-
+const categoryOptions = [{text: 'Restaurants'}, {text: 'Groceries'}, {text: 'Rent'}, {text: 'Mortgage'}, {text: 'Insurance'}, {text: 'Clothing'}, {text: 'Travel'}, {text: 'Commuting'}, {text: 'Car Payment'}, {text: 'Public Transportation'}, {text: 'Childcare'}];
 const getDate = () => {
   var today = new Date();
   return today.toDateString();
@@ -18,6 +18,7 @@ class AddTransactionsForm extends React.Component {
       category: '',
       description: '',
       agree: true,
+      isDateValid: '',
     };
     this.handleChange.bind(this);
     this.handleSubmit.bind(this);
@@ -26,6 +27,30 @@ class AddTransactionsForm extends React.Component {
     var field = this;
     console.log(field);
     field.setState({ [name]: value });
+  }
+  validateDate(date) {
+    var regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
+
+    if(!regex_date.test(dateString))
+    {
+        return false;
+    }
+
+    // Parse the date parts to integers
+    var parts   = dateString.split("-");
+    var day     = parseInt(parts[2], 10);
+    var month   = parseInt(parts[1], 10);
+    var year    = parseInt(parts[0], 10);
+    if(year < 1000 || year > 3000 || month == 0 || month > 12)
+    {
+        return false;
+    }
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+    {
+        monthLength[1] = 29;
+    }
+    return day > 0 && day <= monthLength[month - 1];
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -36,6 +61,7 @@ class AddTransactionsForm extends React.Component {
       category,
       description
     } = this.state;
+    console.log(this.validateDate(this.state.date));
     axios.post('/transaction', {
       vendor: vendor,
       amount: amount,
@@ -71,12 +97,13 @@ class AddTransactionsForm extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Category</label>
-            <Form.Input placeholder='Restaurant' name='category' value={category} onChange={this.handleChange.bind(this)}/>
+            <Dropdown placeholder='Select Category' fluid search selection options={categoryOptions} />
           </Form.Field>
           <Form.Field>
             <label>Description</label>
             <Form.Input placeholder='ex. coffee and bagel' name='description' value={description} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
+          <p>{}</p>
           <Form.Field>
           <Checkbox label='I agree to the Terms and Conditions' />
           </Form.Field>
