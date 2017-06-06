@@ -58,7 +58,6 @@ th, td {
   padding-left: 45px;
   padding-right: 30px;
   padding-top: 20px;
-  /*padding-bottom: 20px;*/
 }
 #cash_flow_table {
   text-align: center;
@@ -82,7 +81,8 @@ th, td {
   width: 1440px;
 }
 #dashboard_header {
-  background-color: white;
+  background: white;
+  background: linear-gradient(#FEFFFE, white);
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -159,4 +159,8 @@ div#splashContent {
   margin: auto;
   padding: 5px;
   display: inherit;
+}
+.col-sm-6 {
+  margin: auto;
+  float: none;
 }
