@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Dashboard from './components/dashboard.js';
 import Carousel from './components/carousel.js';
 import TransactionsPage from './components/transactionsPage.js';
+import Onboarding from './components/onboarding.js';
 import {Link} from 'react-router';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
@@ -25,6 +26,7 @@ const router = (
     <Router history = {browserHistory}>
       <Route path="/" component={App} />
       <Route path="/t" component={TransactionsPage} />
+      <Route path="/o" component={Onboarding} />
     </Router>
   </Provider>
 );
