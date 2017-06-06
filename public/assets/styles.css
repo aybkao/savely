@@ -1,5 +1,5 @@
 body {
-  font-family: "Gotham Narrow A", "Gotham Narrow B";
+  font-family: "Gotham Narrow A", "Gotham Narrow B", "Helvetica Neue", "Arial", "sans-serif";
   width: 100px;
 }
 #root {
@@ -9,13 +9,13 @@ body {
 }
 #carousel {
   height: 50px;
-  width: 100%;
+  width: 1440px;
   text-align: center;
 }
 .dots {
   position: relative;
   display: inline-block;
-  margin: 0px 10px 0px 10px;
+  margin: 0px 20px 0px 20px;
   padding: 0;
   list-style: none;
   cursor: default;
@@ -120,6 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 .addTransaction {
   height: 575px;
   background-color: white;
+  font-family: 'Gotham Narrow';
 }
 #savely_logo {
   text-align: center;
