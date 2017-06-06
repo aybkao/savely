@@ -4,27 +4,36 @@ const client = new pg.Client(connectionString);
 
 const budgets = [
   {
-    category_id: 1,
-    budget_limit: 100.50,
+    category_id: 2,
+    budget_limit: 300,
     date: '2017-05-01'
   },
   {
-    category_id: 2,
-    budget_limit: 33.33,
-    date: '2017-05-20'
+    category_id: 1,
+    budget_limit: 900,
+    date: '2017-05-01'
   },
   {
     category_id: 3,
-    budget_limit: 2500.00,
-    date: '2017-05-30'
+    budget_limit: 400,
+    date: '2017-05-01'
   },
   {
-    category_id: 2,
-    budget_limit: 52.52,
-    date: '2017-05-31'
-  }
+    category_id: 4,
+    budget_limit: 500,
+    date: '2017-05-01'
+  },
+  {
+    category_id: 5,
+    budget_limit: 2000,
+    date: '2017-05-01'
+  },
+  {
+    category_id: 6,
+    budget_limit: 100,
+    date: '2017-05-01'
+  },
 ];
-
 
 var populateTable = function (insert, rows) {
   const params = [];
@@ -42,7 +51,6 @@ var populateTable = function (insert, rows) {
     values: params
   };
 };
-
 
 client.connect();
 const query = client.query(populateTable('INSERT INTO budgets (category_id, budget_limit, date) VALUES ', budgets));
