@@ -1,10 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { VictoryArea, VictoryBar, VictoryContainer } from 'victory';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import store from '../store';
+import getBudgets from '../actions/getBudgets.js';
 
 class SpendingCategoriesChartContainer extends React.Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount() {
+    this.props.getBudgets();
   }
   getBars(chartData) {
     var budgetBars = [];
@@ -19,10 +26,10 @@ class SpendingCategoriesChartContainer extends React.Component {
           width={325}
           labels={(datum) => '$'+(datum.spent).toFixed(2)}
           style={{
-              data: {fill: (d) => d.spent / d.limit > 1 ? "red" : "green", width: 14},
-              labels: {fontSize: 18, fontFamily: "'Gotham Narrow A', 'Gotham Narrow B'"},
-              parent: {border: "1px solid #ccc"}
-            }}
+            data: {fill: (d) => d.spent / d.limit > 1 ? "red" : "green", width: 14},
+            labels: {fontSize: 18, fontFamily: "'Gotham Narrow A', 'Gotham Narrow B'"},
+            parent: {border: "1px solid #ccc"}
+          }}
           animate={{duration:2000, onLoad: {duration: 2000}}}
           padding={{left: 10, right: 85, top: 28, bottom: 20}}
           /></VictoryContainer>
@@ -50,8 +57,24 @@ class SpendingCategoriesChartContainer extends React.Component {
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 }
 
-export default SpendingCategoriesChartContainer;
+
+//connects root reducer to props
+const mapStateToProps = (state) => {
+  return {
+    budgets: state.budgets.budgets
+  };
+};
+
+//connects redux actions to props
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    getBudgets: getBudgets,
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpendingCategoriesChartContainer);
+
