@@ -83,8 +83,7 @@ th, td {
 #dashboard_header {
   background: white;
   background: linear-gradient(#FEFFFE, white);
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height: 70px;
 }
 .dashboard_container {
   margin: 10px 140px 0px 140px;
@@ -93,6 +92,9 @@ th, td {
   border-radius: 10px;
   padding: 5px 0 0 0px;
   text-align: center;
+  -moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 #transactions_column {
   text-align: center;
