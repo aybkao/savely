@@ -2,6 +2,12 @@ body {
   font-family: "Gotham Narrow A", "Gotham Narrow B", "Helvetica Neue", "Arial", "sans-serif";
   width: 100px;
 }
+header {
+  height: 70px
+}
+th, td {
+  text-align: center;
+}
 #root {
   background-color: #dedede;
   margin: 0px 0px 0px 0px;
@@ -34,9 +40,6 @@ body {
 #carousel li a{
   outline: 0;
 
-}
-th, td {
-  text-align: center;
 }
 #budget_status_chart {
   text-align: center;
@@ -98,6 +101,8 @@ th, td {
 }
 #transactions_column {
   text-align: center;
+  width: 1080px;
+  margin: auto;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: "Gotham Narrow A", "Gotham Narrow B";
@@ -172,7 +177,4 @@ div#splashContent {
 }
 .fa-sign-in {
   margin-top: 50px;
-}
-header {
-  height: 70px
 }
