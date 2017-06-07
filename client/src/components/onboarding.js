@@ -14,7 +14,20 @@ class Onboarding extends React.Component {
       </div>
       <h1>Welcome to Savely</h1>
       <Form>
-        <h2>Enter your income:</h2>
+      <Form.Field>
+        <label>Enter your income</label>
+        <Form.Input placeholder='Income' name='income' />
+        <Dropdown placeholder='per Year' fluid search selection options={[{text: 'per Year'}, {text: 'per Month'}, {text: 'per Week'}]} />
+      </Form.Field>
+      <Form.Field>
+        <label>Do you own or rent your home?</label>
+        <Dropdown placeholder='Select One' fluid search selection options={[{text: 'I Own My Home'}, {text: 'I Rent'}, {text: 'I Live with My Parents'}]} />
+        <Form.Input placeholder='Payment' name='housing_payment' />
+      </Form.Field>
+      <Form.Field>
+        <label>Are you single or married (or married and file taxes separately)?</label>
+        <Dropdown placeholder='Select One' fluid search selection options={[{text: 'Single'}, {text: 'Married'}, {text: 'Married, File separately'}]} />
+      </Form.Field>
       </Form>
     </div>
     )
