@@ -10,7 +10,6 @@ const qryString = 'select t.vendor, t.description, t.amount, c.category, t.date 
 const getTransactionsJoinCategory = (req, res) => {
   knex.raw(qryString)
   .then(function (result) {
-    console.log(result);
     const transacs = result.rows;
     transacs.forEach((x) => {
       x.date = JSON.stringify(x.date).slice(1, 11);
@@ -19,7 +18,6 @@ const getTransactionsJoinCategory = (req, res) => {
     res.status(201).send(transacs);
   })
   .catch(function(err) {
-    console.log(err);
     res.status(500).send(err);
   });
 };
