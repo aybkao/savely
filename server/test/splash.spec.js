@@ -4,7 +4,7 @@ const express = require('express');
 const expect = require('chai').expect;
 const app = require('../app.js');
 
-describe('2) SPLASH PAGE', function() {
+describe('SPLASH PAGE', function() {
   it('should have a valid main page ("/")', function(done) {
     request(app)
       .get('/')
@@ -32,7 +32,7 @@ describe('2) SPLASH PAGE', function() {
   });
 });
 
-describe('3) SIGNUP PAGE', function() {
+describe('SIGNUP PAGE', function() {
   it('should have a valid signup page ("/signup")', function(done) {
     request(app)
       .get('/signup')
