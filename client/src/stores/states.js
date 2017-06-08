@@ -124,7 +124,7 @@ const states = [
     60000: 0.066
   }
   },
-  {text: 'D.C'
+  {text: 'D.C',
    single_tax_brackets: {
      0: 0.04,
      10000: 0.06,
@@ -141,7 +141,7 @@ const states = [
      350000: 0.0875,
      1000000: 0.0895
    }
-  }
+ },
   {text: 'Florida',
    single_tax_brackets: {
      0: 0
@@ -474,6 +474,10 @@ const states = [
      16000: 0.049
    },
    married_tax_brackets: {
+     0: 0.017,
+     8000: 0.032,
+     16000: 0.047,
+     24000: 0.049
    }
   },
   {text: 'New York',
@@ -488,31 +492,45 @@ const states = [
      1077550: 0.0882
    },
    married_tax_brackets: {
+     0: 0.04,
+     17150: 0.045,
+     23600: 0.0525,
+     27900: 0.059,
+     43000: 0.0645,
+     161550: 0.0665,
+     323200: 0.0685,
+     2155350: 0.0882
    }
   },
-  {text: 'North Carolina'
+  {text: 'North Carolina',
    single_tax_brackets: {
      0: 0.055,
    },
    married_tax_brackets: {
+     0: 0.055
    }
   },
   {text: 'North Dakota',
    single_tax_brackets: {
      0: 0.011,
-     37950: 0.0204
+     37950: 0.0204,
      91900: 0.0227,
      191650: 0.0264,
      416700: 0.0290
    },
    married_tax_brackets: {
+     0: 0.011,
+     63400: 0.0204,
+     153100: 0.0227,
+     233350: 0.0264,
+     416700: 0.029
    }
   },
   {text: 'Ohio',
    single_tax_brackets: {
      0: 0.005,
      5250: 0.0099,
-     10500: 0.0198.
+     10500: 0.0198,
      15800: 0.0248,
      21100: 0.0297,
      42100: 0.0347,
@@ -521,6 +539,15 @@ const states = [
      210600: 0.05
    },
    married_tax_brackets: {
+     0: 0.005,
+     5250: 0.0099,
+     10500: 0.0198,
+     15800: 0.0248,
+     21100: 0.0297,
+     42100: 0.0347,
+     84200: 0.0396,
+     105300: 0.046,
+     210600: 0.05
    }
   },
   {text: 'Oklahoma',
@@ -533,6 +560,12 @@ const states = [
      7200: 0.05
    },
    married_tax_brackets: {
+     0: 0.005,
+     2000: 0.01,
+     5000: 0.02,
+     7500: 0.03,
+     9800: 0.04,
+     12200: 0.05
    }
   },
   {text: 'Oregon',
@@ -543,6 +576,10 @@ const states = [
      125000: 0.099
    },
    married_tax_brackets: {
+     0: 0.05,
+     6700: 0.07,
+     16900: 0.09,
+     250000: 0.099
    }
   },
   {text: 'Pennsylvania',
@@ -550,6 +587,7 @@ const states = [
     0: 0.0307
   },
   married_tax_brackets: {
+    0: 0.0307
   }
    },
   {text: 'Rhode Island',
@@ -559,6 +597,9 @@ const states = [
      139400: 0.0599
    },
    married_tax_brackets: {
+     0: 0.0375,
+     61300: 0.0475,
+     139400: 0.0599
    }
   },
   {text: 'South Carolina',
@@ -571,6 +612,12 @@ const states = [
      14650: 0.07
    },
    married_tax_brackets: {
+     0: 0,
+     2930: 0.03,
+     5860: 0.04,
+     8790: 0.05,
+     11720: 0.06,
+     14650: 0.07
    }
   },
   {text: 'South Dakota',
@@ -578,6 +625,7 @@ const states = [
      0: 0
    },
    married_tax_brackets: {
+     0: 0
    }
   },
   {text: 'Tennessee',
@@ -585,6 +633,7 @@ const states = [
      0: 0.05
    },
    married_tax_brackets: {
+     0: 0.05
    }
   },
   {text: 'Texas',
@@ -592,13 +641,15 @@ const states = [
      0: 0
    },
    married_tax_brackets: {
+     0: 0
    }
    },
   {text: 'Utah',
    single_tax_brackets: {
-     0.05
+     0: 0.05
    },
    married_tax_brackets: {
+     0: 0.05
    }
   },
   {text: 'Vermont',
@@ -610,6 +661,11 @@ const states = [
      416700: 0.0895
    },
    married_tax_brackets: {
+     0: 0.0355,
+     63350: 0.068,
+     152100: 0.078,
+     233350: 0.088,
+     416700: 0.0895
    }
   },
   {text: 'Virginia',
@@ -620,6 +676,10 @@ const states = [
      17000: 0.0575
    },
    married_tax_brackets: {
+     0: 0.02,
+     3000: 0.03,
+     5000: 0.05,
+     17000: 0.0575
    }
   },
   {text: 'Washington',
@@ -627,6 +687,7 @@ const states = [
      0: 0
    },
    married_tax_brackets: {
+     0: 0
    }
   },
   {text: 'West Virginia',
@@ -638,6 +699,11 @@ const states = [
      60000: 0.065
    },
    married_tax_brackets: {
+     0: 0.03,
+     10000: 0.04,
+     25000: 0.045,
+     40000: 0.06,
+     60000: 0.065
    }
   },
   {text: 'Wisconsin',
@@ -648,6 +714,10 @@ const states = [
      247350: 0.0765
    },
    married_tax_brackets: {
+     0: 0.04,
+     14890: 0.0584,
+     29960: 0.0627,
+     329810: 0.0765
    }
   },
   {text: 'Wyoming',
@@ -655,6 +725,8 @@ const states = [
      0: 0
    },
    married_tax_brackets: {
+     0: 0
    }
   },
-]
+];
+export default states;

@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Form, Button, Dropdown} from 'semantic-ui-react';
-import states from '../stores/states.js'
+import states from '../stores/states.js';
+import federal from '../stores/federal.js';
 
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
+    this.calculateFederalIncomeTax(120000);
+  }
+  calculateFederalIncomeTax(income /*annual*/) {
+    console.log(federal);
   }
   render() {
     return (
@@ -30,7 +35,7 @@ class Onboarding extends React.Component {
         <Dropdown placeholder='Select One' fluid search selection options={[{text: 'Single'}, {text: 'Married'}, {text: 'Married, File separately'}]} />
       </Form.Field>
       <Form.Field>
-        <Dropdown placeholder='Select a State' fluid search selection options={} />
+        <Dropdown placeholder='Select a State' fluid search selection options={states} />
       </Form.Field>
       <Form.Field>
       </Form.Field>
