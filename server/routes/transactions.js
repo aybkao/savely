@@ -13,19 +13,20 @@ const getTransactionsJoinCategory = (req, res) => {
     console.log(result);
     const transacs = result.rows;
     transacs.forEach((x) => {
-      x.date = JSON.stringify(x.date).slice(1, 11); 
+      x.date = JSON.stringify(x.date).slice(1, 11);
       x.date = x.date.split('-').join('/');
-    });  
+    });
     res.status(201).send(transacs);
   })
-  .catch(function(err) { 
+  .catch(function(err) {
     console.log(err);
     res.status(500).send(err);
   });
 };
 
 router.route('/')
-  .get(getTransactionsJoinCategory) 
+
+  .get(getTransactionsJoinCategory)
   //.get(TransactionsController.getAll)
   .post(TransactionsController.create); // CREATES A NEW TRANSACTION
 
