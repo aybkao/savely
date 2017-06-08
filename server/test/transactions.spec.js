@@ -14,25 +14,16 @@ describe('TRANSACTIONS PAGE', function() {
     "id": 21
   };
 
-  it('transaction page ("/transaction") should exist', function(done) {
+  it('transaction page should not accept get requests', function(done) {
     request(app)
       .get('/transaction')
       .expect(function(res) {
-        expect(res.status).to.not.be.within(400, 499);
+        expect(res.status).to.not.be.within(100, 299);
       })
       .end(done);
   });
 
-  it('transactions page should properly get requests', function(done) {
-    request(app)
-      .get('/transaction')
-      .expect(function(res) {
-        expect(res.status).to.be.within(200, 201);
-      })
-      .end(done);
-  });
-
-  it('transactions page should accept valid post requests', function(done) {
+  it('transactions page should accept post requests', function(done) {
     request(app)
       .post('/transaction')
       .send(testPostObj)
