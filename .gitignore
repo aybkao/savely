@@ -37,3 +37,5 @@ bower_components/
 
 # api keys
 apiKeys.js
+
+package-lock.json
