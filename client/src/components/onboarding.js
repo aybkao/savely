@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Form, Button, Dropdown} from 'semantic-ui-react';
+import states from '../stores/states.js'
 
 class Onboarding extends React.Component {
   constructor(props) {
@@ -27,6 +28,11 @@ class Onboarding extends React.Component {
       <Form.Field>
         <label>Are you single or married (or married and file taxes separately)?</label>
         <Dropdown placeholder='Select One' fluid search selection options={[{text: 'Single'}, {text: 'Married'}, {text: 'Married, File separately'}]} />
+      </Form.Field>
+      <Form.Field>
+        <Dropdown placeholder='Select a State' fluid search selection options={} />
+      </Form.Field>
+      <Form.Field>
       </Form.Field>
       </Form>
     </div>
