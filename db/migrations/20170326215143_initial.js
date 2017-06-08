@@ -28,12 +28,12 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('transactions', function(table) {
       table.increments('id').unsigned().primary();
-      table.string('vendor', 100).notNullable();
-      table.string('description', 100).notNullable();
-      table.float('amount').notNullable(); 
-      table.date('date').notNullable();
-      table.integer('category_id').references('categories.id').onDelete('CASCADE').notNullable();
-      table.integer('profile_id').references('profiles.id').onDelete('CASCADE').notNullable();
+      table.string('vendor', 100).nullable();
+      table.string('description', 100).nullable();
+      table.float('amount').nullable(); 
+      table.date('date').nullable();
+      table.integer('category_id').references('categories.id').onDelete('CASCADE');
+      table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
       table.timestamp("created_at").defaultTo(knex.raw('now()')).notNullable();
     })
   ]);
