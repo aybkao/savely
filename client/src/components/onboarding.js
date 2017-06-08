@@ -7,9 +7,31 @@ import federal from '../stores/federal.js';
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
+    this.calculateFederalIncomeTax(120000, 'single');
   }
-  calculateFederalIncomeTax(income /*annual*/) {
-    console.log(federal);
+  calculateFederalIncomeTax(income /*annual*/, status) {
+    //For each tax bracket
+      //If user's income is higher than that bracket, add to list of tax brackets [starting point, bracket]
+      //sort tuples in descending order
+    //Once highest tax bracket is determined
+      //Multiply the portion of income that exceeds that tax bracket by the prescribed rate
+      //
+    if (status === 'single') {
+      var brackets = [];
+      for (var bracket in federal.single_tax_brackets) {
+        if (income > Number(bracket)) {
+          brackets.push([Number(bracket), federal.single_tax_brackets[bracket]]);
+        }
+      };
+    } else if (status === 'married') {
+      console.log(federal.married_tax_brackets);
+    }
+    brackets.sort(function(a,b) {
+      return b[0] > a[0];
+    });
+    for (var i = 0; i < brackets.length; i++) {
+      console.log(brackets[i]);
+    }
   }
   render() {
     return (
