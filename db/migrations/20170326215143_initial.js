@@ -8,6 +8,7 @@ exports.up = function (knex, Promise) {
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
+      table.integer('income', 100).nullable();
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
@@ -20,24 +21,19 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('categories', function(table) {
       table.increments('id').unsigned().primary();
-      table.string('name', 100).notNullable();
-      table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
-      table.timestamp("created_at").defaultTo(knex.raw('now()')).notNullable();
-    }),
-    knex.schema.createTableIfNotExists('budgets', function(table) {
-      table.increments('id').unsigned().primary();
-      table.integer('category_id').references('categories.id').onDelete('CASCADE');
+      table.string('category').notNullable();
       table.float('budget_limit').notNullable(); 
-      table.date('date').notNullable();
+      table.integer('profile_id').references('profiles.id').onDelete('CASCADE').notNullable();
       table.timestamp("created_at").defaultTo(knex.raw('now()')).notNullable();
     }),
     knex.schema.createTableIfNotExists('transactions', function(table) {
       table.increments('id').unsigned().primary();
       table.string('vendor', 100).nullable();
-      table.float('amount').notNullable(); 
+      table.string('description', 100).nullable();
+      table.float('amount').nullable(); 
       table.date('date').nullable();
       table.integer('category_id').references('categories.id').onDelete('CASCADE');
-      table.string('description', 100).nullable();
+      table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
       table.timestamp("created_at").defaultTo(knex.raw('now()')).notNullable();
     })
   ]);

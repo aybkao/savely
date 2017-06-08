@@ -4,27 +4,33 @@ const client = new pg.Client(connectionString);
 
 const cats = [
   {
-    name: 'Restaurants',
+    category: 'Restaurants',
+    budget_limit: 900,
     profile_id: 1
   },
   {
-    name: 'Groceries',
-    profile_id: 1
-  }, 
-  {
-    name: 'Entertainment',
+    category: 'Groceries',
+    budget_limit: 300,
     profile_id: 1
   },
   {
-    name: 'Clothing',
+    category: 'Entertainment',
+    budget_limit: 400,
     profile_id: 1
   },
   {
-    name: 'Housing',
+    category: 'Clothing',
+    budget_limit: 500,
     profile_id: 1
   },
   {
-    name: 'Cosmetics',
+    category: 'Housing',
+    budget_limit: 2000,
+    profile_id: 1
+  },
+  {
+    category: 'Cosmetics',
+    budget_limit: 100,
     profile_id: 1
   }
 ];
@@ -49,7 +55,7 @@ var populateTable = function (insert, rows) {
 
 
 client.connect();
-const query = client.query(populateTable('INSERT INTO categories (name, profile_id) VALUES ', cats));
+const query = client.query(populateTable('INSERT INTO categories (category, budget_limit, profile_id) VALUES ', cats));
 query.on('end', () => { client.end(); });
 
 
