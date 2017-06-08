@@ -6,7 +6,7 @@ const config = require('../../config/default.json');
 config['knex'].connection = process.env.DATABASE_URL;
 const knex = require('knex')(config['knex']);
 
-const qryString = 'select c.name as category, b.budget_limit as targetlimit from budgets as b join categories as c on b.category_id = c.id';
+const qryString = 'select category, budget_limit as targetlimit from categories';
 const getBudgetsJoinCategory = (req, res) => {
   knex.raw(qryString)
   .then(function (result) {
