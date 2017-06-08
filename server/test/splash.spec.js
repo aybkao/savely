@@ -5,7 +5,16 @@ const expect = require('chai').expect;
 const app = require('../app.js');
 
 describe('SPLASH PAGE', function() {
-  it('main page ("/") redirects to login', function(done) {
+  it('should have a valid main page ("/")', function(done) {
+    request(app)
+      .get('/')
+      .expect(function(res) {
+        expect(res.status).to.not.be.within(400, 499);
+      })
+      .end(done);
+  });
+
+  it('main page ("/") should redirect to login ("/login")', function(done) {
     request(app)
       .get('/')
       .expect(302)
@@ -15,7 +24,7 @@ describe('SPLASH PAGE', function() {
       .end(done);
   });
 
-  it('main page ("/") should not accept post requests', function(done) {
+  it('main page should not accept post requests directly', function(done) {
     request(app)
       .post('/')
       .expect(404)
@@ -24,42 +33,52 @@ describe('SPLASH PAGE', function() {
 });
 
 describe('SIGNUP PAGE', function() {
-  it('should have a functioning signup page ("/signup") that redirects', function(done) {
+  it('should have a valid signup page ("/signup")', function(done) {
     request(app)
-      .get('/')
-      .expect(302)
+      .get('/signup')
+      .expect(200)
+      .end(done);
+  });
+
+  it('signup page should accept get requests but not redirect them', function(done) {
+    request(app)
+      .get('/signup')
       .expect(function(res) {
-        expect(res.text).to.equal('Found. Redirecting to /login');
+        expect(res.status).to.not.be.within(300, 399);
       })
       .end(done);
   });
 
-  it('signup page ("/") should not accept post requests', function(done) {
+  it('signup page should accept post requests and redirect them', function(done) {
     request(app)
-      .post('/')
+      .post('/signup')
+      .expect(302)
+      .end(done);
+  });
+
+});
+
+describe('PROFILE PAGE', function() {
+  it('should have a profile page ("/profile")', function(done) {
+    request(app)
+      .get('/profile')
+      .expect(function(res) {
+        expect(res.status).to.not.be.within(400, 499);
+      })
+      .end(done);
+  });
+
+  it('profile page should accept get requests and redirect them', function(done) {
+    request(app)
+      .get('/profile')
+      .expect(302)
+      .end(done);
+  });
+
+  it('profile page should not accept post requests', function(done) {
+    request(app)
+      .post('/profile')
       .expect(404)
       .end(done);
   });
 });
-
-// xdescribe('SERVER', function() {
-//   it('sends back hello world', function(done) {
-//     request(app)
-//       .get('/api')
-//       .expect(200)
-//       .expect(function(res) {
-//         expect(res.text).to.equal('Hello World!');
-//       })
-//       .end(done);
-//   });
-//
-//   it('accepts POST request', function(done) {
-//     request(app)
-//       .post('/api')
-//       .expect(201)
-//       .expect(function(res) {
-//         expect(res.body.data).to.equal('Posted!');
-//       })
-//       .end(done);
-//   });
-// });
