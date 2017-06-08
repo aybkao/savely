@@ -7,7 +7,6 @@ import federal from '../stores/federal.js';
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
-    this.calculateFederalIncomeTax(120000);
   }
   calculateFederalIncomeTax(income /*annual*/) {
     console.log(federal);
