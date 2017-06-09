@@ -18,5 +18,5 @@ const federal = {
     470700: 0.396
   }
 }
-
+// export default federal;
 module.exports = federal;

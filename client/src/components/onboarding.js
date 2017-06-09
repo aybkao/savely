@@ -7,9 +7,73 @@ import federal from '../stores/federal.js';
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
+    this.calculateStateIncomeTax('Nevada', 120000, 'married');
   }
-  calculateFederalIncomeTax(income /*annual*/) {
-    console.log(federal);
+  calculateFederalIncomeTax(income /*annual*/, status) {
+    var incomeTax = 0;
+    var taxableIncome = income;
+    if (status === 'single') {
+      var brackets = [];
+      for (var bracket in federal.single_tax_brackets) {
+        if (income > Number(bracket)) {
+          brackets.push([Number(bracket), federal.single_tax_brackets[bracket]]);
+        }
+      }
+    } else if (status === 'married') {
+      var brackets = [];
+      for (var bracket in federal.married_tax_brackets) {
+        if (income > Number(bracket)) {
+          brackets.push([Number(bracket), federal.married_tax_brackets[bracket]]);
+        }
+      };
+    }
+    brackets.sort(function(a,b) {
+      return b[0] > a[0];
+    });
+    for (var i = 0; i < brackets.length; i++) {
+      incomeTax += (taxableIncome - brackets[i][0])*brackets[i][1];
+      taxableIncome = brackets[i][0];
+    }
+    return incomeTax;
+  }
+  calculateStateIncomeTax(state, income, status) {
+    var stateInfo;
+    var incomeTax = 0;
+    var taxableIncome = income;
+
+    for (var i = 0; i < states.length; i++) {
+      if (states[i].text === state) {
+        stateInfo = states[i];
+        break;
+      }
+    }
+    if (stateInfo.single_tax_brackets === undefined) {
+      return 0;
+    }
+    if (status === 'single') {
+      var brackets = [];
+      for (var bracket in stateInfo.single_tax_brackets) {
+        if (income > Number(bracket)) {
+          brackets.push([Number(bracket), stateInfo.single_tax_brackets[bracket]]);
+        }
+      }
+    } else if (status === 'married') {
+      var brackets = [];
+      for (var bracket in stateInfo.married_tax_brackets) {
+        if (income > Number(bracket)) {
+          brackets.push([Number(bracket), stateInfo.married_tax_brackets[bracket]]);
+        }
+      };
+    }
+    brackets.sort(function(a,b) {
+      return b[0] > a[0];
+    });
+    for (var i = 0; i < brackets.length; i++) {
+      incomeTax += (taxableIncome - brackets[i][0])*brackets[i][1];
+      taxableIncome = brackets[i][0];
+    }
+    console.log(incomeTax);
+    return incomeTax;
   }
   render() {
     return (
@@ -34,9 +98,22 @@ class Onboarding extends React.Component {
         <Dropdown placeholder='Select One' fluid search selection options={[{text: 'Single'}, {text: 'Married'}, {text: 'Married, File separately'}]} />
       </Form.Field>
       <Form.Field>
+        <label>What state do you live in?</label>
         <Dropdown placeholder='Select a State' fluid search selection options={states} />
       </Form.Field>
       <Form.Field>
+        <label>What city do you live in?</label>
+        <Form.Input placeholder='Your City' name='city' />
+      </Form.Field>
+      <Form.Field>
+        <label>Do you contribute to a retirement plan at work (such as a 401(k))</label>
+        <Dropdown placeholder='Choose One' fluid search selection options={[{text: 'Yes'}, {text: 'No'}]} />
+      </Form.Field>
+      <h2>Now, let’s set some budget categories for you: </h2>
+      <Form.Field>
+        <label>For most of our customers housing is their most expensive category. Housing generally shouldn't be more than 1/3 of your income, but in some high cost of living areas that may be difficult.</label>
+        <label>Set your housing budget: </label>
+        <Form.Input placeholder='Your Payment Here: ' name='housing payment' />
       </Form.Field>
       </Form>
     </div>
