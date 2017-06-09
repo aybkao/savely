@@ -3,6 +3,8 @@ const react = require('react');
 const reactDOM = require('react-dom');
 const reactRouter = require('react-router');
 const reactRedux = require('react-redux');
+const reactReduxRouter = require('react-router-redux');
+const app = require('../src/app.js');
 
 
 describe('REACT COMPONENTS', function(done) {
@@ -17,7 +19,8 @@ describe('REACT COMPONENTS', function(done) {
     expect(reactDOM.version).to.equal('15.4.2');
   });
 
-  it('redux should be installed and running', function() {
+  it('redux and redux-router should be installed and running', function() {
     expect(reactRedux).to.be.an('object');
+    expect(reactReduxRouter).to.be.an('object');
   });
 });
