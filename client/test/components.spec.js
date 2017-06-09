@@ -4,8 +4,7 @@ const reactDOM = require('react-dom');
 const reactRouter = require('react-router');
 const reactRedux = require('react-redux');
 const reactReduxRouter = require('react-router-redux');
-const app = require('../src/app.js');
-
+const reactReduxThunk = require('redux-thunk');
 
 describe('REACT COMPONENTS', function(done) {
   it('react, react-dom, and react-router should be installed and running', function() {
@@ -22,5 +21,9 @@ describe('REACT COMPONENTS', function(done) {
   it('redux and redux-router should be installed and running', function() {
     expect(reactRedux).to.be.an('object');
     expect(reactReduxRouter).to.be.an('object');
+  });
+
+  it('redux thunk should be installed', function() {
+    expect(reactReduxThunk).to.be.an('object');
   });
 });
