@@ -1,5 +1,15 @@
 const models = require('../../db/models');
 
+var deleteTestEntriesIfTheyExist = () => {
+  models.Transaction.where({ vendor: 'Test' }).fetch()
+    .then(transaction => {
+      if (!transaction) {
+        throw transaction;
+      }
+      return transaction.destroy();
+    });
+};
+
 module.exports.create = (req, res) => {
   var newEntry = {
     vendor: req.body.vendor,
@@ -19,6 +29,7 @@ module.exports.create = (req, res) => {
       }
       res.status(500).send(err);
     });
+  deleteTestEntriesIfTheyExist();
 };
 
 module.exports.getAll = (req, res) => {
@@ -31,5 +42,3 @@ module.exports.getAll = (req, res) => {
       res.status(503).send(err);
     });
 };
-
-
