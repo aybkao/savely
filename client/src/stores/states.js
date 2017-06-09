@@ -729,4 +729,6 @@ const states = [
    }
   },
 ];
-export default states;
+
+// export default states;
+module.exports = states;

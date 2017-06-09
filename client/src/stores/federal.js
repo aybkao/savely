@@ -18,3 +18,5 @@ const federal = {
     470700: 0.396
   }
 }
+
+module.exports = federal;
