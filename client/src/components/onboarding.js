@@ -34,7 +34,6 @@ class Onboarding extends React.Component {
       incomeTax += (taxableIncome - brackets[i][0])*brackets[i][1];
       taxableIncome = brackets[i][0];
     }
-    console.log(incomeTax);
     return incomeTax;
   }
   calculateStateIncomeTax(state, income, status) {
@@ -45,37 +44,36 @@ class Onboarding extends React.Component {
     for (var i = 0; i < states.length; i++) {
       if (states[i].text === state) {
         stateInfo = states[i];
-        console.log(stateInfo);
         break;
       }
     }
     if (stateInfo.single_tax_brackets === undefined) {
-      return 0
+      return 0;
     }
-    // if (status === 'single') {
-    //   var brackets = [];
-    //   for (var bracket in stateInfo.single_tax_brackets) {
-    //     if (income > Number(bracket)) {
-    //       brackets.push([Number(bracket), stateInfo.single_tax_brackets[bracket]]);
-    //     }
-    //   }
-    // } else if (status === 'married') {
-    //   var brackets = [];
-    //   for (var bracket in stateInfo.married_tax_brackets) {
-    //     if (income > Number(bracket)) {
-    //       brackets.push([Number(bracket), stateInfo.married_tax_brackets[bracket]]);
-    //     }
-    //   };
-    // }
-    // brackets.sort(function(a,b) {
-    //   return b[0] > a[0];
-    // });
-    // for (var i = 0; i < brackets.length; i++) {
-    //   incomeTax += (taxableIncome - brackets[i][0])*brackets[i][1];
-    //   taxableIncome = brackets[i][0];
-    // }
-    // console.log(incomeTax);
-    // return incomeTax;
+    if (status === 'single') {
+      var brackets = [];
+      for (var bracket in stateInfo.single_tax_brackets) {
+        if (income > Number(bracket)) {
+          brackets.push([Number(bracket), stateInfo.single_tax_brackets[bracket]]);
+        }
+      }
+    } else if (status === 'married') {
+      var brackets = [];
+      for (var bracket in stateInfo.married_tax_brackets) {
+        if (income > Number(bracket)) {
+          brackets.push([Number(bracket), stateInfo.married_tax_brackets[bracket]]);
+        }
+      };
+    }
+    brackets.sort(function(a,b) {
+      return b[0] > a[0];
+    });
+    for (var i = 0; i < brackets.length; i++) {
+      incomeTax += (taxableIncome - brackets[i][0])*brackets[i][1];
+      taxableIncome = brackets[i][0];
+    }
+    console.log(incomeTax);
+    return incomeTax;
   }
   render() {
     return (
@@ -113,7 +111,9 @@ class Onboarding extends React.Component {
       </Form.Field>
       <h2>Now, let’s set some budget categories for you: </h2>
       <Form.Field>
-        <label></label>
+        <label>For most of our customers housing is their most expensive category. Housing generally shouldn't be more than 1/3 of your income, but in some high cost of living areas that may be difficult.</label>
+        <label>Set your housing budget: </label>
+        <Form.Input placeholder='Your Payment Here: ' name='housing payment' />
       </Form.Field>
       </Form>
     </div>
