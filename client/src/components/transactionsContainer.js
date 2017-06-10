@@ -46,7 +46,7 @@ const mapStateToProps = (state) => {
 //connects redux actions to props
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    getTransactions: getTransactions,
+    getTransactions: getTransactions
   }, dispatch);
 };
 

@@ -14,10 +14,10 @@ class TransactionsList extends React.Component {
     console.log(context);
   }
   formatTransactions (transactions){
-    console.log(transactions);
+    //console.log(transactions);
     var initial = (this.state.currPage - 1) * 5;
     var rows = [];
-    console.log(this.state.currPage * 5);
+    //console.log(this.state.currPage * 5);
     for (var i = initial; i < transactions.length; i++) {
       rows.push(
         <Table.Row key={i}>

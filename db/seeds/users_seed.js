@@ -33,3 +33,17 @@ exports.seed = function (knex, Promise) {
     });
 
 };
+
+
+// const models = require('../models');
+// const emails = [
+//   { email: 'asdf@asdf.asdf' }, 
+//   { email: 'qwer@qwer.qwer' }, 
+//   { email: 'zxcv@zxcv.zxcv' }, 
+//   { email: 'qaz@qaz.qaz' }
+// ]
+// const saveMultiple = () => emails.forEach(email => {
+//   models.Profile.forge(email).save();
+// })
+// Promise.all()
+// .then()
