@@ -4,10 +4,21 @@ import {Form, Button, Dropdown} from 'semantic-ui-react';
 import states from '../stores/states.js';
 import federal from '../stores/federal.js';
 
+const getStates = function(states) {
+  var newStates = [];
+  for (var i = 0; i < states.length; i++) {
+    newStates.push(states[i]);
+  }
+  for (var j = 0; j < states.length; j++) {
+    delete newStates[j][single_tax_brackets];
+    delete newStates[j][married_tax_brackets];
+  }
+  return newStates;
+}
+
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
-    this.calculateStateIncomeTax('Nevada', 120000, 'married');
   }
   calculateFederalIncomeTax(income /*annual*/, status) {
     var incomeTax = 0;
@@ -99,7 +110,7 @@ class Onboarding extends React.Component {
       </Form.Field>
       <Form.Field>
         <label>What state do you live in?</label>
-        <Dropdown placeholder='Select a State' fluid search selection options={states} />
+        <Dropdown placeholder='Select a State' fluid search selection options={getStates(states)} />
       </Form.Field>
       <Form.Field>
         <label>What city do you live in?</label>
