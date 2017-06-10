@@ -1,23 +1,47 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
-import {Button} from 'semantic-ui-react';
 import axios from 'axios';
 import Promise from 'bluebird';
-//import keys from '../../../apiKeys.js';
+import matchItemToCategory from './ocrPostProcessing.js';
+import store from '../store';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import getReceipts from '../actions/getReceipts.js';
+import AddTransactionsForm2 from './addTransactionsForm2.js';
+import { Button } from 'semantic-ui-react';
+
+
 
 class UploadReceipts extends React.Component {
+
   constructor(props) {
     super(props);
+    this.state = {
+      hide: true,
+      parsedTransaction: {
+        vendor: '',
+        description: '',
+        amount: -1,
+        date: '',
+        category: ''
+      }
+    };
     this.onImageDrop = this.onImageDrop.bind(this);
     this.onUploadClick = this.onUploadClick.bind(this);
-    //this.ocr = this.ocr.bind(this);
+    this.onFinishSaveStore = this.onFinishSaveStore.bind(this);
   }
 
   onUploadClick() {
     console.log('upload button clicked');
   }
 
+  onFinishSaveStore() {
+    this.setState({hide: false});
+  }
+
   onImageDrop(acceptedFiles) {
+    var self = this;
     acceptedFiles.forEach((file)=> {
       var fr = new FileReader();
       fr.onload = function(e) {
@@ -47,11 +71,12 @@ class UploadReceipts extends React.Component {
               }
             })
               .then(function(response) {
-                console.log('RES FROM API', response);
+                //console.log('RES FROM API', response);
                 var parsedText = response.data.responses[0].textAnnotations;
-                parsedText.forEach((line) => {
-                  console.log(line.description);
-                });
+                console.log('full text', parsedText[0].description);
+                var outputObj = matchItemToCategory(parsedText[0].description);
+                self.onFinishSaveStore();
+                self.setState({parsedTransaction: outputObj});
               });
           });
       };
@@ -70,11 +95,34 @@ class UploadReceipts extends React.Component {
             <div>Drag and Drop a Receipt Image</div>
           </Dropzone>
         </div>
-        <Button fluid onClick={this.onUploadClick}>Upload Receipt</Button>
+        {
+          this.state.hide ? null : 
+          <div>
+            <h3>RECEIPT TEXT PARSED</h3>
+            <br/>
+            <AddTransactionsForm2 parsed={this.state.parsedTransaction} />    
+          </div>
+        }
       </div>
     );
   }
 }
 
 
-export default UploadReceipts;
+//connects root reducer to props
+const mapStateToProps = (state) => {
+  return {
+    receipts: state.receipts.receipts
+  };
+};
+
+//connects redux actions to props
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    getReceipts: getReceipts
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadReceipts);
+
+//export default UploadReceipts;
