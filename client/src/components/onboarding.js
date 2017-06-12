@@ -51,20 +51,9 @@ class Onboarding extends React.Component {
       paycheck_frequency: '',
       housing_status: '',
       housing_payment: '',
-      number_budgets: 0,
       budgets: [{category: '', limit: ''}],
       status: '',
     }
-  }
-  handleAddBudgetCategory() {
-    this.setState({
-      budgets: this.state.budgets.concat([{category: '', limit: }])
-    });
-  }
-  handleRemoveBudgetCategory(key) {
-    this.setState({
-
-    })
   }
   calculateFederalIncomeTax(income /*annual*/, status) {
     var incomeTax = 0;
@@ -132,16 +121,43 @@ class Onboarding extends React.Component {
     console.log(incomeTax);
     return incomeTax;
   }
+  handleAddBudgetCategory() {
+    this.setState({
+      budgets: this.state.budgets.concat([{category: '', limit: 0}])
+    });
+  }
+  handleBudgetCategoryNameChange = (key, event) => {
+    const newBudgets = this.state.budgets.map((budget, skey) => {
+      if (key !== skey) return budget;
+      return {...budget, category: event.target.value};
+    });
+    this.setState({budgets: newBudgets});
+  }
+  handleBudgetCategoryLimitChange = (key, event) => {
+    const newBudgets = this.state.budgets.map((budget, skey) => {
+      if (key !== skey) return budget;
+      return {...budget, limit: event.target.value};
+    });
+  }
   handleChange(event, {name, value}) {
     var field = this;
     console.log(field.state);
     field.setState({ [name]: value });
+  }
+  handleRemoveBudgetCategory(key) {
+    this.setState({
+      budgets: this.state.budgets.filter((s, skey) => key !== skey)
+    });
   }
   handleSubmit(event) {
     var user_income;
     const {income, paycheck_frequency, housing_status, housing_payment, status, state, city, retirement_plan, budgets} = this.state;
     if (paycheck_frequency === 'annual') {
       user_income = income;
+    } else if (paycheck_frequency === 'monthly') {
+      user_income = income * 12;
+    } else if (paycheck_frequency === 'weekly') {
+      user_income = income * 52;
     }
     axios.post('/budget', {
       income: user_income,
@@ -153,7 +169,11 @@ class Onboarding extends React.Component {
       budgets: budgets
     });
   }
+  shouldComponentUpdate(newState) {
+    return newState.budgets !== this.state.budgets;
+  }
   render() {
+    const context = this;
     const {income, paycheck_frequency, housing_status, housing_payment, status, state, city, retirement_plan} = this.state;
     return (
     <div id="onboarding_container">
@@ -194,7 +214,14 @@ class Onboarding extends React.Component {
         <label>Set your housing budget if you didn't enter your payment already: </label>
         <Form.Input placeholder='Payment' name='housing_payment' value={housing_payment} onChange={this.handleChange.bind(this)} />
       </Form.Field>
-      <Button>Add Budget Category</Button>
+      <Button type='button' onClick={this.handleAddBudgetCategory.bind(this)}>Add Budget Category</Button>
+      {this.state.budgets.map((budget, key) => (
+        <Form.Field className="added_budget">
+          <Form.Input placeholder={'Budget Category'} value={budget.category} onChange={this.handleBudgetCategoryNameChange} />
+          <Form.Input placeholder='$0.00' value={budget.limit} onChange={this.handleBudgetCategoryLimitChange} />
+          <Button type='button' onClick={this.handleRemoveBudgetCategory.bind(this)} className='remove_button'>-</Button>
+        </Form.Field>
+      ))}
       <Button type='submit'>Submit</Button>
       </Form>
     </div>
