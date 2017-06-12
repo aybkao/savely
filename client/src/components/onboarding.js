@@ -10,15 +10,61 @@ const getStates = function(states) {
     newStates.push(states[i]);
   }
   for (var j = 0; j < states.length; j++) {
-    delete newStates[j][single_tax_brackets];
-    delete newStates[j][married_tax_brackets];
+    if (newStates[j].single_tax_brackets !== undefined) {
+      newStates[j].key=j;
+      delete newStates[j].single_tax_brackets;
+      delete newStates[j].married_tax_brackets;
+    }
   }
   return newStates;
 }
+const categories = [ { text: 'Cable', value: 'Cable', key: 1 },
+  { text: 'Car Payment', value: 'Car Payment', key: 2 },
+  { text: 'Clothing', value: 'Clothing', key: 3 },
+  { text: 'Cosmetics', value: 'Cosmetics', key: 4 },
+  { text: 'Electronics', value: 'Electronics', key: 5 },
+  { text: 'Fees', value: 'Fees', key: 6 },
+  { text: 'Gas', value: 'Gas', key: 7 },
+  { text: 'Groceries', value: 'Groceries', key: 8 },
+  { text: 'Healthcare', value: 'Healthcare', key: 9 },
+  { text: 'Hobbies', value: 'Hobbies', key: 10 },
+  { text: 'Home Improvement', value: 'Home Improvement', key: 11 },
+  { text: 'Insurance', value: 'Insurance', key: 12 },
+  { text: 'Internet', value: 'Internet', key: 13 },
+  { text: 'Mortgage', value: 'Mortgage', key: 14 },
+  { text: 'Office', value: 'Office', key: 15 },
+  { text: 'Other', value: 'Other', key: 16 },
+  { text: 'Rent', value: 'Rent', key: 17 },
+  { text: 'Restaurants', value: 'Restaurants', key: 18 },
+  { text: 'Student Loan', value: 'Student Loan', key: 19 },
+  { text: 'Subscriptions', value: 'Subscriptions', key: 20 },
+  { text: 'Travel', value: 'Travel', key: 21 },
+  { text: 'Tuition', value: 'Tuition', key: 22 },
+  { text: 'Utiliies', value: 'Utiliies', key: 23 } ];
 
 class Onboarding extends React.Component {
   constructor(props) {
     super(props);
+    this.newStates = getStates(states);
+    this.state = {
+      income: '',
+      paycheck_frequency: '',
+      housing_status: '',
+      housing_payment: '',
+      number_budgets: 0,
+      budgets: [{category: '', limit: ''}],
+      status: '',
+    }
+  }
+  handleAddBudgetCategory() {
+    this.setState({
+      budgets: this.state.budgets.concat([{category: '', limit: }])
+    });
+  }
+  handleRemoveBudgetCategory(key) {
+    this.setState({
+
+    })
   }
   calculateFederalIncomeTax(income /*annual*/, status) {
     var incomeTax = 0;
@@ -86,46 +132,70 @@ class Onboarding extends React.Component {
     console.log(incomeTax);
     return incomeTax;
   }
+  handleChange(event, {name, value}) {
+    var field = this;
+    console.log(field.state);
+    field.setState({ [name]: value });
+  }
+  handleSubmit(event) {
+    var user_income;
+    const {income, paycheck_frequency, housing_status, housing_payment, status, state, city, retirement_plan, budgets} = this.state;
+    if (paycheck_frequency === 'annual') {
+      user_income = income;
+    }
+    axios.post('/budget', {
+      income: user_income,
+      housing_status: housing_status,
+      marital_status: status,
+      state: state,
+      city: city,
+      retirement_plan: retirement_plan,
+      budgets: budgets
+    });
+  }
   render() {
+    const {income, paycheck_frequency, housing_status, housing_payment, status, state, city, retirement_plan} = this.state;
     return (
     <div id="onboarding_container">
       <div id="onboarding_header">
         <img id='logoSavely' src='/assets/logoGreen.png'></img>
       </div>
       <h1>Welcome to Savely</h1>
-      <Form>
+      <Form onSubmit={this.handleSubmit.bind(this)}>
       <Form.Field>
         <label>Enter your income</label>
-        <Form.Input placeholder='Income' name='income' />
-        <Dropdown placeholder='per Year' fluid search selection options={[{text: 'per Year'}, {text: 'per Month'}, {text: 'per Week'}]} />
+        <Form.Input placeholder='Income' name='income' value={income} onChange={this.handleChange.bind(this)}/>
+        <Dropdown placeholder='per Year' name='paycheck_frequency' value={paycheck_frequency} search selection options={[{text: 'per Year', value: 'annual', key: 1}, {text: 'per Month', value: 'monthly', key: 2}, {text: 'per Week', value: 'weekly', key: 3}]} onChange={this.handleChange.bind(this)}/>
       </Form.Field>
       <Form.Field>
         <label>Do you own or rent your home?</label>
-        <Dropdown placeholder='Select One' fluid search selection options={[{text: 'I Own My Home'}, {text: 'I Rent'}, {text: 'I Live with My Parents'}]} />
-        <Form.Input placeholder='Payment' name='housing_payment' />
+        <Dropdown placeholder='Select One' name='housing_status' value={housing_status} search selection options={[{text: 'I Own My Home', value: 'own', key: 1}, {text: 'I Rent', value: 'rent', key: 2}, {text: 'Other', value: 'other', key: 3}]} onChange={this.handleChange.bind(this)}/>
+        <Form.Input placeholder='Payment' name='housing_payment' value={housing_payment} onChange={this.handleChange.bind(this)} />
       </Form.Field>
       <Form.Field>
         <label>Are you single or married (or married and file taxes separately)?</label>
-        <Dropdown placeholder='Select One' fluid search selection options={[{text: 'Single'}, {text: 'Married'}, {text: 'Married, File separately'}]} />
+        <Dropdown placeholder='Select One' name='status' value={status} search selection options={[{text: 'Single', value: 'single', key: 1}, {text: 'Married', value: 'married', key: 2}]} onChange={this.handleChange.bind(this)} />
       </Form.Field>
       <Form.Field>
         <label>What state do you live in?</label>
-        <Dropdown placeholder='Select a State' fluid search selection options={getStates(states)} />
+        <Dropdown placeholder='Select a State' name='state' value={state} search selection options={this.newStates} onChange={this.handleChange.bind(this)} />
       </Form.Field>
       <Form.Field>
-        <label>What city do you live in?</label>
-        <Form.Input placeholder='Your City' name='city' />
+        <label>What city do you live in? Many cities levy an income tax so you will need to take that into account when setting budgets.</label>
+        <Form.Input placeholder='Your City' name='city' value={city} onChange={this.handleChange.bind(this)} />
       </Form.Field>
       <Form.Field>
         <label>Do you contribute to a retirement plan at work (such as a 401(k))</label>
-        <Dropdown placeholder='Choose One' fluid search selection options={[{text: 'Yes'}, {text: 'No'}]} />
+        <Dropdown placeholder='Choose One' name='retirement_plan' value={retirement_plan} search selection options={[{text: 'Yes', value: true, key: 1}, {text: 'No', value: false, key: 2}]} onChange={this.handleChange.bind(this)} />
       </Form.Field>
       <h2>Now, let’s set some budget categories for you: </h2>
       <Form.Field>
         <label>For most of our customers housing is their most expensive category. Housing generally shouldn't be more than 1/3 of your income, but in some high cost of living areas that may be difficult.</label>
-        <label>Set your housing budget: </label>
-        <Form.Input placeholder='Your Payment Here: ' name='housing payment' />
+        <label>Set your housing budget if you didn't enter your payment already: </label>
+        <Form.Input placeholder='Payment' name='housing_payment' value={housing_payment} onChange={this.handleChange.bind(this)} />
       </Form.Field>
+      <Button>Add Budget Category</Button>
+      <Button type='submit'>Submit</Button>
       </Form>
     </div>
     )

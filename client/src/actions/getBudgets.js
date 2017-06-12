@@ -4,11 +4,12 @@ import axios from 'axios';
 export default function getBudgets() {
   return dispatch => {
     dispatch(budgetRequest());
-    
+
     axios.get('/budget')
       .then(res => {
         axios.get('/');
         dispatch(budgetSuccess(res.data));
+        console.log(res.data);
       })
       .catch((err) => {
         dispatch(budgetFailure(err));
