@@ -2,7 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button,Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
-const categoryOptions = [{text: 'Restaurants'}, {text: 'Groceries'}, {text: 'Rent'}, {text: 'Mortgage'}, {text: 'Insurance'}, {text: 'Clothing'}, {text: 'Travel'}, {text: 'Commuting'}, {text: 'Car Payment'}, {text: 'Public Transportation'}, {text: 'Childcare'}];
+const categoryOptions = [
+  {text: 'Restaurants', value: 1}, 
+  {text: 'Groceries', value: 2}, 
+  {text: 'Entertainment', value: 3},
+  {text: 'Clothing', value: 4}, 
+  {text: 'Housing', value: 5}, 
+  {text: 'Cosmetics', value: 6},
+  {text: 'Mortgage', value: 'Mortgage'}, 
+  {text: 'Insurance', value: 'Insurance'}, 
+  {text: 'Travel', value: 'Travel'}, 
+  {text: 'Commuting', value: 'Commuting'}, 
+  {text: 'Car Payment', value: 'Car Payment'}, 
+  {text: 'Public Transportation', value: 'Public Transportation'}
+];
 const getDate = () => {
   var today = new Date();
   return today.toDateString();
@@ -60,7 +73,7 @@ class AddTransactionsForm extends React.Component {
       description
     } = this.state;
     console.log(this.validateDate(this.state.date));
-    axios.post('/transaction', {
+    axios.post('/submission', {
       vendor: vendor,
       amount: amount,
       date: date,
@@ -95,7 +108,7 @@ class AddTransactionsForm extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Category</label>
-            <Dropdown placeholder='Select Category' fluid search selection options={categoryOptions} />
+            <Dropdown placeholder='Select Category' name='category' search selection options={categoryOptions} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
           <Form.Field>
             <label>Description</label>

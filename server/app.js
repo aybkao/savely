@@ -25,5 +25,6 @@ app.use('/api', routes.api);
 app.use('/api/profiles', routes.profiles);
 app.use('/transaction', routes.transactions);
 app.use('/budget', routes.budgets);
+app.use('/submission', routes.submissions);
 
 module.exports = app;

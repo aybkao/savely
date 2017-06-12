@@ -2,15 +2,15 @@ const models = require('../../db/models');
 const axios = require('axios');
 const Promise = require('bluebird');
 
-var deleteTestEntriesIfTheyExist = () => {
-  models.Transaction.where({ vendor: 'Test' }).fetch()
-    .then(transaction => {
-      if (!transaction) {
-        throw transaction;
-      }
-      return transaction.destroy();
-    });
-};
+// var deleteTestEntriesIfTheyExist = () => {
+//   models.Transaction.where({ vendor: 'Test' }).fetch()
+//     .then(transaction => {
+//       if (!transaction) {
+//         throw transaction;
+//       }
+//       return transaction.destroy();
+//     });
+// };
 
 module.exports.create = (req, res) => {
   

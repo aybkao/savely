@@ -1,4 +1,6 @@
 const models = require('../../db/models');
+const axios = require('axios');
+const Promise = require('bluebird');
 
 module.exports.create = (req, res) => {
   var newEntry = {
