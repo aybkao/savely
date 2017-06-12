@@ -1,5 +1,6 @@
 const states = [
   {text: 'Alabama',
+   value: 'Alabama',
    single_tax_brackets: {
        0: 0.02,
       500: 0.04,
@@ -12,8 +13,10 @@ const states = [
   }
   },
   {text: 'Alaska',
+   value: 'Alaska'
   },
   {text: 'Arizona',
+   value: 'Arizona',
    single_tax_brackets:  {
        0: 0.0259,
        10179: 0.0288,
@@ -30,6 +33,7 @@ const states = [
      }
   },
   {text: 'Arkansas',
+   value: 'Arkansas',
    single_tax_brackets: {
       0: 0.009,
       4299: 0.025,
@@ -48,6 +52,7 @@ const states = [
     }
   },
   {text: 'California',
+   value: 'California',
    single_tax_brackets: {
        0: 0.01,
        8015: 0.02,
@@ -73,6 +78,7 @@ const states = [
      }
   },
   {text: 'Colorado',
+   value: 'Colorado',
    single_tax_brackets: {
        0: 0.0463
      },
@@ -101,6 +107,7 @@ const states = [
     }
   },
   {text: 'Delaware',
+  text: 'Delaware',
   single_tax_brackets: {
     2000: 0.022,
     5000: 0.039,
@@ -119,6 +126,7 @@ const states = [
   }
   },
   {text: 'D.C',
+  text: 'D.C',
    single_tax_brackets: {
      0: 0.04,
      10000: 0.06,
@@ -137,8 +145,10 @@ const states = [
    }
  },
   {text: 'Florida',
+  text: 'Florida',
   },
   {text: 'Georgia',
+  text: 'Georgia',
    single_tax_brackets: {
      0: 0.01,
      750: 0.02,
@@ -157,6 +167,7 @@ const states = [
    }
   },
   {text: 'Hawaii',
+   text: 'Hawaii',
    single_tax_brackets: {
      0: 0.014,
      2400: 0.032,
@@ -181,6 +192,9 @@ const states = [
    }
   },
   {text: 'Idaho',
+  text: 'Idaho',
+
+  text: 'Idaho',
    single_tax_brackets: {
      0: 0.016,
      1454: 0.036,
@@ -201,6 +215,9 @@ const states = [
    }
   },
   {text: 'Illinois',
+  text: 'Illinois',
+
+  text: 'Illinois',
    single_tax_brackets: {
      0: 0.0375
    },
@@ -209,6 +226,9 @@ const states = [
    }
   },
   {text: 'Indiana',
+  text: 'Indiana',
+
+  text: 'Indiana',
    single_tax_brackets: {
      0: 0.0323
    },
@@ -217,6 +237,9 @@ const states = [
    }
   },
   {text: 'Iowa',
+  text: 'Iowa',
+
+  text: 'Iowa',
    single_tax_brackets: {
      0: 0.0036,
      1573: 0.0072,
@@ -241,6 +264,9 @@ const states = [
    }
   },
   {text: 'Kansas',
+  text: 'Kansas',
+
+  text: 'Kansas',
    single_tax_brackets: {
      0: 0.027,
      15000: 0.046
@@ -251,6 +277,9 @@ const states = [
    }
   },
   {text: 'Kentucky',
+  text: 'Kentucky',
+
+  text: 'Kentucky',
    single_tax_brackets: {
      0: 0.02,
      3000: 0.03,
@@ -269,6 +298,9 @@ const states = [
    }
   },
   {text: 'Louisiana',
+  text: 'Louisiana',
+
+  text: 'Louisiana',
    single_tax_brackets: {
      0: 0.02,
      12500: 0.04,
@@ -281,6 +313,9 @@ const states = [
    }
   },
   {text: 'Maine',
+  text: 'Maine',
+
+  text: 'Maine',
    single_tax_brackets: {
      0: 0.058,
      21050: 0.0675,
@@ -295,6 +330,9 @@ const states = [
    }
   },
   {text: 'Maryland',
+  text: 'Maryland',
+
+  text: 'Maryland',
    single_tax_brackets: {
      0: 0.02,
      1000: 0.03,
@@ -317,6 +355,9 @@ const states = [
    }
   },
   {text: 'Massachusetts',
+  text: 'Massachusetts',
+
+  text: 'Massachusetts',
    single_tax_brackets: {
      0: 0.51
    },
@@ -333,6 +374,9 @@ const states = [
    }
   },
   {text: 'Minnesota',
+  text: 'Minnesota',
+
+  text: 'Minnesota',
    single_tax_brackets: {
      0: 0.0535,
      25390: 0.0705,
@@ -348,6 +392,9 @@ const states = [
    }
   },
   {text: 'Mississippi',
+  text: 'Mississippi',
+
+  text: 'Mississippi',
    single_tax_brackets: {
      0: 0.03,
      5000: 0.04,
@@ -360,6 +407,9 @@ const states = [
    }
   },
   {text: 'Missouri',
+  text: 'Missouri',
+
+  text: 'Missouri',
    single_tax_brackets: {
      0: 0.015,
      1008: 0.02,
@@ -406,6 +456,7 @@ const states = [
    }
   },
   {text: 'Nebraska',
+  value: 'Nebraska',
    single_tax_brackets: {
      0: 0.0246,
      3090: 0.0351,
@@ -419,9 +470,11 @@ const states = [
      59660: 0.0684
    }
   },
-  {text: 'Nevada'
+  {text: 'Nevada',
+  value: 'Nevada'
   },
   {text: 'New Hampshire',
+  value: 'New Hampshire',
    single_tax_brackets: {
      0: 0.05
    },
@@ -430,6 +483,7 @@ const states = [
    }
   },
   {text: 'New Jersey',
+   value: 'New Jersey',
    single_tax_brackets: {
      0: 0.014,
      20000: 0.0175,
@@ -449,6 +503,7 @@ const states = [
    }
   },
   {text: 'New Mexico',
+   value: 'New Mexico',
    single_tax_brackets: {
      0: 0.017,
      5500: 0.032,
@@ -463,6 +518,7 @@ const states = [
    }
   },
   {text: 'New York',
+   value: 'New York',
    single_tax_brackets: {
      0: 0.04,
      8500: 0.045,
@@ -485,6 +541,7 @@ const states = [
    }
   },
   {text: 'North Carolina',
+   value: 'North Carolina',
    single_tax_brackets: {
      0: 0.055,
    },
@@ -493,6 +550,7 @@ const states = [
    }
   },
   {text: 'North Dakota',
+   value: 'North Dakota',
    single_tax_brackets: {
      0: 0.011,
      37950: 0.0204,
@@ -509,6 +567,7 @@ const states = [
    }
   },
   {text: 'Ohio',
+   value: 'Ohio',
    single_tax_brackets: {
      0: 0.005,
      5250: 0.0099,
@@ -533,6 +592,7 @@ const states = [
    }
   },
   {text: 'Oklahoma',
+   value: 'Oklahoma',
    single_tax_brackets: {
      0: 0.005,
      1000: 0.01,
@@ -551,6 +611,7 @@ const states = [
    }
   },
   {text: 'Oregon',
+   value: 'Oregon',
    single_tax_brackets: {
      0: 0.05,
      3350: 0.07,
@@ -565,6 +626,7 @@ const states = [
    }
   },
   {text: 'Pennsylvania',
+   value: 'Pennsylvania',
    single_tax_brackets: {
     0: 0.0307
   },
@@ -573,6 +635,7 @@ const states = [
   }
    },
   {text: 'Rhode Island',
+   value: 'Rhode Island',
    single_tax_brackets: {
      0: 0.0375,
      61300: 0.0475,
@@ -585,6 +648,7 @@ const states = [
    }
   },
   {text: 'South Carolina',
+   value: 'South Carolina',
    single_tax_brackets: {
      0: 0,
      2930: 0.03,
@@ -602,9 +666,11 @@ const states = [
      14650: 0.07
    }
   },
-  {text: 'South Dakota'
+  {text: 'South Dakota',
+  value: 'South Dakota'
   },
   {text: 'Tennessee',
+   value: 'Tennessee',
    single_tax_brackets: {
      0: 0.05
    },
@@ -612,9 +678,11 @@ const states = [
      0: 0.05
    }
   },
-  {text: 'Texas'
+  {text: 'Texas',
+   text: 'Texas'
    },
   {text: 'Utah',
+   value: 'Utah',
    single_tax_brackets: {
      0: 0.05
    },
@@ -623,6 +691,7 @@ const states = [
    }
   },
   {text: 'Vermont',
+   value: 'Vermont',
    single_tax_brackets: {
      0: 0.0355,
      37950: 0.068,
@@ -639,6 +708,7 @@ const states = [
    }
   },
   {text: 'Virginia',
+    value: 'Virginia',
    single_tax_brackets: {
      0: 0.02,
      3000: 0.03,
@@ -652,9 +722,11 @@ const states = [
      17000: 0.0575
    }
   },
-  {text: 'Washington'
+  {text: 'Washington',
+   value: 'Washington'
   },
   {text: 'West Virginia',
+   value: 'West Virginia',
    single_tax_brackets: {
      0: 0.03,
      10000: 0.04,
@@ -671,6 +743,7 @@ const states = [
    }
   },
   {text: 'Wisconsin',
+  value: 'Wisconsin',
    single_tax_brackets: {
      0: 0.04,
      11230: 0.0584,
@@ -684,7 +757,8 @@ const states = [
      329810: 0.0765
    }
   },
-  {text: 'Wyoming'
+  {text: 'Wyoming',
+   value: 'Wyoming'
   },
 ];
 
