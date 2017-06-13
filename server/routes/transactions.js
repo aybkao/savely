@@ -6,9 +6,11 @@ const config = require('../../config/default.json');
 config['knex'].connection = process.env.DATABASE_URL;
 const knex = require('knex')(config['knex']);
 
-const qryString = 'select t.vendor, t.description, t.amount, c.category, t.date from transactions as t join categories as c on t.category_id = c.id';
+const qryString = 'select t.vendor, t.description, t.amount, c.category, t.date from transactions as t join categories as c on t.category_id = c.id where c.profile_id =';
 const getTransactionsJoinCategory = (req, res) => {
-  knex.raw(qryString)
+  const user_id = String(req.user.id);
+  const qry = qryString + user_id + 'order by t.date desc;';
+  knex.raw(qry)
   .then(function (result) {
     const transacs = result.rows;
     transacs.forEach((x) => {

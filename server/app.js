@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
+const ejs = require('ejs');
 
 const app = express();
 
@@ -26,5 +27,7 @@ app.use('/api/profiles', routes.profiles);
 app.use('/transaction', routes.transactions);
 app.use('/budget', routes.budgets);
 app.use('/submission', routes.submissions);
+app.use('/category', routes.categories);
+
 
 module.exports = app;

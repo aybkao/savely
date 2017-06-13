@@ -19,7 +19,8 @@ module.exports.create = (req, res) => {
     amount: req.body.amount,
     category_id: req.body.category,
     description: req.body.description,
-    date: req.body.date
+    date: req.body.date,
+    profile_id: req.body.profile_id
   };
 
   models.Transaction.forge(newEntry)
