@@ -227,7 +227,7 @@ class Onboarding extends React.Component {
       <Button type='button' onClick={this.handleAddBudgetCategory.bind(this)}>Add Budget Category</Button>
       {this.state.budgets.map((budget, key) => (
         <Form.Field className="added_budget">
-          <Form.Input placeholder={'Budget Category'} value={budget.category} onChange={this.handleBudgetCategoryNameChange.bind(context)} />
+          <Dropdown placeholder={'Budget Category'} value={budget.category} search selection options={categories} onChange={this.handleBudgetCategoryNameChange.bind(context)} />
           <Form.Input placeholder='$0.00' value={budget.limit} onChange={this.handleBudgetCategoryLimitChange.bind(context)} />
           <Button type='button' onClick={this.handleRemoveBudgetCategory.bind(this)} className='remove_button'>-</Button>
         </Form.Field>
