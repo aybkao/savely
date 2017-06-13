@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Button, Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 const categoryOptions = [
-  {text: 'Restaurants', value: 1}, 
-  {text: 'Groceries', value: 2}, 
-  {text: 'Entertainment', value: 3},
-  {text: 'Clothing', value: 4}, 
-  {text: 'Housing', value: 5}, 
-  {text: 'Cosmetics', value: 6},
+  {text: 'Restaurants', value: 'Restaurants'}, 
+  {text: 'Groceries', value: 'Groceries'}, 
+  {text: 'Entertainment', value: 'Entertainment'},
+  {text: 'Clothing', value: 'Clothing'}, 
+  {text: 'Housing', value: 'Housing'}, 
+  {text: 'Cosmetics', value: 'Cosmetics'},
   {text: 'Mortgage', value: 'Mortgage'}, 
   {text: 'Insurance', value: 'Insurance'}, 
   {text: 'Travel', value: 'Travel'}, 
@@ -25,7 +25,8 @@ class AddTransactionsForm2 extends React.Component {
       amount: 0,
       date: '',
       category: '',
-      description: ''
+      description: '',
+      profile_id: -1
     };
     this.handleChange.bind(this);
     this.handleSubmit.bind(this);
@@ -41,33 +42,51 @@ class AddTransactionsForm2 extends React.Component {
   //     description: this.props.parsed.description
   //   })
   // }
+
+  componentDidMount() {
+    const script = document.getElementById('bundleScript');
+    const ejsProps = script.getAttribute('data-user');
+    const userInfoObj = JSON.parse(ejsProps);
+    this.state.profile_id = userInfoObj.id;
+  }
  
   handleChange(event, {name, value}) {
-    var self = this;
-    self.setState({[name]: event.target.value });
+    var field = this;
+    console.log(field.state);
+    field.setState({ [name]: value });
   }
   
   handleSubmit(event) {
     var obj = this.props.parsed;
-    
-    axios.post('/submission', {
-      vendor: obj.vendor,
-      amount: obj.amount,
-      date: obj.date,
-      category: obj.category,
-      description: obj.description
+    const self = this;
+    axios.get('/category', {
+      params: {
+        category: self.state.category
+      }
     })
     .then(function (response) {
-      console.log(response);
+      axios.post('/transaction', {
+        vendor: obj.vendor,
+        amount: obj.amount,
+        date: obj.date,
+        category: response.data,
+        description: obj.description,
+        profile_id: self.state.profile_id
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     })
-    .catch(function (error) {
+    .catch(function(error) {
       console.log(error);
-    });
+    }); 
     event.preventDefault();
   }
 
-  render() {
-    
+  render() {    
     return (
       <div>
       <Modal size='small' trigger={<Button fluid>Verify Transaction Results</Button>} closeIcon='close' className='addTransaction'>
