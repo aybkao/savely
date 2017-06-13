@@ -9,7 +9,6 @@ export default function getBudgets() {
       .then(res => {
         axios.get('/');
         dispatch(budgetSuccess(res.data));
-        console.log(res.data);
       })
       .catch((err) => {
         dispatch(budgetFailure(err));

@@ -15,13 +15,14 @@ const getBudgetsJoinCategory = (req, res) => {
     const buds = result.rows;
     res.status(201).send(buds);
   })
-  .catch(function(err) { 
+  .catch(function(err) {
     console.log(err);
     res.status(500).send(err);
   });
 };
 
-router.route('/') 
+router.route('/')
   .get(getBudgetsJoinCategory);
+  .post(BudgetController.create);
 
 module.exports = router;
