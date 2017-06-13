@@ -18,7 +18,7 @@ describe('PROFILES', function () {
   it('Should be able to update an already existing record', function (done) {
     Profile.where({ id: 1 }).fetch()
       .then(function (result) {
-        expect(..result.get('id')).to.equal(1);
+        expect(result.get('id')).to.equal(1);
       })
       .then(function () {
         return Profile.where({ id: 1 }).save({ first: 'James', last: 'Davenport' }, { method: 'update' });
