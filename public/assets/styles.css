@@ -5,9 +5,6 @@ body {
 header {
   height: 70px
 }
-th, td {
-  text-align: center;
-}
 .field {
   font-family: "Gotham Narrow A", "Gotham Narrow B", "Helvetica Neue", "Arial", "sans-serif";
 }
@@ -168,16 +165,70 @@ div#splashContent {
   -webkit-box-shadow: inset 10px 10px 50px #7E7E74;
   box-shadow: inset 0px 0px 50px #7E7E74;
 }
+
 .form-group, .btn-lg, .btn, hr, .sign, #loginButton {
   width: 300px;
   margin: auto;
   padding: 5px;
   display: inherit;
 }
+
 .col-sm-6 {
   margin: auto;
   float: none;
 }
+
 .fa-sign-in {
   margin-top: 50px;
+}
+
+.container {
+  width: 300px;
+}
+
+.table-editable {
+  position: relative;
+}
+
+.glyphicon {
+  font-size: 20px;
+}
+
+.table-remove {
+  color: #700;
+  cursor: pointer;
+  right: -30px;
+}
+
+.table-remove:hover {
+  color: #f00;
+}
+
+.table-up:hover, .table-down:hover {
+  color: #00f;
+}
+
+.table-add {
+  color: #070;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 0px;
+}
+
+.table-add:hover {
+  color: #0b0;
+}
+#personalContainer {
+  width: 1000px;
+}
+#incomeContainer {
+  float: left;
+}
+#budgetContainer {
+  float: right;
+}
+.row {
+  width: 1000px;
+  margin: auto;
 }
