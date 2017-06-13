@@ -8,6 +8,9 @@ header {
 th, td {
   text-align: center;
 }
+.field {
+  font-family: "Gotham Narrow A", "Gotham Narrow B", "Helvetica Neue", "Arial", "sans-serif";
+}
 #root {
   background-color: #dedede;
   margin: 0px 0px 0px 0px;

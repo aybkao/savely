@@ -51,7 +51,7 @@ class Onboarding extends React.Component {
       paycheck_frequency: '',
       housing_status: '',
       housing_payment: '',
-      budgets: [{category: '', limit: ''}],
+      budgets: [{category: '', limit: '', key: 0}],
       status: '',
     };
   }
@@ -136,14 +136,14 @@ class Onboarding extends React.Component {
       budgets: this.state.budgets.concat([{category: '', limit: 0}])
     });
   }
-  handleBudgetCategoryNameChange = (key, event) => {
+  handleBudgetCategoryNameChange(key, event) {
     const newBudgets = this.state.budgets.map((budget, skey) => {
       if (key !== skey) return budget;
       return {...budget, category: event.target.value};
     });
     this.setState({budgets: newBudgets});
   }
-  handleBudgetCategoryLimitChange = (key, event) => {
+  handleBudgetCategoryLimitChange(key, event) {
     const newBudgets = this.state.budgets.map((budget, skey) => {
       if (key !== skey) return budget;
       return {...budget, limit: event.target.value};
@@ -227,8 +227,8 @@ class Onboarding extends React.Component {
       <Button type='button' onClick={this.handleAddBudgetCategory.bind(this)}>Add Budget Category</Button>
       {this.state.budgets.map((budget, key) => (
         <Form.Field className="added_budget">
-          <Form.Input placeholder={'Budget Category'} value={budget.category} onChange={this.handleBudgetCategoryNameChange} />
-          <Form.Input placeholder='$0.00' value={budget.limit} onChange={this.handleBudgetCategoryLimitChange} />
+          <Dropdown placeholder={'Budget Category'} value={budget.category} search selection options={categories} onChange={this.handleBudgetCategoryNameChange.bind(context)} />
+          <Form.Input placeholder='$0.00' value={budget.limit} onChange={this.handleBudgetCategoryLimitChange.bind(context)} />
           <Button type='button' onClick={this.handleRemoveBudgetCategory.bind(this)} className='remove_button'>-</Button>
         </Form.Field>
       ))}
