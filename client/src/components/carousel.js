@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
-const links = [{to: "/", title: "Overview"},{to: "/t", title: "Transactions"}, {to: "/o", title: "Onboarding"}];
+const links = [{to: "/", title: "Overview"},{to: "/t", title: "Transactions"}, {to: "/o", title: "Onboarding"}, {to: "/s", title: "Set Budgets"} ];
 
 class Carousel extends React.Component {
   constructor() {
