@@ -1,9 +1,11 @@
 const models = require('../../models');
+const Promise = require('bluebird');
+const knex = require('knex');
 
 const transactions = [
   {
     vendor: 'Equator Coffee',
-    amount: 11.11,
+    amount: 5.11,
     date: '2017-05-30',
     category_id: 1,
     description: 'coffee',
@@ -169,7 +171,48 @@ const transactions = [
     description: 'rent payment',
     profile_id: 1
   },
+  {
+    vendor: 'Starbucks Coffee',
+    amount: 3.75,
+    date: '2017-06-11',
+    category_id: 7,
+    description: 'chocolate chip cookie',
+    profile_id: 2
+  },
+  {
+    vendor: 'Equator Coffee',
+    amount: 35.35,
+    date: '2017-06-11',
+    category_id: 7,
+    description: 'cat shaped sticker',
+    profile_id: 2
+  },
+  {
+    vendor: 'Trader Joes',
+    amount: 1.99,
+    date: '2017-06-10',
+    category_id: 8,
+    description: 'carrots',
+    profile_id: 2
+  },
+  {
+    vendor: 'Some Okay Apts',
+    amount: 2000.00,
+    date: '2017-06-09',
+    category_id: 11,
+    description: 'rent',
+    profile_id: 2
+  },
+  {
+    vendor: 'Lucky',
+    amount: 2.99,
+    date: '2017-06-10',
+    category_id: 8,
+    description: 'bananas',
+    profile_id: 2
+  }
 ];
 
-module.exports = () => Promise.all(Transactions.map(transac => models.Transaction.forge(transac).save()));
+
+module.exports = () => Promise.all(transactions.map(transac => models.Transaction.forge(transac).save()));
 
