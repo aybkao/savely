@@ -24,7 +24,8 @@ class UploadReceipts extends React.Component {
         description: '',
         amount: -1,
         date: '',
-        category: ''
+        category: '',
+        profile_id: -1
       }
     };
     this.onImageDrop = this.onImageDrop.bind(this);

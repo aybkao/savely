@@ -4,3 +4,5 @@ module.exports.budgets = require('./budgets');
 module.exports.profiles = require('./profiles');
 module.exports.submissions = require('./submissions');
 module.exports.transactions = require('./transactions');
+module.exports.categories = require('./categories');
+

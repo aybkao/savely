@@ -19,7 +19,11 @@ class TransactionsContainer extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
+    const script = document.getElementById('bundleScript');
+    const ejsProps = script.getAttribute('data-user');
+    const userInfoObj = JSON.parse(ejsProps);
     this.props.getTransactions();
   }
   

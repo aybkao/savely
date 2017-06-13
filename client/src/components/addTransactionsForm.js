@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Button,Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 const categoryOptions = [
-  {text: 'Restaurants', value: 1}, 
-  {text: 'Groceries', value: 2}, 
-  {text: 'Entertainment', value: 3},
-  {text: 'Clothing', value: 4}, 
-  {text: 'Housing', value: 5}, 
-  {text: 'Cosmetics', value: 6},
+  {text: 'Restaurants', value: 'Restaurants'}, 
+  {text: 'Groceries', value: 'Groceries'}, 
+  {text: 'Entertainment', value: 'Entertainment'},
+  {text: 'Clothing', value: 'Clothing'}, 
+  {text: 'Housing', value: 'Housing'}, 
+  {text: 'Cosmetics', value: 'Cosmetics'},
   {text: 'Mortgage', value: 'Mortgage'}, 
   {text: 'Insurance', value: 'Insurance'}, 
   {text: 'Travel', value: 'Travel'}, 
@@ -32,15 +32,25 @@ class AddTransactionsForm extends React.Component {
       description: '',
       agree: true,
       isDateValid: '',
+      profile_id: -1
     };
     this.handleChange.bind(this);
     this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    const script = document.getElementById('bundleScript');
+    const ejsProps = script.getAttribute('data-user');
+    const userInfoObj = JSON.parse(ejsProps);
+    this.state.profile_id = userInfoObj.id;
+  }
+
   handleChange(event, {name, value}) {
     var field = this;
     console.log(field.state);
     field.setState({ [name]: value });
   }
+
   validateDate(date) {
     var regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
     var dateString = '2016-01-01';
@@ -70,23 +80,37 @@ class AddTransactionsForm extends React.Component {
       amount,
       date,
       category,
-      description
+      description,
+      profile_id
     } = this.state;
     console.log(this.validateDate(this.state.date));
-    axios.post('/submission', {
-      vendor: vendor,
-      amount: amount,
-      date: date,
-      category: category,
-      description: description
+    const self = this;
+    axios.get('/category', {
+      params: {
+        category: self.state.category
+      }
     })
     .then(function (response) {
-      console.log(response);
+      axios.post('/transaction', {
+        vendor: vendor,
+        amount: amount,
+        date: date,
+        category: response.data,
+        description: description, 
+        profile_id: profile_id
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     })
-    .catch(function (error) {
+    .catch(function(error) {
       console.log(error);
-    });
+    }); 
   }
+
   render() {
     const {vendor, amount, date, category, description} = this.state;
     return (

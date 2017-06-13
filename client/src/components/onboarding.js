@@ -17,7 +17,7 @@ const getStates = function(states) {
     }
   }
   return newStates;
-}
+};
 const categories = [ { text: 'Cable', value: 'Cable', key: 1 },
   { text: 'Car Payment', value: 'Car Payment', key: 2 },
   { text: 'Clothing', value: 'Clothing', key: 3 },
@@ -53,7 +53,17 @@ class Onboarding extends React.Component {
       housing_payment: '',
       budgets: [{category: '', limit: ''}],
       status: '',
-    }
+    };
+  }
+  handleAddBudgetCategory() {
+    this.setState({
+      budgets: this.state.budgets.concat([{category: '', limit: 5000}])
+    });
+  }
+  handleRemoveBudgetCategory(key) {
+    this.setState({
+
+    });
   }
   calculateFederalIncomeTax(income /*annual*/, status) {
     var incomeTax = 0;
@@ -71,7 +81,7 @@ class Onboarding extends React.Component {
         if (income > Number(bracket)) {
           brackets.push([Number(bracket), federal.married_tax_brackets[bracket]]);
         }
-      };
+      }
     }
     brackets.sort(function(a,b) {
       return b[0] > a[0];
@@ -109,7 +119,7 @@ class Onboarding extends React.Component {
         if (income > Number(bracket)) {
           brackets.push([Number(bracket), stateInfo.married_tax_brackets[bracket]]);
         }
-      };
+      }
     }
     brackets.sort(function(a,b) {
       return b[0] > a[0];
@@ -225,7 +235,7 @@ class Onboarding extends React.Component {
       <Button type='submit'>Submit</Button>
       </Form>
     </div>
-    )
+    );
   }
 }
 

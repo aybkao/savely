@@ -9,6 +9,7 @@ exports.up = function (knex, Promise) {
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
       table.integer('income', 100).nullable();
+      table.string('status', 100).nullable();
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
