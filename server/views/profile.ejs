@@ -2,67 +2,73 @@
   <header><img id='logoSavely' src='/assets/logoGreen.png'></img></header>
     <div id='profilejs'>
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
         <a href="/" class="btn btn-default btn-sm">Home page</a>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
-
     <div class="row">
-
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Account Information</h3>
-
-                <% if (user.email) { %>
-                <p>
-                    <strong>Display name</strong>: <%= user.display %><br>
-                    <strong>ID</strong>: <%= user.id %><br>
-                    <strong>Email</strong>: <%= user.email %>
-                </p>
-
-                <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                <a href="/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
-
-            </div>
+      <section class="profileContainer">
+        <!-- ACCOUNT INFORMATION -->
+        <div class="col-sm-6" id="personalContainer">
+          <div class="well">
+            <h3><span class="fa fa-user"></span> Account Information</h3>
+            <% if (user.email) { %>
+            <p>
+              <strong>User Identification No.</strong>: <%= user.id %><br>
+              <strong>Email</strong>: <%= user.email %>
+            </p>
+            <a href="/unlink/local" class="btn btn-default">Unlink</a>
+            <% } else { %>
+            <a href="/connect/local" class="btn btn-default">Connect Local</a>
+            <% } %>
+          </div>
         </div>
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Personal Information</h3>
-
-                <% if (user.email) { %>
-                <div class="container">
-                  <div id="table" class="table-editable">
-                    <span class="table-add glyphicon glyphicon-plus"></span>
-                    <table class="table">
-                      <tr>
-                        <th>Categories</th>
-                        <th></th>
-                      </tr>
-                      <tr>
-                        <td contenteditable="true">Rent</td>
-                        <td>
-                          <span class="table-remove glyphicon glyphicon-remove"></span>
-                        </td>
-                      </tr>
-                      <!-- This is our clonable table line -->
-                      <tr class="hide">
-                        <td contenteditable="true">Untitled</td>
-                        <td>
-                          <span class="table-remove glyphicon glyphicon-remove"></span>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                <a href="/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
-
-            </div>
+        <!-- INCOME INFORMATION -->
+        <div class="col-sm-6" id="incomeContainer">
+          <div class="well">
+            <h3>Financial Information</h3>
+            <table class="table">
+              <tr>
+                <th>Yearly Income</th>
+              </tr>
+              <tr>
+                <td contenteditable="true">$95,000</td>
+              </tr>
+            </table>
+          </div>
         </div>
+        <!-- BUDGET INFORMATION -->
+        <div class="col-sm-6" id="budgetContainer">
+          <div class="well">
+            <h3>Budget Categories</h3>
+            <div class="container">
+              <div id="table" class="table-editable">
+                <span class="table-add glyphicon glyphicon-plus"></span>
+                <table class="table">
+                  <tr>
+                    <th>Category</th>
+                    <th>Limit</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td contenteditable="true">Rent</td>
+                    <td contenteditable="true">$1000</td>
+                    <td>
+                      <span class="table-remove glyphicon glyphicon-remove"></span>
+                    </td>
+                  </tr>
+                  <!-- This is our clonable table line -->
+                  <tr class="hide">
+                    <td contenteditable="true">Untitled</td>
+                    <td contenteditable="true">0</td>
+                    <td>
+                      <span class="table-remove glyphicon glyphicon-remove"></span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
 <% include foot.ejs%>

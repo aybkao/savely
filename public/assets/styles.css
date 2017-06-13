@@ -197,16 +197,11 @@ div#splashContent {
 .table-remove {
   color: #700;
   cursor: pointer;
-  right: -52px;
+  right: -30px;
 }
 
 .table-remove:hover {
   color: #f00;
-}
-
-.table-up, .table-down {
-  color: #007;
-  cursor: pointer;
 }
 
 .table-up:hover, .table-down:hover {
@@ -222,5 +217,18 @@ div#splashContent {
 }
 
 .table-add:hover {
-    color: #0b0;
+  color: #0b0;
+}
+#personalContainer {
+  width: 1000px;
+}
+#incomeContainer {
+  float: left;
+}
+#budgetContainer {
+  float: right;
+}
+.row {
+  width: 1000px;
+  margin: auto;
 }
