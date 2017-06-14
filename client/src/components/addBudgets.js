@@ -74,18 +74,15 @@ class AddBudgets extends React.Component {
     this.setState({
       budgets: this.state.budgets.filter((s, sidx) => idx !== sidx)
     });
-    console.log("AFTER REMOVE", this.state)
   }
   handleSubmit() {
-    const context = this;
-    //for (var i = 0; i < context.state.budgets.length; i++) {
-      
+    const context = this; 
       axios.get('/category')
       .then((response) => {
         const existingCatArray = response.data;
         const catNames = existingCatArray.map((cat) => {return cat.category})
         const inputCatArray = context.state.budgets;
-        console.log("get all categories by profileid", existingCatArray)
+        console.log("get all categories by profileid", existingCatArray);
         for (var i = 0; i < inputCatArray.length; i++) {
           if (catNames.indexOf(inputCatArray.category) === -1) {
             axios.post('/category', {
@@ -102,14 +99,9 @@ class AddBudgets extends React.Component {
           }
         }
       })
-
       .catch((error) => {
-        console.log(error) 
+        console.log(error); 
       })
-
-      // axios.post('/category')
-      //  .then()
-    //}
   }
   shouldComponentUpdate(newState) {
     console.log('shouldComponentUpdate');
