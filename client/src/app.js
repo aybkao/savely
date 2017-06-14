@@ -20,17 +20,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const that = this; 
+    const that = this;
     const script = document.getElementById('bundleScript');
     const ejsProps = script.getAttribute('data-user');
-    const userInfoObj = JSON.parse(ejsProps); 
+    const userInfoObj = JSON.parse(ejsProps);
     const url = '/api/profiles/' + userInfoObj.id;
     axios.get(url)
     .then((response) => {
       if (response.data.income) {
         that.setState({
-          income: response.data.income 
-        });     
+          income: response.data.income
+        });
       }
     })
     .catch((error) => {

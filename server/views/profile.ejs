@@ -7,34 +7,6 @@
   return '$' + x;
 }
 
-var saveChanges = function(cell){
-       $.ajax({
-           type: 'POST',
-           url: 'localhost:3000',
-           dataType: "json",
-           data: getData(cell),
-           success: function (json){
-               if(json.error){
-                   console.log('Error : '+json.error);
-               }else{
-                   console.log('Data saved.');
-               }
-           },
-           error: function(){
-               console.log('Can not connect to the server.');
-           }
-       });
-   }
-
-var getData = function(cell){
-    var data = {
-        "id" : $.trim(cell.parent().data('id')), // Get row id
-        "name" : $.trim(cell.data('name')), // Get the tuple name
-        "value" : $.trim(cell.html()) // Get new value
-    };
-    return data;
-}
-
 var test = function(n) {
   return n * 2;
 } %>
@@ -80,7 +52,7 @@ var test = function(n) {
         <!-- BUDGET INFORMATION -->
         <div class="col-sm-6" id="budgetContainer">
           <div class="well">
-            <h3>Budget Categories</h3>
+            <h3>Add New Budget Categories</h3>
             <div class="container">
               <div id="table" class="table-editable">
                 <span class="table-add glyphicon glyphicon-plus"></span>
@@ -91,16 +63,8 @@ var test = function(n) {
                     <th></th>
                   </tr>
                   <tr>
-                    <td contenteditable="true">Rent</td>
-                    <td contenteditable="true">$1000</td>
-                    <td>
-                      <span class="table-remove glyphicon glyphicon-remove"></span>
-                    </td>
-                  </tr>
-                  <!-- This is our clonable table line -->
-                  <tr class="hide">
-                    <td contenteditable="true">Untitled</td>
-                    <td contenteditable="true">0</td>
+                    <td contenteditable="true">Sports</td>
+                    <td contenteditable="true">$900</td>
                     <td>
                       <span class="table-remove glyphicon glyphicon-remove"></span>
                     </td>

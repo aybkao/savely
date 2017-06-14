@@ -19,8 +19,7 @@ header {
   text-align: center;
 }
 .dots {
-  position: relative;
-  display: inline-block;
+  display: block;
   margin: 0px 20px 0px 20px;
   padding: 0;
   list-style: none;
@@ -197,7 +196,7 @@ div#splashContent {
 .table-remove {
   color: #700;
   cursor: pointer;
-  right: -30px;
+  right: -33px;
 }
 
 .table-remove:hover {
@@ -232,3 +231,6 @@ div#splashContent {
   width: 1000px;
   margin: auto;
 }
+/*.dots {
+  font-size: 20px;
+}*/
