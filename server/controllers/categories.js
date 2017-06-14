@@ -4,7 +4,8 @@ const Promise = require('bluebird');
 
 module.exports.create = (req, res) => {
   var newEntry = {
-    name: req.body.name,
+    category: req.body.category,
+    budget_limit: req.body.budget_limit,
     profile_id: req.body.profile_id
   };
 
@@ -21,8 +22,25 @@ module.exports.create = (req, res) => {
     });
 };
 
+
+module.exports.getAllByUser = (req, res) => {
+  models.Category.where({ profile_id: req.user.id }).fetchAll()
+    .then(category => {
+      if (!category) {
+        throw category;
+      }
+      res.status(200).send(category);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
 module.exports.getAll = (req, res) => {
-  models.Categories.fetchAll()
+  models.Category.fetchAll()
     .then(category => {
       res.status(200).send(category);
     })

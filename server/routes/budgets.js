@@ -23,6 +23,6 @@ const getBudgetsJoinCategory = (req, res) => {
 
 router.route('/')
   .get(getBudgetsJoinCategory);
-  .post(BudgetController.create);
+  //.post(BudgetController.create);
 
 module.exports = router;
