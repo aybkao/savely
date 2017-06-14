@@ -8,7 +8,8 @@ import AddBudgets from './addBudgets.js';
 const getStates = function(states) {
   var newStates = [];
   for (var i = 0; i < states.length; i++) {
-    newStates.push(states[i]);
+    var newState = Object.assign({}, states[i]);
+    newStates.push(newState);
   }
   for (var j = 0; j < states.length; j++) {
     if (newStates[j].single_tax_brackets !== undefined) {
@@ -61,7 +62,7 @@ class Onboarding extends React.Component {
       incomeTax += (taxableIncome - brackets[i][0])*brackets[i][1];
       taxableIncome = brackets[i][0];
     }
-    return incomeTax / 12;
+    return (incomeTax / 12).toFixed(2);
   }
   calculateStateIncomeTax() {
     var stateInfo;
@@ -104,7 +105,7 @@ class Onboarding extends React.Component {
       taxableIncome = brackets[i][0];
     }
     console.log(incomeTax);
-    return incomeTax / 12;
+    return (incomeTax / 12).toFixed(2);
   }
   getMonthlyIncome() {
     var user_income;
@@ -175,7 +176,7 @@ class Onboarding extends React.Component {
         <label>Do you contribute to a retirement plan at work (such as a 401(k))</label>
         <Dropdown placeholder='Choose One' name='retirement_plan' value={retirement_plan} search selection options={[{text: 'Yes', value: true, key: 1}, {text: 'No', value: false, key: 2}]} onChange={this.handleChange.bind(this)} />
       </Form.Field>
-      <h2>We estimate you have this much in monthly after tax income: {this.getMonthlyIncome() - this.calculateFederalIncomeTax() - this.calculateStateIncomeTax()}</h2>
+      <h2>We estimate you have this much in monthly after tax income: {'$' + (this.getMonthlyIncome() - this.calculateFederalIncomeTax() - this.calculateStateIncomeTax()).toFixed(2)}</h2>
       <h2>Now, let’s set some budget categories for you: </h2>
       <Form.Field>
         <label>For most of our customers housing is their most expensive category. Housing generally shouldn't be more than 1/3 of your income, but in some high cost of living areas that may be difficult.</label>
