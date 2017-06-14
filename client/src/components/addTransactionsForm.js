@@ -85,7 +85,7 @@ class AddTransactionsForm extends React.Component {
     } = this.state;
     console.log(this.validateDate(this.state.date));
     const self = this;
-    axios.get('/category', {
+    axios.get('/category/:category', {
       params: {
         category: self.state.category
       }

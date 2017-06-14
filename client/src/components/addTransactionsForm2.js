@@ -59,7 +59,7 @@ class AddTransactionsForm2 extends React.Component {
   handleSubmit(event) {
     var obj = this.props.parsed;
     const self = this;
-    axios.get('/category', {
+    axios.get('/category/:category', {
       params: {
         category: self.state.category
       }
