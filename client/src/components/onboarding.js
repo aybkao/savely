@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Form, Button, Dropdown} from 'semantic-ui-react';
 import states from '../stores/states.js';
 import federal from '../stores/federal.js';
+import AddBudgets from './addBudgets.js';
 
 const getStates = function(states) {
   var newStates = [];
@@ -18,29 +19,6 @@ const getStates = function(states) {
   }
   return newStates;
 };
-const categories = [ { text: 'Cable', value: 'Cable', key: 1 },
-  { text: 'Car Payment', value: 'Car Payment', key: 2 },
-  { text: 'Clothing', value: 'Clothing', key: 3 },
-  { text: 'Cosmetics', value: 'Cosmetics', key: 4 },
-  { text: 'Electronics', value: 'Electronics', key: 5 },
-  { text: 'Fees', value: 'Fees', key: 6 },
-  { text: 'Gas', value: 'Gas', key: 7 },
-  { text: 'Groceries', value: 'Groceries', key: 8 },
-  { text: 'Healthcare', value: 'Healthcare', key: 9 },
-  { text: 'Hobbies', value: 'Hobbies', key: 10 },
-  { text: 'Home Improvement', value: 'Home Improvement', key: 11 },
-  { text: 'Insurance', value: 'Insurance', key: 12 },
-  { text: 'Internet', value: 'Internet', key: 13 },
-  { text: 'Mortgage', value: 'Mortgage', key: 14 },
-  { text: 'Office', value: 'Office', key: 15 },
-  { text: 'Other', value: 'Other', key: 16 },
-  { text: 'Rent', value: 'Rent', key: 17 },
-  { text: 'Restaurants', value: 'Restaurants', key: 18 },
-  { text: 'Student Loan', value: 'Student Loan', key: 19 },
-  { text: 'Subscriptions', value: 'Subscriptions', key: 20 },
-  { text: 'Travel', value: 'Travel', key: 21 },
-  { text: 'Tuition', value: 'Tuition', key: 22 },
-  { text: 'Utiliies', value: 'Utiliies', key: 23 } ];
 
 class Onboarding extends React.Component {
   constructor(props) {
@@ -51,19 +29,8 @@ class Onboarding extends React.Component {
       paycheck_frequency: '',
       housing_status: '',
       housing_payment: '',
-      budgets: [{category: '', limit: '', key: 0}],
       status: '',
     };
-  }
-  handleAddBudgetCategory() {
-    this.setState({
-      budgets: this.state.budgets.concat([{category: '', limit: 5000}])
-    });
-  }
-  handleRemoveBudgetCategory(key) {
-    this.setState({
-
-    });
   }
   calculateFederalIncomeTax(income /*annual*/, status) {
     var incomeTax = 0;
@@ -131,33 +98,9 @@ class Onboarding extends React.Component {
     console.log(incomeTax);
     return incomeTax;
   }
-  handleAddBudgetCategory() {
-    this.setState({
-      budgets: this.state.budgets.concat([{category: '', limit: 0}])
-    });
-  }
-  handleBudgetCategoryNameChange(key, event) {
-    const newBudgets = this.state.budgets.map((budget, skey) => {
-      if (key !== skey) return budget;
-      return {...budget, category: event.target.value};
-    });
-    this.setState({budgets: newBudgets});
-  }
-  handleBudgetCategoryLimitChange(key, event) {
-    const newBudgets = this.state.budgets.map((budget, skey) => {
-      if (key !== skey) return budget;
-      return {...budget, limit: event.target.value};
-    });
-  }
   handleChange(event, {name, value}) {
     var field = this;
-    console.log(field.state);
     field.setState({ [name]: value });
-  }
-  handleRemoveBudgetCategory(key) {
-    this.setState({
-      budgets: this.state.budgets.filter((s, skey) => key !== skey)
-    });
   }
   handleSubmit(event) {
     var user_income;
@@ -171,16 +114,8 @@ class Onboarding extends React.Component {
     }
     axios.post('/budget', {
       income: user_income,
-      housing_status: housing_status,
-      marital_status: status,
-      state: state,
-      city: city,
-      retirement_plan: retirement_plan,
       budgets: budgets
     });
-  }
-  shouldComponentUpdate(newState) {
-    return newState.budgets !== this.state.budgets;
   }
   render() {
     const context = this;
@@ -224,15 +159,8 @@ class Onboarding extends React.Component {
         <label>Set your housing budget if you didn't enter your payment already: </label>
         <Form.Input placeholder='Payment' name='housing_payment' value={housing_payment} onChange={this.handleChange.bind(this)} />
       </Form.Field>
-      <Button type='button' onClick={this.handleAddBudgetCategory.bind(this)}>Add Budget Category</Button>
-      {this.state.budgets.map((budget, key) => (
-        <Form.Field className="added_budget">
-          <Dropdown placeholder={'Budget Category'} value={budget.category} search selection options={categories} onChange={this.handleBudgetCategoryNameChange.bind(context)} />
-          <Form.Input placeholder='$0.00' value={budget.limit} onChange={this.handleBudgetCategoryLimitChange.bind(context)} />
-          <Button type='button' onClick={this.handleRemoveBudgetCategory.bind(this)} className='remove_button'>-</Button>
-        </Form.Field>
-      ))}
-      <Button type='submit'>Submit</Button>
+      <AddBudgets />
+      <Button type='submit'>Submit Income</Button>
       </Form>
     </div>
     );
