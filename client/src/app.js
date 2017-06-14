@@ -10,16 +10,31 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import store, {history} from './store.js';
 
-const App = () => {
-  return (
-    <div>
-    <div id="dashboard_header">
-      <img id='logoSavely' src='/assets/logoGreen.png'></img>
-    </div>
-    <Carousel />
-    <Dashboard />
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      income: ''
+    };
+  }
+  renderRootComponent() {
+    if (this.state.income === '') {
+      return <Onboarding />
+    } else {
+      return <Dashboard />
+    }
+  }
+  render() {
+    return (
+      <div>
+      <div id="dashboard_header">
+        <img id='logoSavely' src='/assets/logoGreen.png'></img>
+      </div>
+      <Carousel />
+      {this.renderRootComponent()}
+      </div>
+    );
+  }
 };
 
 const router = (
