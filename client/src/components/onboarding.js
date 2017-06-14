@@ -29,23 +29,27 @@ class Onboarding extends React.Component {
       paycheck_frequency: '',
       housing_status: '',
       housing_payment: '',
+      state: '',
       status: '',
     };
   }
-  calculateFederalIncomeTax(income /*annual*/, status) {
+  calculateFederalIncomeTax() {
     var incomeTax = 0;
-    var taxableIncome = income;
-    if (status === 'single') {
+    var taxableIncome = this.state.income;
+    if (this.state.income === '' || this.state.status === '') {
+      return 0;
+    }
+    if (this.state.status === 'single') {
       var brackets = [];
       for (var bracket in federal.single_tax_brackets) {
-        if (income > Number(bracket)) {
+        if (this.state.income > Number(bracket)) {
           brackets.push([Number(bracket), federal.single_tax_brackets[bracket]]);
         }
       }
-    } else if (status === 'married') {
+    } else if (this.state.status === 'married') {
       var brackets = [];
       for (var bracket in federal.married_tax_brackets) {
-        if (income > Number(bracket)) {
+        if (this.state.income > Number(bracket)) {
           brackets.push([Number(bracket), federal.married_tax_brackets[bracket]]);
         }
       }
@@ -57,33 +61,37 @@ class Onboarding extends React.Component {
       incomeTax += (taxableIncome - brackets[i][0])*brackets[i][1];
       taxableIncome = brackets[i][0];
     }
-    return incomeTax;
+    return incomeTax / 12;
   }
-  calculateStateIncomeTax(state, income, status) {
+  calculateStateIncomeTax() {
     var stateInfo;
     var incomeTax = 0;
-    var taxableIncome = income;
-
+    var taxableIncome = this.state.income;
+    console.log(this.state.income, this.state.status, this.state.state);
+    if (this.state.income === '' || this.state.state === '' || this.state.status === '') {
+      return 0;
+    }
     for (var i = 0; i < states.length; i++) {
-      if (states[i].text === state) {
+      if (states[i].text === this.state.state) {
         stateInfo = states[i];
         break;
       }
     }
+    console.log(stateInfo);
     if (stateInfo.single_tax_brackets === undefined) {
       return 0;
     }
-    if (status === 'single') {
+    if (this.state.status === 'single') {
       var brackets = [];
       for (var bracket in stateInfo.single_tax_brackets) {
-        if (income > Number(bracket)) {
+        if (this.state.income > Number(bracket)) {
           brackets.push([Number(bracket), stateInfo.single_tax_brackets[bracket]]);
         }
       }
-    } else if (status === 'married') {
+    } else if (this.state.status === 'married') {
       var brackets = [];
       for (var bracket in stateInfo.married_tax_brackets) {
-        if (income > Number(bracket)) {
+        if (this.state.income > Number(bracket)) {
           brackets.push([Number(bracket), stateInfo.married_tax_brackets[bracket]]);
         }
       }
@@ -96,7 +104,18 @@ class Onboarding extends React.Component {
       taxableIncome = brackets[i][0];
     }
     console.log(incomeTax);
-    return incomeTax;
+    return incomeTax / 12;
+  }
+  getMonthlyIncome() {
+    var user_income;
+    if (this.state.paycheck_frequency === 'annual') {
+      user_income = this.state.income;
+    } else if (this.state.paycheck_frequency === 'monthly') {
+      user_income = this.state.income * 12;
+    } else if (this.state.paycheck_frequency === 'weekly') {
+      user_income = this.state.income * 52;
+    }
+    return user_income / 12;
   }
   handleChange(event, {name, value}) {
     var field = this;
@@ -116,6 +135,9 @@ class Onboarding extends React.Component {
       income: user_income,
       budgets: budgets
     });
+  }
+  shouldComponentUpdate(newState) {
+    return newState !== this.state;
   }
   render() {
     const context = this;
@@ -153,6 +175,7 @@ class Onboarding extends React.Component {
         <label>Do you contribute to a retirement plan at work (such as a 401(k))</label>
         <Dropdown placeholder='Choose One' name='retirement_plan' value={retirement_plan} search selection options={[{text: 'Yes', value: true, key: 1}, {text: 'No', value: false, key: 2}]} onChange={this.handleChange.bind(this)} />
       </Form.Field>
+      <h2>We estimate you have this much in monthly after tax income: {this.getMonthlyIncome() - this.calculateFederalIncomeTax() - this.calculateStateIncomeTax()}</h2>
       <h2>Now, let’s set some budget categories for you: </h2>
       <Form.Field>
         <label>For most of our customers housing is their most expensive category. Housing generally shouldn't be more than 1/3 of your income, but in some high cost of living areas that may be difficult.</label>
