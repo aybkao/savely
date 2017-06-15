@@ -31,15 +31,13 @@ class AddTransactionsForm extends React.Component {
     const ejsProps = script.getAttribute('data-user');
     const userInfoObj = JSON.parse(ejsProps);
     this.state.profile_id = userInfoObj.id;
-    
     const self = this;
     axios.get('category')
     .then((response) => {
       let userCategories = [];
       response.data.map((cat) => {
         userCategories.push({text: cat.category, value: cat.category});
-      })
-      console.log("CAT OPTIONS", userCategories);
+      });
       self.setState({categoryOptions: userCategories});
     })
     .catch((error) => {
