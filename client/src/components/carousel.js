@@ -11,7 +11,7 @@ class Carousel extends React.Component {
     var dots = [];
     for (var i = 0; i < links.length; i++) {
       dots.push(
-        <li key={i}><Link to={links[i].to} activeClassName="active">{links[i].title}</Link></li>
+        <div className="active" key={i}><Link to={links[i].to}>{links[i].title}</Link></div>
       );
     }
     return dots;
@@ -25,7 +25,7 @@ class Carousel extends React.Component {
           </ul>
         </div>
       </div>
-    )
+    );
   }
 }
 
