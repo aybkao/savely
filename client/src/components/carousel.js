@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
-const links = [{to: "/", title: "Overview"},{to: "/t", title: "Transactions"}, {to: "/o", title: "Onboarding"}];
+const links = [{to: "/", title: "Overview"},{to: "/t", title: "Transactions"}];
 
 class Carousel extends React.Component {
   constructor() {
@@ -11,7 +11,7 @@ class Carousel extends React.Component {
     var dots = [];
     for (var i = 0; i < links.length; i++) {
       dots.push(
-        <li key={i}><Link to={links[i].to} activeClassName="active">{links[i].title}</Link></li>
+        <div key={i} className="active"><Link to={links[i].to}>{links[i].title}</Link></div>
       );
     }
     return dots;

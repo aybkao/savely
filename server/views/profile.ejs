@@ -1,8 +1,21 @@
 <% include head.ejs%>
+<% function numberWithCommas(x) {
+  x = x.toString();
+  var pattern = /(-?\d+)(\d{3})/;
+  while (pattern.test(x))
+    x = x.replace(pattern, "$1,$2");
+  return '$' + x;
+}
+
+var test = function(n) {
+  return n * 2;
+} %>
+
+
   <header><img id='logoSavely' src='/assets/logoGreen.png'></img></header>
     <div id='profilejs'>
     <div class="page-header text-center">
-        <a href="/" class="btn btn-default btn-sm">Home page</a>
+        <a href="/" class="btn btn-default btn-sm">Home Page</a>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
     <div class="row">
@@ -30,8 +43,8 @@
               <tr>
                 <th>Yearly Income</th>
               </tr>
-              <tr>
-                <td contenteditable="true">$95,000</td>
+              <tr data-id="1">
+                <td contenteditable="true" data-name="A"><%= numberWithCommas(user.income) %></td>
               </tr>
             </table>
           </div>
@@ -39,7 +52,7 @@
         <!-- BUDGET INFORMATION -->
         <div class="col-sm-6" id="budgetContainer">
           <div class="well">
-            <h3>Budget Categories</h3>
+            <h3>Add New Budget Categories</h3>
             <div class="container">
               <div id="table" class="table-editable">
                 <span class="table-add glyphicon glyphicon-plus"></span>
@@ -50,16 +63,8 @@
                     <th></th>
                   </tr>
                   <tr>
-                    <td contenteditable="true">Rent</td>
-                    <td contenteditable="true">$1000</td>
-                    <td>
-                      <span class="table-remove glyphicon glyphicon-remove"></span>
-                    </td>
-                  </tr>
-                  <!-- This is our clonable table line -->
-                  <tr class="hide">
-                    <td contenteditable="true">Untitled</td>
-                    <td contenteditable="true">0</td>
+                    <td contenteditable="true">Sports</td>
+                    <td contenteditable="true">$900</td>
                     <td>
                       <span class="table-remove glyphicon glyphicon-remove"></span>
                     </td>

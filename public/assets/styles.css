@@ -14,19 +14,9 @@ header {
   width: 1440px;
 }
 #carousel {
-  height: 50px;
-  width: 1440px;
+  /*height: 50px;
+  width: 1440px;*/
   text-align: center;
-}
-.dots {
-  position: relative;
-  display: inline-block;
-  margin: 0px 20px 0px 20px;
-  padding: 0;
-  list-style: none;
-  cursor: default;
-  vertical-align: center;
-  line-height: 50px;
 }
 #carousel li {
   position: relative;
@@ -76,8 +66,31 @@ header {
   padding-right: 10px;
 }
 #logoSavely {
+  left: 0px;
   display: block;
-  margin: auto;
+  padding-left: 137px;
+  position: absolute;
+  z-index: 1000;
+}
+.dots {
+  margin: 5px 5px 5px 1095px;
+  position: relative;
+  height: 50px;
+  width: 202px;
+  border: 2px solid black;
+  color: white;
+}
+.active {
+  position: relative;
+  display: inline;
+  margin: 25px 25px 25px 25px;
+  background: #3f9847;
+  width: 500px !important;
+  top: 25px;
+  right: 100px;
+  color: white;
+  font-size: 18px;
+
 }
 #savely-container {
   padding: 0px 0px 0px 0px;
@@ -197,7 +210,7 @@ div#splashContent {
 .table-remove {
   color: #700;
   cursor: pointer;
-  right: -30px;
+  right: -33px;
 }
 
 .table-remove:hover {
