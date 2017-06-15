@@ -2,20 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button,Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
-const categoryOptions = [
-  {text: 'Restaurants', value: 'Restaurants'}, 
-  {text: 'Groceries', value: 'Groceries'}, 
-  {text: 'Entertainment', value: 'Entertainment'},
-  {text: 'Clothing', value: 'Clothing'}, 
-  {text: 'Housing', value: 'Housing'}, 
-  {text: 'Cosmetics', value: 'Cosmetics'},
-  {text: 'Mortgage', value: 'Mortgage'}, 
-  {text: 'Insurance', value: 'Insurance'}, 
-  {text: 'Travel', value: 'Travel'}, 
-  {text: 'Commuting', value: 'Commuting'}, 
-  {text: 'Car Payment', value: 'Car Payment'}, 
-  {text: 'Public Transportation', value: 'Public Transportation'}
-];
+
 const getDate = () => {
   var today = new Date();
   return today.toDateString();
@@ -32,7 +19,8 @@ class AddTransactionsForm extends React.Component {
       description: '',
       agree: true,
       isDateValid: '',
-      profile_id: -1
+      profile_id: -1,
+      categoryOptions: null
     };
     this.handleChange.bind(this);
     this.handleSubmit.bind(this);
@@ -43,6 +31,21 @@ class AddTransactionsForm extends React.Component {
     const ejsProps = script.getAttribute('data-user');
     const userInfoObj = JSON.parse(ejsProps);
     this.state.profile_id = userInfoObj.id;
+    
+    const self = this;
+    axios.get('category')
+    .then((response) => {
+      let userCategories = [];
+      response.data.map((cat) => {
+        userCategories.push({text: cat.category, value: cat.category});
+      })
+      console.log("CAT OPTIONS", userCategories);
+      self.setState({categoryOptions: userCategories});
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
+    });
   }
 
   handleChange(event, {name, value}) {
@@ -132,7 +135,7 @@ class AddTransactionsForm extends React.Component {
           </Form.Field>
           <Form.Field>
             <label>Category</label>
-            <Dropdown placeholder='Select Category' name='category' search selection options={categoryOptions} onChange={this.handleChange.bind(this)}/>
+            <Dropdown placeholder='Select Category' name='category' search selection options={this.state.categoryOptions} onChange={this.handleChange.bind(this)}/>
           </Form.Field>
           <Form.Field>
             <label>Description</label>
