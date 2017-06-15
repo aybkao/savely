@@ -43,7 +43,6 @@ class AddBudgets extends React.Component {
     const script = document.getElementById('bundleScript');
     const ejsProps = script.getAttribute('data-user');
     const userInfoObj = JSON.parse(ejsProps);
-    console.log("******** USER INFO AT ADD BUDGET", userInfoObj)
     this.state.profile_id = userInfoObj.id;
   }
   handleAddBudgetCategory() {
