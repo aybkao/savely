@@ -148,11 +148,11 @@ class Onboarding extends React.Component {
       axios.put('/api/profiles/' + that.state.profile_id, {
         first: res.data.first,
         last: res.data.last,
-        display: res.data.display, 
+        display: res.data.display,
         email: res.data.email,
         phone: res.data.phone,
         income: Number(user_income),
-        status: that.state.status        
+        status: that.state.status
       })
       .then((res) => {
         console.log(res);
@@ -210,8 +210,8 @@ class Onboarding extends React.Component {
         <label>Set your housing budget if you didn't enter your payment already: </label>
         <Form.Input placeholder='Payment' name='housing_payment' value={this.state.housing_payment} onChange={this.handleChange} />
       </Form.Field>
-      <AddBudgets />
       <Button type='button' onClick={this.handleSubmit}>Submit Income</Button>
+      <AddBudgets />
       </Form>
     </div>
     );
