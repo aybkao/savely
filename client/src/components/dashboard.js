@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import getTransactions from '../actions/getTransactions.js';
 import getBudgets from '../actions/getBudgets.js';
+import axios from 'axios';
 
 var monthToString = {
   1: 'January',
@@ -130,26 +131,42 @@ var parseSpendingCategoriesChart = function(budgets, transactions) {
   return spendingCategoriesChartData;
 };
 
+
 class Dashboard extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      income: 105000
+    };
   }
 
   componentDidMount() {
     this.props.getTransactions();
     this.props.getBudgets();
+    const that = this;
+    const script = document.getElementById('bundleScript');
+    const ejsProps = script.getAttribute('data-user');
+    const userInfoObj = JSON.parse(ejsProps);
+    const url = '/api/profiles/' + userInfoObj.id;
+    axios.get(url)
+    .then((res) => {
+      that.setState({income: res.data.income});
+    })
+    .catch((error) => {
+      throw error;
+    });
   }
 
   render () {
     return (
       <div className='dashboard_container'>
         <div className="row">
-          <CashFlowChart income={120000} transactions={this.props.transactions} />
+          <CashFlowChart income={this.state.income} transactions={this.props.transactions} />
           <PieChartContainer data={parsePieChartData(this.props.transactions)} />
         </div>
         <div className="row">
-          <SavingsChartContainer data={parseSavingsChartData(120000, this.props.transactions)} />
+          <SavingsChartContainer data={parseSavingsChartData(this.state.income, this.props.transactions)} />
           <SpendingCategoriesChartContainer data={parseSpendingCategoriesChart(this.props.budgets, this.props.transactions)}/>
         </div>
       </div>
