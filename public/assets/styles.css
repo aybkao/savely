@@ -14,8 +14,6 @@ header {
   width: 1440px;
 }
 #carousel {
-  /*height: 50px;
-  width: 1440px;*/
   text-align: center;
 }
 #carousel li {
@@ -77,20 +75,22 @@ header {
   position: relative;
   height: 50px;
   width: 202px;
-  border: 2px solid black;
   color: white;
 }
 .active {
   position: relative;
   display: inline;
-  margin: 25px 25px 25px 25px;
+  margin: 10px;
   background: #3f9847;
   width: 500px !important;
   top: 25px;
-  right: 100px;
+  right: 144px;
   color: white;
-  font-size: 18px;
-
+  font-size: 20px;
+  font-weight: lighter;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid #3f9847;
+  border-radius: 5px;
 }
 #savely-container {
   padding: 0px 0px 0px 0px;
@@ -114,7 +114,7 @@ header {
 }
 #transactions_column {
   text-align: center;
-  width: 1080px;
+  width: 1163px;
   margin: auto;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -244,4 +244,10 @@ div#splashContent {
 .row {
   width: 1000px;
   margin: auto;
+}
+div.active > a {
+  color: white;
+}
+div.active:hover {
+  background-color: #3a8d42;
 }
