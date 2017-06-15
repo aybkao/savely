@@ -21,6 +21,7 @@ class SpendingCategoriesChartContainer extends React.Component {
           <td>{chartData[i].category}</td>
           <td><VictoryContainer height={50} width={325}><VictoryBar horizontal={true}
           data={[chartData[i]]}
+          domain={[0, 1]}
           x="category"
           y={(datum) => (datum.spent / datum.limit) * 1}
           width={325}
@@ -77,4 +78,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpendingCategoriesChartContainer);
-

@@ -175,9 +175,6 @@ class Onboarding extends React.Component {
     const {income, paycheck_frequency, housing_status, housing_payment, status, state, city, retirement_plan} = this.state;
     return (
     <div id="onboarding_container">
-      <div id="onboarding_header">
-        <img id='logoSavely' src='/assets/logoGreen.png'></img>
-      </div>
       <h1>Welcome to Savely</h1>
       <Form>
       <Form.Field>
