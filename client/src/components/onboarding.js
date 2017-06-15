@@ -32,7 +32,16 @@ class Onboarding extends React.Component {
       housing_payment: '',
       state: '',
       status: '',
+      profile_id: -1
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentDidMount() {
+    console.log("mounted.....");
+    const script = document.getElementById('bundleScript');
+    const ejsProps = script.getAttribute('data-user');
+    const userInfoObj = JSON.parse(ejsProps);
+    this.state.profile_id = userInfoObj.id;
   }
   calculateFederalIncomeTax() {
     var incomeTax = 0;
@@ -122,7 +131,8 @@ class Onboarding extends React.Component {
     var field = this;
     field.setState({ [name]: value });
   }
-  handleSubmit(event) {
+  handleSubmit() {
+    var that = this;
     var user_income;
     const {income, paycheck_frequency, housing_status, housing_payment, status, state, city, retirement_plan, budgets} = this.state;
     if (paycheck_frequency === 'annual') {
@@ -132,9 +142,28 @@ class Onboarding extends React.Component {
     } else if (paycheck_frequency === 'weekly') {
       user_income = income * 52;
     }
-    axios.post('/budget', {
-      income: user_income,
-      budgets: budgets
+    axios.get('/api/profiles/' + that.profile_id)
+    .then((res) => {
+      axios.put('/api/profiles/' + that.profile_id, {
+        first: res.data.first,
+        last: res.data.last,
+        display: res.data.display, 
+        email: res.data.email,
+        phone: res.data.phone,
+        income: Number(user_income),
+        status: that.state.status        
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
     });
   }
   shouldComponentUpdate(newState) {
@@ -153,7 +182,7 @@ class Onboarding extends React.Component {
       <Form.Field>
         <label>Enter your income</label>
         <Form.Input placeholder='Income' name='income' value={income} onChange={this.handleChange.bind(this)}/>
-        <Dropdown placeholder='per Year' name='paycheck_frequency' value={paycheck_frequency} search selection options={[{text: 'per Year', value: 'annual', key: 1}, {text: 'per Month', value: 'monthly', key: 2}, {text: 'per Week', value: 'weekly', key: 3}]} onChange={this.handleChange.bind(this)}/>
+        <Dropdown placeholder='per Year' name='paycheck_frequency' search selection options={[{text: 'per Year', value: 'annual', key: 1}, {text: 'per Month', value: 'monthly', key: 2}, {text: 'per Week', value: 'weekly', key: 3}]} onChange={this.handleChange.bind(this)}/>
       </Form.Field>
       <Form.Field>
         <label>Do you own or rent your home?</label>
@@ -162,7 +191,7 @@ class Onboarding extends React.Component {
       </Form.Field>
       <Form.Field>
         <label>Are you single or married (or married and file taxes separately)?</label>
-        <Dropdown placeholder='Select One' name='status' value={status} search selection options={[{text: 'Single', value: 'single', key: 1}, {text: 'Married', value: 'married', key: 2}]} onChange={this.handleChange.bind(this)} />
+        <Dropdown placeholder='Select One' name='status' search selection options={[{text: 'Single', value: 'single', key: 1}, {text: 'Married', value: 'married', key: 2}]} onChange={this.handleChange.bind(this)} />
       </Form.Field>
       <Form.Field>
         <label>What state do you live in?</label>
@@ -184,7 +213,7 @@ class Onboarding extends React.Component {
         <Form.Input placeholder='Payment' name='housing_payment' value={housing_payment} onChange={this.handleChange.bind(this)} />
       </Form.Field>
       <AddBudgets />
-      <Button type='submit'>Submit Income</Button>
+      <Button type='submit' onClick={this.handleSubmit}>Submit Income</Button>
       </Form>
     </div>
     );
