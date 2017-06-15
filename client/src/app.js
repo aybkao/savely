@@ -70,9 +70,10 @@ const router = (
   <Provider store={store}>
     <Router history = {browserHistory}>
       <Route path="/" component={App} />
-      <Route path="/t" component={TransactionsPage} />
-      <Route path="/o" component={Onboarding} />
-      <Route path="/s" component={SetBudgets} />
+      <Route path="/transactions" component={TransactionsPage} />
+      <Route path="/onboardings" component={Onboarding} />
+      <Route path="/profile" component="localhost:3000/profile"/>
+      <Route path="/logout" component="localhost:3000/logout"/>
     </Router>
   </Provider>
 );

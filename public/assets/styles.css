@@ -70,28 +70,6 @@ header {
   position: absolute;
   z-index: 1000;
 }
-.dots {
-  margin: 5px 5px 5px 1095px;
-  position: relative;
-  height: 50px;
-  width: 202px;
-  color: white;
-}
-ul > div.active {
-  position: relative;
-  display: inline;
-  margin: 10px;
-  background: #3f9847;
-  width: 500px !important;
-  top: 25px;
-  right: 144px;
-  color: white;
-  font-size: 20px;
-  font-weight: lighter;
-  padding: 10px 20px 10px 20px;
-  border: 2px solid #3f9847;
-  border-radius: 5px;
-}
 #savely-container {
   padding: 0px 0px 0px 0px;
   width: 1440px;
@@ -252,9 +230,46 @@ div#splashContent {
   width: 1000px;
   margin: auto;
 }
-div.active > a {
+
+/* NAVBAR CSS BELOW */
+.dots {
+  margin: 5px 5px 5px 1095px;
+  position: relative;
+  height: 50px;
+  width: 202px;
   color: white;
 }
-div.active > a:hover {
+ul > div.active {
+  position: relative;
+  display: inline;
+  margin: 10px;
+  background: #3f9847;
+  width: 500px !important;
+  top: 25px;
+  right: 353px;
+  color: white;
+  font-size: 17px;
+  font-weight: lighter;
+  padding: 10px 20px 10px 20px;
+  border: 2px solid #3f9847;
+  border-radius: 5px;
+}
+ul > div.active > a {
+  color: white;
+}
+ul > div.active:hover {
   background-color: #3a8d42;
 }
+ul > div.active#logoutButton {
+  background: white;
+  border: 1px solid #3f9847;
+}
+ul > div.active#logoutButton > a {
+  color: #3f9847;
+  font-weight: normal;
+}
+ul > div.active#logoutButton:hover {
+  background-color: #e5e5e5;
+}
+
+  /* NAVBAR CSS ABOVE */
