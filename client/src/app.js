@@ -15,11 +15,11 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      income: ''
+      income: '',
+      axiosDidComplete: false,
     };
     this.renderRootComponent = this.renderRootComponent.bind(this);
   }
-
   componentDidMount() {
     const that = this;
     const script = document.getElementById('bundleScript');
@@ -30,7 +30,8 @@ class App extends React.Component {
     .then((response) => {
       if (response.data.income) {
         that.setState({
-          income: response.data.income
+          income: response.data.income,
+          axiosDidComplete: true
         });
       }
     })
@@ -38,15 +39,20 @@ class App extends React.Component {
       throw error;
     });
   }
-
   renderRootComponent() {
-    if (this.state.income === '') {
-      return <Onboarding />;
+    if (this.state.axiosDidComplete === false) {
+      return null
     } else {
-      return <Dashboard />;
+      if (this.state.income = '') {
+        return <Onboarding />
+      } else {
+        return <Dashboard />
+      }
     }
   }
-
+  shouldComponentUpdate(newState) {
+    return newState.axiosDidComplete !== this.state.axiosDidComplete;
+  }
   render() {
     return (
       <div>
