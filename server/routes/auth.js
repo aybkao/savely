@@ -8,7 +8,7 @@ router.route('/')
       user: req.user // get the user out of session and pass to template
     });
   });
-
+  
 router.route('/login')
   .get((req, res) => {
     res.render('login.ejs', { message: req.flash('loginMessage') });
