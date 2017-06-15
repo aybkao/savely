@@ -2,12 +2,12 @@
   <header><img id='logoSavely' src='/assets/logoGreen.png'></img></header>
     <div id='loginjs'>
     <div class="col-sm-6 col-sm-offset-3" id="splashContent">
+        <h1 class='extra_thin'>Take control of your money</h1>
         <h1><span class="fa fa-sign-in"></span> Login now!</h1>
 
         <% if (message.length) { %>
         <div class="alert alert-danger"><%= message %></div>
         <% } %>
-
         <!-- LOGIN FORM -->
         <form action="/login" method="post">
             <div class="form-group">

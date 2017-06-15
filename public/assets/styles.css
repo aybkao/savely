@@ -39,6 +39,10 @@ header {
   line-height: 14pt;
   width: 50%;
 }
+.extra_thin {
+  font-weight: 200;
+  padding-top: 50px;
+}
 #budget_status_chart td, #budget_status_chartth {
   padding-left: 10px;
   font-size: 14pt;

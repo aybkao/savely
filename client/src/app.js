@@ -33,6 +33,11 @@ class App extends React.Component {
           income: response.data.income,
           axiosDidComplete: true
         });
+      } else {
+        that.setState({
+          income: '',
+          axiosDidComplete: true
+        });
       }
     })
     .catch((error) => {
@@ -43,7 +48,7 @@ class App extends React.Component {
     if (this.state.axiosDidComplete === false) {
       return null
     } else {
-      if (this.state.income = '') {
+      if (this.state.income === '') {
         return <Onboarding />
       } else {
         return <Dashboard />
