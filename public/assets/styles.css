@@ -77,7 +77,7 @@ header {
   width: 202px;
   color: white;
 }
-.active {
+ul > div.active {
   position: relative;
   display: inline;
   margin: 10px;
@@ -111,6 +111,13 @@ header {
   -moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
   -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+#onboarding_container {
+  margin: auto;
+  width: 1160px;
+}
+.ui.dropdown .menu .selected.item, .ui.dropdown.selected {
+  margin: auto;
 }
 #transactions_column {
   text-align: center;
@@ -248,6 +255,6 @@ div#splashContent {
 div.active > a {
   color: white;
 }
-div.active:hover {
+div.active > a:hover {
   background-color: #3a8d42;
 }
