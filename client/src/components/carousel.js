@@ -11,7 +11,7 @@ class Carousel extends React.Component {
     var dots = [];
     for (var i = 0; i < links.length; i++) {
       dots.push(
-        <div key={i}><Link to={links[i].to} activeClassName="active">{links[i].title}</Link></div>
+        <div key={i} className="active"><Link to={links[i].to}>{links[i].title}</Link></div>
       );
     }
     return dots;

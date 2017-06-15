@@ -82,11 +82,14 @@ header {
 }
 .active {
   position: relative;
+  display: inline;
   margin: 25px 25px 25px 25px;
-  /* background: #3f9847; */
-  overflow: auto;
-  width: 150px;
+  background: #3f9847;
+  width: 500px !important;
+  top: 25px;
+  right: 100px;
   color: white;
+  font-size: 18px;
 
 }
 #savely-container {
