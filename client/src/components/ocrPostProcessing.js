@@ -40,9 +40,12 @@ const matchItemToCategory = (str) => {
     var vendor = textArray[0];
     
     // check if text has date format
-    var d = new Date(lowerCase);
-    if (d !== 'Invalid Date') {
-      date = d;
+    var words = textArray[i].split(' ');
+    for (var j = 0; j < words.length; j++) {
+      var d = new Date(words[j]);
+      if (d instanceof Date) {
+        date = d;
+      }
     }
   }
   
