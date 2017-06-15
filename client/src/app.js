@@ -17,6 +17,7 @@ class App extends React.Component {
     this.state = {
       income: ''
     };
+    this.renderRootComponent = this.renderRootComponent.bind(this);
   }
 
   componentDidMount() {
