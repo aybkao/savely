@@ -52,7 +52,7 @@ class App extends React.Component {
       <div id="dashboard_header">
         <img id='logoSavely' src='/assets/logoGreen.png'></img>
       </div>
-      <Carousel />
+        <Carousel />
         {this.renderRootComponent()}
       </div>
     );
