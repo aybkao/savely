@@ -42,7 +42,7 @@ class CashFlowChart extends React.Component {
          </Table.Row>
          <Table.Row>
            <Table.Cell>Expenses</Table.Cell>
-           <Table.Cell>${this.filterTransactions(this.props.transactions)}</Table.Cell>
+           <Table.Cell>${this.filterTransactions(this.props.transactions).toFixed(2)}</Table.Cell>
          </Table.Row>
          </Table.Body>
          <Table.Footer>
