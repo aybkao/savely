@@ -14,8 +14,6 @@ header {
   width: 1440px;
 }
 #carousel {
-  /*height: 50px;
-  width: 1440px;*/
   text-align: center;
 }
 #carousel li {
@@ -77,19 +75,21 @@ header {
   position: relative;
   height: 50px;
   width: 202px;
-  border: 2px solid black;
   color: white;
 }
 .active {
   position: relative;
   display: inline;
-  margin: 25px 25px 25px 25px;
+  margin: 10px;
   background: #3f9847;
   width: 500px !important;
   top: 25px;
-  right: 100px;
+  right: 97px;
   color: white;
   font-size: 18px;
+  padding: 5px 13px 5px 13px;
+  border: 2px solid #3f9847;
+  border-radius: 4px;
 
 }
 #savely-container {
