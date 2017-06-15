@@ -27,13 +27,23 @@ const matchItemToCategory = (str) => {
     if (testDate.toString() !== 'Invalid Date') {
       date = testDate.toString(); 
     }
-
-    if (lowerCase === 'total' || lowerCase === 'subtotal') {
+    
+    // get total amount spent
+    if (lowerCase.indexOf('total') > -1 || lowerCase.indexOf('subtotal') > -1) {
       amountSpent.push(checkAmount(textArray[i + 1]));
+      amountSpent.push(checkAmount(textArray[i + 2]));
       amountSpent.push(checkAmount(textArray[i - 1]));
+      amountSpent.push(checkAmount(textArray[i - 2]));
     }
-
+    
+    // get vendor name if possible
     var vendor = textArray[0];
+    
+    // check if text has date format
+    var d = new Date(lowerCase);
+    if (d !== 'Invalid Date') {
+      date = d;
+    }
   }
   
   const output = {
@@ -47,3 +57,18 @@ const matchItemToCategory = (str) => {
 };
 
 export default matchItemToCategory;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
