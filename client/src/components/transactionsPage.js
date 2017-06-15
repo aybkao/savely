@@ -9,9 +9,9 @@ const TransactionsPage = () => {
     <div>
     <div id="dashboard_header">
       <img id='logoSavely' src='/assets/logoGreen.png'></img>
+      <Carousel />
     </div>
     <TransactionsContainer />
-    <Carousel />
     </div>
   );
 };
