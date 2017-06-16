@@ -15,7 +15,6 @@ const PieChartContainer = (props) => {
           colorScale="qualitative"
           padding={{top: 50, bottom: 80, right: 80, left: 100}}
           duration={1000}
-          sortKey="x"
           />
         </VictoryContainer>
       </div>

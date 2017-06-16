@@ -23,7 +23,7 @@ class SpendingCategoriesChartContainer extends React.Component {
           data={[chartData[i]]}
           domain={[0, 1]}
           x="category"
-          y={(datum) => (datum.spent / datum.limit) * 1}
+          y={(datum) => (datum.spent / datum.limit) <= 1 ? (datum.spent / datum.limit) <= 1 : 1}
           width={325}
           labels={(datum) => '$'+(datum.spent).toFixed(2)}
           style={{
@@ -32,7 +32,7 @@ class SpendingCategoriesChartContainer extends React.Component {
             parent: {border: "1px solid #ccc"}
           }}
           animate={{duration:2000, onLoad: {duration: 2000}}}
-          padding={{left: 10, right: 85, top: 28, bottom: 20}}
+          padding={{left: 10, right: 90, top: 28, bottom: 20}}
           /></VictoryContainer>
           </td>
           <td>${chartData[i].limit}</td>
