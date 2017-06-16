@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { Button,Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
+import ReactSpinner from 'react-spinjs';
+
+import store from '../store';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import getTransactions from '../actions/getTransactions.js';
 
 const getDate = () => {
   var today = new Date();
@@ -21,7 +27,8 @@ class AddTransactionsForm extends React.Component {
       agree: true,
       isDateValid: '',
       profile_id: -1,
-      categoryOptions: null
+      categoryOptions: null, 
+      loading: false
     };
     this.handleChange.bind(this);
     this.handleSubmit.bind(this);
@@ -57,7 +64,7 @@ class AddTransactionsForm extends React.Component {
     var regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
     var dateString = '2016-01-01';
 
-    if(!regex_date.test(dateString)) {
+    if (!regex_date.test(dateString)) {
       return false;
     }
     
@@ -66,15 +73,16 @@ class AddTransactionsForm extends React.Component {
     var day     = parseInt(parts[2], 10);
     var month   = parseInt(parts[1], 10);
     var year    = parseInt(parts[0], 10);
-    if(year < 1000 || year > 3000 || month === 0 || month > 12) {
+    if (year < 1000 || year > 3000 || month === 0 || month > 12) {
       return false;
     }
     var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-    if(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
+    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
       monthLength[1] = 29;
     }
     return day > 0 && day <= monthLength[month - 1];
   }
+
   handleSubmit(event) {
     event.preventDefault();
     const {
@@ -93,6 +101,7 @@ class AddTransactionsForm extends React.Component {
       }
     })
     .then(function (response) {
+      self.setState({loading: true});
       axios.post('/transaction', {
         vendor: vendor,
         amount: amount,
@@ -111,11 +120,21 @@ class AddTransactionsForm extends React.Component {
     .catch(function(error) {
       console.log(error);
     }); 
+    this.setState({loading: true});
+    setTimeout(() => {
+      this.props.getTransactions();
+      this.setState({loading: false});
+    }, 2000);
   }
 
   render() {
     const {vendor, amount, date, category, description} = this.state;
+
     return (
+      <div>
+      {this.state.loading ?  <div><ReactSpinner /></div> 
+        : 
+      <div>
       <Modal size='small' trigger={<Button fluid>Add Transaction</Button>} closeIcon='close' className='addTransaction'>
         <Modal.Header>Add a Transaction</Modal.Header>
         <Modal.Content>
@@ -148,8 +167,22 @@ class AddTransactionsForm extends React.Component {
           </Form>
         </Modal.Content>
       </Modal>
-    );
-  }
+      </div>
+      }
+      </div>
+    ); 
+  }   
 }
 
-export default AddTransactionsForm;
+
+//connects root reducer to props
+const mapStateToProps = (state) => { return { transactions: state.transactions.transactions }; };
+
+//connects redux actions to props
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    getTransactions: getTransactions
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTransactionsForm);
