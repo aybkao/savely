@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import getReceipts from '../actions/getReceipts.js';
 import AddTransactionsForm2 from './addTransactionsForm2.js';
 import { Button } from 'semantic-ui-react';
-
+import ReactSpinner from 'react-spinjs';
 
 
 class UploadReceipts extends React.Component {
@@ -25,7 +25,8 @@ class UploadReceipts extends React.Component {
         amount: -1,
         date: '',
         category: '',
-        profile_id: -1
+        profile_id: -1,
+        loading: false
       }
     };
     this.onImageDrop = this.onImageDrop.bind(this);
@@ -43,6 +44,7 @@ class UploadReceipts extends React.Component {
 
   onImageDrop(acceptedFiles) {
     var self = this;
+    self.setState({loading: true});
     acceptedFiles.forEach((file)=> {
       var fr = new FileReader();
       fr.onload = function(e) {
@@ -72,12 +74,11 @@ class UploadReceipts extends React.Component {
               }
             })
               .then(function(response) {
-                //console.log('RES FROM API', response);
                 var parsedText = response.data.responses[0].textAnnotations;
                 console.log('full text', parsedText[0].description);
                 var outputObj = matchItemToCategory(parsedText[0].description);
                 self.onFinishSaveStore();
-                self.setState({parsedTransaction: outputObj});
+                self.setState({parsedTransaction: outputObj, loading:false});
               });
           });
       };
@@ -89,13 +90,24 @@ class UploadReceipts extends React.Component {
   render() {
     return (
       <div>
-        <div id="receipt-dropzone">
-          <Dropzone
-            onDrop={this.onImageDrop}
-            name='file' id="dropped" ref="dropped">
-            <div>Drag and Drop a Receipt Image</div>
-          </Dropzone>
-        </div>
+        {this.state.loading ? 
+          <div>
+            <ReactSpinner />
+            <br>
+            </br>
+              <h3>PARSING RECEIPT... PLEASE WAIT...</h3>
+            <br>
+            </br>
+          </div> :
+          <div id="receipt-dropzone">
+            <Dropzone
+              onDrop={this.onImageDrop}
+              name='file' id="dropped" ref="dropped">
+              <div>Drag and Drop a Receipt Image</div>
+            </Dropzone>
+            <br/>
+          </div>
+        }
         {
           this.state.hide ? null : 
           <div>
