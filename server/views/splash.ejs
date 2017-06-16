@@ -1,7 +1,7 @@
 <% include head.ejs%>
   <header><img id='logoSavely' src='/assets/logoGreen.png'></img></header>
     <div id='loginjs'>
-    <div class="col-sm-6 col-sm-offset-3" id="splashContent">
+    <div class="col-sm-6 col-sm-offset-3" id="splashContent" class="splash_panel">
         <h1 class='extra_thin' id='controlMotto'>Take control of your money</h1>
         <h2 class='extra_thin' id='controlTagline'>Savely helps you manage your finances and budget easily, quickly, and efficiently</h2>
         <!-- LOGIN FORM -->
@@ -10,5 +10,16 @@
         </form>
         <p class="sign">Already have an account? <a href="/login">Login Here</a></p>
     </div>
-
+    <div class="col-sm-6 col-sm-offset-3" id="splash_one" class="splash_panel">
+    <h1 class='extra_thin' id='controlMotto'>See where your money is going</h1>
+    <img id="pie-chart" src='/assets/pie-chart.png' />
+    </div>
+    <div class="col-sm-6 col-sm-offset-3" id="splash_two" class="splash_panel">
+      <h1 class='extra_thin' id='controlMotto'>Visualize savings over time</h1>
+      <img id="savings-chart" src='/assets/savingschart.png' />
+    </div>
+    <div class="col-sm-6 col-sm-offset-3" id="splash_three" class="splash_panel">
+      <h1 class='extra_thin' id='controlMotto'>Identify areas where you may be over budget</h1>
+      <img id="savings-chart" src='/assets/budgetchart.png' />
+    </div>
 <% include foot.ejs%>

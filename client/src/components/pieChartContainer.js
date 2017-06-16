@@ -8,12 +8,12 @@ const PieChartContainer = (props) => {
         <VictoryContainer height={325} width={525}>
         <VictoryPie data={props.data}
           style={{
-            labels: {fontFamily: "'Gotham Narrow A', 'Gotham Narrow B'", fontSize: 18},
+            labels: {fontFamily: "'Gotham Narrow A', 'Gotham Narrow B'", fontSize: 18, margin: '5px'},
           }}
           x="category"
           y={(datum) => datum.spending}
           colorScale="qualitative"
-          padding={{top: 50, bottom: 80, right: 80, left: 80}}
+          padding={{top: 50, bottom: 80, right: 80, left: 100}}
           duration={1000}
           />
         </VictoryContainer>
