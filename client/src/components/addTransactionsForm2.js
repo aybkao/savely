@@ -48,7 +48,6 @@ class AddTransactionsForm2 extends React.Component {
       response.data.map((cat) => {
         userCategories.push({text: cat.category, value: cat.category});
       });
-      console.log("CAT OPTIONS", userCategories);
       self.setState({categoryOptions: userCategories});
     })
     .catch((error) => {
@@ -59,7 +58,6 @@ class AddTransactionsForm2 extends React.Component {
  
   handleChange(event, {name, value}) {
     var field = this;
-    console.log(field.state);
     field.setState({ [name]: value });
   }
   
@@ -81,7 +79,7 @@ class AddTransactionsForm2 extends React.Component {
         profile_id: self.state.profile_id
       })
       .then(function (response) {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);
