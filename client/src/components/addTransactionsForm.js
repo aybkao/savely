@@ -4,7 +4,6 @@ import { Redirect } from 'react-router';
 import { Button,Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 import ReactSpinner from 'react-spinjs';
-
 import store from '../store';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
