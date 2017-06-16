@@ -2,21 +2,13 @@
   <header><img id='logoSavely' src='/assets/logoGreen.png'></img></header>
     <div id='loginjs'>
     <div class="col-sm-6 col-sm-offset-3" id="splashContent">
-        <h1 class='extra_thin'>Take control of your money</h1>
+        <h1 class='extra_thin' id='controlMotto'>Take control of your money</h1>
+        <h2 class='extra_thin' id='controlTagline'>Savely helps you manage your finances and budget easily, quickly, and efficiently</h2>
         <!-- LOGIN FORM -->
         <form action="/signup" method="post">
-            <button type="submit" id="loginButton" class="btn btn-warning btn-lg">Sign Up for Free</button>
+            <button type="submit" id="signUpForFree" class="btn btn-warning btn-lg">SIGN UP FREE</button>
         </form>
         <p class="sign">Already have an account? <a href="/login">Login Here</a></p>
-        <hr>
-        <div class="sign">
-            Or login with any of the following services:<br />
-            <a style="margin-right:15px" href="/auth/facebook"><img src="/assets/fb-logo.png" /></a>
-            <a style="margin-left:15px;margin-right:15px" href="/auth/google"><img style="width:29px" src="/assets/google-logo.png" /></a>
-            <a style="margin-left:15px" href="/auth/twitter"><img style="width:48px" src="/assets/twitter-logo.png" /></a>
-        </div>
-        <hr>
-
     </div>
 
 <% include foot.ejs%>

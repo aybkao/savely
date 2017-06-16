@@ -41,7 +41,7 @@ header {
 }
 .extra_thin {
   font-weight: 200;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 #budget_status_chart td, #budget_status_chartth {
   padding-left: 10px;
@@ -277,3 +277,16 @@ ul > div.active#logoutButton:hover {
 }
 
   /* NAVBAR CSS ABOVE */
+
+#controlMotto {
+  margin: 0;
+  border: 0;
+  padding: 45px 30px 15px 30px;
+  font-size: 60px;
+}
+#controlTagline {
+  margin: 0;
+  border: 0;
+  padding: 15px 15px 45px 15px;
+  font-size: 20px;
+}
