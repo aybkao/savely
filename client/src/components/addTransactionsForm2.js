@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Header, Modal, Checkbox, Form, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
+import ReactSpinner from 'react-spinjs';
+import store from '../store';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import getTransactions from '../actions/getTransactions.js';
 
 class AddTransactionsForm2 extends React.Component {
   constructor(props) {
@@ -13,7 +18,8 @@ class AddTransactionsForm2 extends React.Component {
       category: '',
       description: '',
       profile_id: -1,
-      categoryOptions: null
+      categoryOptions: null, 
+      loading: false
     };
     this.handleChange.bind(this);
     this.handleSubmit.bind(this);
@@ -85,10 +91,18 @@ class AddTransactionsForm2 extends React.Component {
       console.log(error);
     }); 
     event.preventDefault();
+    this.setState({loading: true});
+    setTimeout(() => {
+      this.props.getTransactions();
+      this.setState({loading: false});
+    }, 2000);
   }
 
   render() {    
     return (
+      <div>
+      {this.state.loading ?  <div><ReactSpinner /></div> 
+        : 
       <div>
       <Modal size='small' trigger={<Button fluid>Verify Transaction Results</Button>} closeIcon='close' className='addTransaction'>
         <Modal.Header>Add a Transaction</Modal.Header>
@@ -123,9 +137,21 @@ class AddTransactionsForm2 extends React.Component {
         </Modal.Content>
       </Modal>
       </div>
-
+      }
+      </div>
     );
   }
 }
 
-export default AddTransactionsForm2;
+
+//connects root reducer to props
+const mapStateToProps = (state) => { return { transactions: state.transactions.transactions }; };
+
+//connects redux actions to props
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    getTransactions: getTransactions
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTransactionsForm2);
