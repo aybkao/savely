@@ -1,4 +1,0 @@
-// create table categories (id serial primary key, vendor varchar(128), description varchar(128), amount float, date date, category_id int references categories(id), profile_id int references profiles(id), created_at timestamp); 
-// create table transactions (id serial primary key, vendor varchar(128), description varchar(128), amount float, date date, category_id int references categories(id), profile_id int references profiles(id), created_at timestamp);
-// insert into categories (category, budget_limit, profile_id) values ('Restaurants', 900, 2) ;
-// INSERT INTO transactions (vendor, amount, date, category_id, description, profile_id) VALUES ('Equator', 11.11, '2017-06-01', 2, 'coffee', 2)

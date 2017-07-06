@@ -24,17 +24,6 @@ class AddTransactionsForm2 extends React.Component {
     this.handleChange.bind(this);
     this.handleSubmit.bind(this);
   }
-  
-  // componentDidUpdate() {
-  //   console.log("PARSED RESULTS ***************", this.props.parsed)
-  //   this.setState({
-  //     vendor: this.props.parsed.vendor,
-  //     amount: this.props.parsed.amount,
-  //     date: this.props.parsed.date,
-  //     category: this.props.parsed.category,
-  //     description: this.props.parsed.description
-  //   })
-  // }
 
   componentDidMount() {
     const script = document.getElementById('bundleScript');
