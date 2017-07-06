@@ -1,6 +1,6 @@
 # SAVELY
 
-The most beautiful budget app
+The most beautiful budget app. User-friendly interface to track your spending and savings, and a smart dropzone to read your receipts.
 
 ## Team
 
@@ -8,25 +8,16 @@ The most beautiful budget app
 - Ashwin Narasimhan
 - Albert Kao
 
-## Roadmap
-
-View the project roadmap [here](LINK_TO_DOC)
-
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 # Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-
-## Usage
-
-> Some usage instructions
 
 ## Requirements
 
@@ -56,6 +47,12 @@ yarn global add grunt-cli knex eslint
 ## Database Initialization
 
 IMPORTANT: ensure `postgres` is running before performing these steps.
+
+```
+brew services start postgres
+```
+
+Use command line to manage postgresql database: `psql postgres`
 
 ### Database Creation:
 
