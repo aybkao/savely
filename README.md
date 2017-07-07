@@ -2,6 +2,16 @@
 
 The most beautiful budget app. User-friendly interface to track your spending and savings, and a smart dropzone to read your receipts.
 
+<br />
+
+<img height="500" src='./public/assets/exp1.gif' />
+
+<br />
+
+<img height="500" src='./public/assets/exp2.gif' />
+
+<br />
+
 ## Team
 
 - Jake Holtz
