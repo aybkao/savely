@@ -13,7 +13,7 @@ Smart dropzone to read your receipts.
 
 <br />
 
-<img height="380" src='./public/assets/exp2.gif' />
+<img height="390" src='./public/assets/exp2.gif' />
 
 <br />
 
