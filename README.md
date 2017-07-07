@@ -1,10 +1,15 @@
-# SAVELY
+## SAVELY 
+# - The most beautiful budget app. 
 
-The most beautiful budget app. User-friendly interface to track your spending and savings, and a smart dropzone to read your receipts.
+User-friendly interface to track your spending and savings.
 
 <br />
 
 <img height="360" src='./public/assets/exp1.gif' />
+
+<br />
+
+Smart dropzone to read your receipts.
 
 <br />
 
