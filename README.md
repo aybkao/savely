@@ -4,11 +4,11 @@ The most beautiful budget app. User-friendly interface to track your spending an
 
 <br />
 
-<img height="500" src='./public/assets/exp1.gif' />
+<img height="360" src='./public/assets/exp1.gif' />
 
 <br />
 
-<img height="500" src='./public/assets/exp2.gif' />
+<img height="400" src='./public/assets/exp2.gif' />
 
 <br />
 
